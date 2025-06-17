@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Conocimientos - OS-Compat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: rgb(9, 7, 22);
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gray-color: #e2e8f0;
+            --success-color: #10b981;
+            --bg-color: #f5f7fa;
+            --header-bg: white;
+            --card-bg: white;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            --card-hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --primary-dark: #60a5fa;
+            --secondary-color: #e5e7eb;
+            --dark-color: #f9fafb;
+            --light-color: #1f2937;
+            --gray-color: #374151;
+            --success-color: #34d399;
+            --bg-color: #111827;
+            --header-bg: #1f2937;
+            --card-bg: #1f2937;
+            --text-color: #f9fafb;
+            --text-light: #9ca3af;
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            --card-hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Header mejorado */
+        header {
+            background-color: var(--header-bg);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--gray-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-right:20rem; 
+        }
+        
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--primary-color);
+        }
+        
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .has-dropdown {
+            position: relative;
+        }
+        
+        .has-dropdown > a {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--header-bg);
+            min-width: 200px;
+            box-shadow: var(--card-shadow);
+            border-radius: 5px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 10;
+            border: 1px solid var(--gray-color);
+        }
+        
+        .has-dropdown:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown li {
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .dropdown a {
+            color: var(--text-color);
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown a:hover {
+            color: var(--primary-color);
+            background-color: var(--gray-color);
+            padding-left: 1.2rem;
+        }
+
+        /* Botón de modo oscuro mejorado */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary-color);
+            background-color: var(--gray-color);
+            transform: rotate(30deg);
+        }
+        
+        /* Contenido principal mejorado */
+        .content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .intro-text {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+            transition: color 0.3s ease;
+        }
+        
+        /* Sección de categorías mejorada */
+        .knowledge-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .category-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+            border: 1px solid var(--gray-color);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+        
+        .category-card h2 {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: color 0.3s ease;
+        }
+        
+        .category-card h2 i {
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        
+        .category-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .category-card li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .category-card li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .category-card a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .category-card a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Sección de comunidad mejorada */
+        .community-section {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--gray-color);
+            transition: all 0.3s ease;
+        }
+        
+        .community-text {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .community-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .community-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .community-btn i {
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .community-btn:hover i {
+            transform: scale(1.1);
+        }
+
+        /* Efectos sutiles para mejorar la experiencia */
+        @media (prefers-reduced-motion: no-preference) {
+            body {
+                scroll-behavior: smooth;
+            }
+            
+            .category-card {
+                will-change: transform;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+                align-items: flex-start;
+            }
+            
+            .has-dropdown {
+                width: 100%;
+            }
+            
+            .dropdown {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                margin-top: 0.5rem;
+            }
+            
+            .has-dropdown:hover .dropdown {
+                display: block;
+            }
+            
+            .theme-toggle {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <div class="header-container">
+        <a href="index.html" class="logo">OS-Compat</a>
+        <nav>
+          <a href="index.html">Inicio</a>
+          <a href="nosotros.html">Nosotros</a>
+
+          <div class="has-dropdown">
+            <a href="#">Sistemas <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+
+          <div class="has-dropdown">
+            <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+              <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+              <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+            </ul>
+          </div>
+
+          <a href="Comunidad.html">Comunidad</a>
+          <a href="SoporteTecnico.html" class="active">Soporte Técnico</a>
+          <a href="contacto.html">Contacto</a>
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+    
+    <main class="content">
+        <h1><i class="fas fa-book-open"></i> Base de Conocimientos</h1>
+        
+        <p class="intro-text">
+            Accede a nuestra extensa biblioteca con guías técnicas, tutoriales paso a paso 
+            y soluciones verificadas para los problemas más comunes.
+        </p>
+        
+        <div class="knowledge-categories">
+            <div class="category-card">
+                <h2><i class="fas fa-file-alt"></i> Guías Técnicas</h2>
+                <ul>
+                    <li><a href="https://support.microsoft.com/es-es/windows/formas-de-instalar-windows-11-e0edbbfb-cfc5-4011-868b-2ce77ac7c70e" target="_blank">Guía de instalación de Windows</a></li>
+                    <li><a href="https://infolinux.es/optimizacion-de-linux-para-principiantes-pasos-esenciales-para-mejorar-la-velocidad/" target="_blank">Optimización de sistemas Linux</a></li>
+                    <li><a href="https://support.microsoft.com/es-es/windows/habilitar-la-virtualizaci%C3%B3n-en-windows-c5578302-6e43-4b4b-a449-8ced115f58e1" target="_blank">Guía completa de virtualización</a></li>
+                    <li><a href="https://learn.microsoft.com/es-es/windows/security/book/operating-system-security" target="_blank">Seguridad básica para todos los SO</a></li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h2><i class="fas fa-graduation-cap"></i> Tutoriales Paso a Paso</h2>
+                <ul>
+                    <li><a href="https://www.xataka.com/basics/como-instalar-linux-a-windows-10-ordenador" target="_blank">Configurar dual boot Windows/Linux</a></li>
+                    <li><a href="https://learn.microsoft.com/es-es/windows/wsl/troubleshooting" target="_blank">Cómo resolver errores comunes</a></li>
+                    <li><a href="https://aws.amazon.com/es/what-is/data-migration/" target="_blank">Migración de datos entre sistemas</a></li>
+                    <li><a href="https://www.ninjaone.com/es/blog/estrategia-de-backup-mejores-practicas/" target="_blank">Crear backups efectivos</a></li>
+                </ul>
+            </div>
+            
+            <div class="category-card">
+                <h2><i class="fas fa-check-circle"></i> Soluciones Verificadas</h2>
+                <ul>
+                    <li><a href="https://learn.microsoft.com/es-es/troubleshoot/windows-client/performance/windows-boot-issues-troubleshooting" target="_blank">Problemas de arranque</a></li>
+                    <li><a href="https://blog.iobit.com/es/controladores-incompatibles-874" target="_blank">Controladores incompatibles</a></li>
+                    <li><a href="https://support.microsoft.com/es-es/windows/sugerencias-para-mejorar-el-rendimiento-del-pc-en-windows-b3b3ef5b-5953-fb6a-2528-4bbed82fba96" target="_blank">Mejorar rendimiento del sistema</a></li>
+                    <li><a href="https://www.computerweekly.com/es/respuesta/Nueve-problemas-de-red-communes-y-como-resolverlos" target="_blank">Problemas de conexión de red</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Sección de comunidad mejorada -->
+        <div class="community-section">
+            <p class="community-text">Si no encontraste solución aquí, puedes consultar en nuestra comunidad</p>
+            <a href="Comunidad.html" class="community-btn">
+                <i class="fas fa-users"></i> Ir a la Comunidad
+            </a>
+        </div>
+    </main>
+
+    <script>
+        // Función mejorada para alternar el modo oscuro
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        
+        // Verificar preferencia del sistema o tema guardado
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const currentTheme = localStorage.getItem('theme');
+        
+        // Aplicar tema inicial con animación
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.setAttribute('data-theme', 'dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        // Tema inicial
+        if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+            applyTheme('dark');
+        }
+        
+        // Escuchar cambios en las preferencias del sistema
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+        
+        // Escuchar clicks en el botón con animación
+        themeToggle.addEventListener('click', () => {
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            
+            // Pequeña animación para feedback visual
+            themeToggle.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                themeToggle.style.transform = 'rotate(30deg) scale(1.1)';
+                setTimeout(() => {
+                    themeToggle.style.transform = 'rotate(0) scale(1)';
+                    applyTheme(isDark ? 'light' : 'dark');
+                }, 150);
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Configuración de Red en Linux</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      /* Estilos específicos para CLI si hay ejemplos de comandos */
+      code {
+        background-color: #e6e6e6; /* Un gris claro para el fondo */
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada */
+        font-size: 0.9em;
+        white-space: nowrap; /* Evita que los comandos se rompan en varias líneas */
+      }
+      pre {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto; /* Para comandos largos */
+      }
+      pre code {
+        display: block; /* Para que cada comando en un bloque pre tenga su propia línea */
+        white-space: pre-wrap; /* Permite el salto de línea dentro de comandos largos si es necesario */
+        background-color: transparent; /* No doble fondo */
+        background-color: #1e1e1e;
+        color: #dcdcdc;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="linux.html">Linux</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Configuración de Red</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Configuración de Red en Linux: Conectividad y Solución de Problemas</h2>
+          <p>
+            Configurar la red en Linux puede ser tan sencillo como conectarse a una Wi-Fi o tan
+            complejo como configurar un servidor con múltiples interfaces. Afortunadamente, las
+            distribuciones modernas de Linux han simplificado enormemente el proceso para el usuario
+            promedio, mientras que aún ofrecen la flexibilidad y el control que los usuarios
+            avanzados y administradores necesitan. Esta guía te ayudará a entender los conceptos
+            básicos y a solucionar problemas comunes.
+          </p>
+
+          <h3>Conceptos Básicos de Red en Linux</h3>
+          <ul>
+            <li>
+              <strong>Interfaz de Red:</strong> Es el hardware o software que permite a tu
+              computadora conectarse a una red (ej., Ethernet, Wi-Fi, Bluetooth). Se identifican con
+              nombres como `eth0`, `wlan0`, `enpXsY`, `wlXsY`.
+            </li>
+            <li>
+              <strong>Dirección IP:</strong> Un identificador único para tu dispositivo en la red
+              (ej., `192.168.1.100`). Puede ser dinámica (DHCP) o estática.
+            </li>
+            <li>
+              <strong>Máscara de Subred:</strong> Define qué parte de la dirección IP es la red y
+              qué parte es el host.
+            </li>
+            <li>
+              <strong>Puerta de Enlace (Gateway):</strong> La dirección IP del router que conecta tu
+              red local a Internet.
+            </li>
+            <li>
+              <strong>Servidores DNS:</strong> Convierten nombres de dominio (ej., google.com) en
+              direcciones IP.
+            </li>
+            <li>
+              <strong>NetworkManager:</strong> La herramienta gráfica más común para gestionar
+              conexiones de red en distribuciones de escritorio.
+            </li>
+          </ul>
+
+          <h3>Configuración de Red Gráfica (NetworkManager)</h3>
+          <p>
+            La forma más común y sencilla de gestionar tus conexiones en Ubuntu, Fedora, y la
+            mayoría de los escritorios:
+          </p>
+          <ol>
+            <li>
+              <strong>Acceder a la Configuración de Red:</strong> Busca "Configuración" (o
+              "Settings") y luego la sección "Red" (o "Network").
+            </li>
+            <li>
+              <strong>Conectarse a Wi-Fi:</strong>
+              <ul>
+                <li>Selecciona la pestaña "Wi-Fi".</li>
+                <li>Activa el Wi-Fi si no lo está.</li>
+                <li>
+                  Selecciona tu red de la lista y haz clic en "Conectar" (o el botón con la rueda
+                  dentada para opciones avanzadas).
+                </li>
+                <li>Introduce la contraseña si es necesario.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Configurar una Conexión por Cable (Ethernet):</strong>
+              <ul>
+                <li>
+                  Conecta el cable Ethernet. Generalmente, la conexión se establece automáticamente
+                  por DHCP.
+                </li>
+                <li>
+                  Para configurar IP estática, selecciona la conexión por cable, haz clic en la
+                  rueda dentada, ve a la pestaña "IPv4" o "IPv6", cambia a "Manual" y rellena los
+                  detalles.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Opciones Avanzadas:</strong> Puedes configurar servidores DNS personalizados,
+              proxies, y otras opciones en las propiedades de cada conexión.
+            </li>
+          </ol>
+
+          <h3>Configuración de Red por Línea de Comandos (CLI)</h3>
+          <p>Para usuarios avanzados o para servidores, la CLI es indispensable:</p>
+          <ul>
+            <li>
+              <strong>Verificar el Estado de la Red:</strong>
+              <pre><code>
+<strong>ip a</strong>          # Muestra todas las interfaces de red y sus IPs
+<strong>ip route</strong>      # Muestra la tabla de enrutamiento
+<strong>ping google.com</strong> # Envía paquetes para verificar conectividad a un host
+<strong>ss -tuln</strong>      # Lista los puertos abiertos y en uso
+<strong>nmcli device show</strong> # (NetworkManager CLI) Muestra detalles de los dispositivos de red
+              </code></pre>
+            </li>
+            <li>
+              <strong>Activar/Desactivar Interfaces:</strong>
+              <pre><code>
+<strong>sudo ip link set eth0 up</strong>    # Activa la interfaz eth0
+<strong>sudo ip link set eth0 down</strong>  # Desactiva la interfaz eth0
+              </code></pre>
+            </li>
+            <li>
+              <strong>Configurar IP Estática (Ejemplo):</strong>
+              <pre><code>
+# Esto es solo un ejemplo; la configuración permanente varía por distribución (netplan, network-scripts, systemd-networkd)
+<strong>sudo ip addr add 192.168.1.100/24 dev eth0</strong>
+<strong>sudo ip route add default via 192.168.1.1</strong>
+              </code></pre>
+            </li>
+            <li>
+              <strong>Gestionar Conexiones Wi-Fi con `nmcli`:</strong>
+              <pre><code>
+<strong>nmcli device wifi list</strong>        # Lista redes Wi-Fi disponibles
+<strong>nmcli device wifi connect "NombreDeTuRed" password "TuContraseña"</strong> # Conecta a una red Wi-Fi
+              </code></pre>
+            </li>
+          </ul>
+
+          <h3>Solución de Problemas Comunes de Red</h3>
+          <ul>
+            <li>
+              <strong>No hay conexión a Internet:</strong>
+              <ul>
+                <li>Verifica que el cable Ethernet esté conectado o que el Wi-Fi esté activado.</li>
+                <li>Reinicia tu router y tu PC.</li>
+                <li>Asegúrate de que estás conectado a la red correcta.</li>
+                <li>
+                  Abre el terminal y prueba `ping 8.8.8.8` (DNS de Google). Si funciona, el problema
+                  es DNS.
+                </li>
+                <li>
+                  Si `ping 8.8.8.8` no funciona, prueba `ping 192.168.1.1` (o la IP de tu router).
+                  Si esto funciona, el problema es el gateway o la conexión a Internet.
+                </li>
+                <li>Comprueba la configuración de IP (DHCP o estática).</li>
+                <li>Verifica los drivers de tu tarjeta de red.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Wi-Fi no detectado o lento:</strong>
+              <ul>
+                <li>Asegúrate de que el módulo Wi-Fi esté cargado (`lsmod | grep -i wifi`).</li>
+                <li>
+                  Instala drivers propietarios si es necesario (especialmente para Broadcom o
+                  Realtek).
+                </li>
+                <li>Verifica interferencias o una señal débil.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>DNS no funciona:</strong>
+              <ul>
+                <li>
+                  Revisa la configuración de DNS en tu NetworkManager o en `/etc/resolv.conf`.
+                </li>
+                <li>Prueba con DNS públicos (ej., 8.8.8.8, 1.1.1.1).</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Problemas de Firewall:</strong>
+              <ul>
+                <li>
+                  Asegúrate de que tu firewall (ufw, firewalld) no esté bloqueando las conexiones
+                  que necesitas.
+                </li>
+                <li>
+                  Puedes deshabilitarlo temporalmente para probar (`sudo ufw disable` o `sudo
+                  systemctl stop firewalld`) y volver a activarlo después.
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <p>
+            La red en Linux es un campo vasto. Empezar con la interfaz gráfica y luego explorar la
+            línea de comandos te dará un control total sobre tu conectividad.
+          </p>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Oficiales y Herramientas</h3>
+          <ul>
+            <li>
+              <a
+                href="https://documentation-ubuntu-com.translate.goog/server/explanation/networking/configuring-networks/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Configurar red en Ubuntu (Tutorial oficial)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs.fedoraproject.org/es/fedora/f29/system-administrators-guide/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Guía de Red de Fedora (Administradores)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://wiki.debian.org/NetworkConfiguration"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Configuración de Red en Debian Wiki</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs-redhat-com.translate.goog/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/sec-network_bridging_using_the_networkmanager_command_line_tool_nmcli?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Documentación nmcli (NetworkManager CLI)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.redeszone.net/tutoriales/redes-cable/comandos-basicos-redes-linux/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Comandos de red de Linux comunes</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="linux-cli.html">Dominando la Línea de Comandos en Linux</a></li>
+            <li>
+              <a
+                href="https://www-redhat-com.translate.goog/en/blog/troubleshooting-hardware-problems-linux?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Solución de Problemas de Hardware en Linux
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www-redhat-com.translate.goog/de/blog/firewalld-linux-firewall?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Cómo configurar un firewall en Linux con firewalld</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

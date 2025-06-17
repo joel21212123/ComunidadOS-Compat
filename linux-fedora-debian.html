@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Fedora y Debian Linux</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+ <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="linux.html">Linux</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Fedora y Debian</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Fedora y Debian: Pilares de la Comunidad Linux</h2>
+          <p>
+            Más allá de Ubuntu, Fedora y Debian son dos de las distribuciones de Linux más
+            influyentes y respetadas, cada una con su propia filosofía y público. Entender sus
+            diferencias te ayudará a elegir la que mejor se adapte a tus necesidades, ya seas un
+            desarrollador, un entusiasta de la estabilidad o un usuario que busca lo último en
+            tecnología.
+          </p>
+
+          <h3>Fedora: Innovación a la Vanguardia</h3>
+          <p>
+            Fedora es una distribución de Linux patrocinada por Red Hat, conocida por ser una
+            plataforma para probar nuevas tecnologías y software antes de que se incorporen en Red
+            Hat Enterprise Linux (RHEL). Esto la convierte en una opción excelente para
+            desarrolladores, entusiastas y aquellos que desean las últimas versiones de software y
+            características.
+          </p>
+          <ul>
+            <li>
+              <strong>Filosofía:</strong> "Cutting Edge" o a la vanguardia. Incluye las últimas
+              versiones de software y tecnologías.
+            </li>
+            <li>
+              <strong>Frecuencia de Lanzamiento:</strong> Nuevas versiones cada 6 meses, con soporte
+              relativamente corto (aproximadamente 13 meses por versión).
+            </li>
+            <li>
+              <strong>Gestor de Paquetes:</strong> Utiliza DNF (basado en RPM), que es potente y
+              eficiente.
+            </li>
+            <li>
+              <strong>Entorno de Escritorio por Defecto:</strong> GNOME, pero ofrece "spins"
+              (variantes) con KDE Plasma, XFCE, Cinnamon, etc.
+            </li>
+            <li>
+              <strong>Ideal para:</strong> Desarrolladores, usuarios que quieren las últimas
+              características, testers de nuevas tecnologías, aquellos que aprecian un sistema
+              limpio y moderno.
+            </li>
+            <li>
+              <strong>Características Notables:</strong> Fuerte enfoque en la seguridad (SELinux
+              activado por defecto), excelente soporte para hardware moderno, integración temprana
+              de nuevas tecnologías de kernel y de escritorio.
+            </li>
+          </ul>
+
+          <h3>Debian: La Roca de la Estabilidad</h3>
+          <p>
+            Debian es una distribución de Linux fundamental y una de las más antiguas, reconocida
+            por su estabilidad, su firme compromiso con el software libre y su robusto sistema de
+            gestión de paquetes. Es la base de muchas otras distribuciones populares, incluyendo
+            Ubuntu.
+          </p>
+          <ul>
+            <li>
+              <strong>Filosofía:</strong> Estabilidad, software libre, y una comunidad fuerte.
+              Prioriza la estabilidad y la seguridad sobre la novedad.
+            </li>
+            <li>
+              <strong>Frecuencia de Lanzamiento:</strong> Nuevas versiones "estable" cada 2-3 años,
+              con soporte muy largo y actualizaciones de seguridad constantes. También tiene ramas
+              "testing" e "inestable" para quienes buscan software más reciente.
+            </li>
+            <li>
+              <strong>Gestor de Paquetes:</strong> Utiliza APT (Advanced Package Tool), un sistema
+              de gestión de paquetes extremadamente potente y bien establecido (usa paquetes .deb).
+            </li>
+            <li>
+              <strong>Entorno de Escritorio por Defecto:</strong> No tiene un entorno de escritorio
+              por defecto estricto; permite al usuario elegir durante la instalación (GNOME, KDE
+              Plasma, XFCE, LXQt, MATE, Cinnamon, etc.).
+            </li>
+            <li>
+              <strong>Ideal para:</strong> Servidores, usuarios que valoran la estabilidad extrema,
+              sistemas donde las actualizaciones críticas deben ser mínimas, desarrolladores que
+              necesitan una base sólida, entusiastas del software libre.
+            </li>
+            <li>
+              <strong>Características Notables:</strong> Un repositorio de software gigantesco
+              (miles de paquetes), una comunidad activa y bien documentada, gran flexibilidad y
+              control sobre el sistema.
+            </li>
+          </ul>
+
+          <h3>¿Cuál Elegir? Comparativa y Recomendaciones</h3>
+          <p>
+            Si buscas lo último en tecnología y no te importa actualizar con frecuencia, Fedora es
+            una excelente elección. Si priorizas la estabilidad inquebrantable, la fiabilidad y una
+            base de software libre, Debian es tu opción. Para un punto intermedio amigable para el
+            usuario, Ubuntu sigue siendo una opción muy sólida, que de hecho se basa en Debian.
+          </p>
+          <div class="table-responsive">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Característica</th>
+                  <th>Fedora</th>
+                  <th>Debian</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Filosofía</strong></td>
+                  <td>Innovación, "cutting edge"</td>
+                  <td>Estabilidad, software libre</td>
+                </tr>
+                <tr>
+                  <td><strong>Frecuencia Actualizaciones</strong></td>
+                  <td>Cada 6 meses (versiones nuevas)</td>
+                  <td>Cada 2-3 años (versiones estables)</td>
+                </tr>
+                <tr>
+                  <td><strong>Gestor de Paquetes</strong></td>
+                  <td>DNF (RPM)</td>
+                  <td>APT (DEB)</td>
+                </tr>
+                <tr>
+                  <td><strong>Software</strong></td>
+                  <td>Más reciente</td>
+                  <td>Más probado y estable (a veces menos reciente)</td>
+                </tr>
+                <tr>
+                  <td><strong>Curva de Aprendizaje</strong></td>
+                  <td>Media (requiere estar al día)</td>
+                  <td>Media a alta (más control manual)</td>
+                </tr>
+                <tr>
+                  <td><strong>Casos de Uso</strong></td>
+                  <td>Estación de trabajo de desarrollador, entusiasta</td>
+                  <td>Servidores, estaciones de trabajo muy estables, sistemas embebidos</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Si buscas lo último en tecnología y no te importa actualizar con frecuencia, Fedora es
+            una excelente elección. Si priorizas la estabilidad inquebrantable, la fiabilidad y una
+            base de software libre, Debian es tu opción. Para un punto intermedio amigable para el
+            usuario, Ubuntu sigue siendo una opción muy sólida, que de hecho se basa en Debian.
+          </p>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Oficiales</h3>
+          <ul>
+            <li>
+              <a href="https://fedoraproject.org/es/" target="_blank" rel="noopener noreferrer"
+                >Página oficial de Fedora Project</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.debian.org/index.es.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Página oficial de Debian</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs.fedoraproject.org/en-US/fedora/latest/install-guide/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Guía de Instalación de Fedora</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.debian.org/doc/manuals/debian-reference/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Referencia de Debian</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="linux-ubuntu.html">Ubuntu: Tu Inicio en Linux</a></li>
+            <li><a href="linux-cli.html">Dominando la Línea de Comandos en Linux</a></li>
+            <li>
+              <a
+                href="https://www-digitalocean-com.translate.goog/community/tutorials/package-management-basics-apt-yum-dnf-pkg?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc&_x_tr_hist=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Fundamentos de la gestión de paquetes: apt, yum, dnf, pkg
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>
+<style>
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  .comparison-table th {
+    background-color: rgba(17, 108, 212);
+    font-weight: bold;
+  }
+
+  .comparison-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+  body.dark-mode .comparison-table th {
+    background-color: var(--primary-color); /* O un color más oscuro si prefieres, ej. #3a3f44 */
+    color: var(--bg-color); /* Para que el texto sea blanco sobre el primario/oscuro */
+  }
+  
+  body.dark-mode .comparison-table tbody tr:nth-child(even) {
+    background-color: var(--bg-light-color); /* O un color más oscuro que card-bg-color pero claro que bg-color */
+    /* Podrías usar un color como rgba(255,255,255,0.05) para un efecto de rayas sutil */
+  }
+  
+  body.dark-mode .comparison-table tbody tr:nth-child(odd) {
+    background-color: var(--card-bg-color); /* Asegura que las impares usen el fondo de la tarjeta */
+  }
+  
+  body.dark-mode .comparison-table th,
+  body.dark-mode .comparison-table td {
+    border: 1px solid var(--border-color);
+  }
+</style>

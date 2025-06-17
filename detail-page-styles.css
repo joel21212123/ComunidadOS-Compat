@@ -1,0 +1,311 @@
+/* --- Estilos para las páginas de detalle (ej. windows11.html, windows-troubleshooting.html) --- */
+
+.detail-page-content {
+  padding: 5rem 0;
+  background-color: var(
+    --bg-light-color
+  ); /* Original: #f9fbfd; - Un fondo ligeramente diferente para las páginas de contenido */
+  min-height: 70vh; /* Asegura que la página tenga una altura mínima */
+}
+
+.detail-page-content .container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+  gap: 3rem; /* Espacio entre el contenido principal y la barra lateral */
+  align-items: flex-start; /* Alinea los elementos al principio verticalmente */
+}
+
+.main-content-section {
+  flex: 3; /* Ocupa 3 partes del espacio disponible */
+  min-width: 65%; /* Asegura que no se haga demasiado pequeño */
+  background-color: var(--card-bg-color); /* Original: #fff; */
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px var(--shadow-color); /* Original: rgba(0, 0, 0, 0.05); */
+}
+
+.main-content-section h2 {
+  font-size: 2.5rem;
+  color: var(
+    --primary-color
+  ); /* Original: #03a9f4; - Un azul vibrante para los títulos principales */
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-color); /* Original: #eee; */
+  padding-bottom: 1rem;
+}
+
+.main-content-section h3 {
+  font-size: 1.8rem;
+  color: var(--text-color); /* Original: #333; */
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.main-content-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-light-color); /* Original: #555; */
+  margin-bottom: 1.2rem;
+}
+
+.main-content-section ul,
+.main-content-section ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem; /* Indentación para listas */
+}
+
+.main-content-section ul li,
+.main-content-section ol li {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-color); /* Original: #444; */
+  margin-bottom: 0.5rem;
+}
+
+.main-content-section a {
+  color: var(--primary-color); /* Original: #03a9f4; */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.main-content-section a:hover {
+  text-decoration: underline;
+  color: var(--button-hover-darken); /* Original: #0288d1; - Un tono más oscuro al pasar el ratón */
+}
+
+/* Breadcrumbs (Migas de pan) */
+.breadcrumb {
+  display: flex;
+  padding: 1rem 0;
+  list-style: none;
+  background-color: transparent;
+  border-radius: 0.25rem;
+  margin-bottom: 2rem; /* Espacio debajo de las migas de pan */
+  font-size: 0.95rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  display: inline-block;
+  padding-right: 0.5rem;
+  color: var(--text-light-color); /* Original: #6c757d; - Se adapta al tema */
+  content: '/';
+}
+
+.breadcrumb-item a {
+  color: var(--primary-color); /* Original: #03a9f4; */
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: var(--text-color); /* Original: #6c757d; - Se adapta al tema */
+}
+
+.sidebar-content {
+  flex: 1; /* Ocupa 1 parte del espacio */
+  min-width: 250px; /* Asegura un ancho mínimo */
+  background-color: var(--card-bg-color); /* Original: #fff; */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px var(--shadow-color); /* Original: rgba(0, 0, 0, 0.05); */
+}
+
+.sidebar-content h3 {
+  font-size: 1.5rem;
+  color: var(--text-color); /* Original: #333; */
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color); /* Original: #eee; */
+  padding-bottom: 0.8rem;
+}
+
+.sidebar-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-content ul li {
+  margin-bottom: 0.8rem;
+}
+
+.sidebar-content ul li a {
+  color: var(--text-light-color); /* Original: #666; */
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: block; /* Para que el área de clic sea más grande */
+}
+
+.sidebar-content ul li a:hover {
+  color: var(--primary-color); /* Original: #03a9f4; */
+  text-decoration: underline;
+}
+
+/* --- Responsive Adjustments for Detail Pages --- */
+@media (max-width: 1200px) {
+  .main-content-section {
+    min-width: 60%;
+  }
+}
+
+@media (max-width: 992px) {
+  .detail-page-content .container {
+    flex-direction: column; /* Apila las columnas en pantallas más pequeñas */
+    gap: 2rem;
+  }
+  .main-content-section,
+  .sidebar-content {
+    min-width: 100%; /* Ocupan todo el ancho disponible */
+  }
+  .main-content-section {
+    padding: 2rem;
+  }
+  .sidebar-content {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content-section h2 {
+    font-size: 2rem;
+  }
+  .main-content-section h3 {
+    font-size: 1.6rem;
+  }
+  .main-content-section p,
+  .main-content-section ul li,
+  .main-content-section ol li {
+    font-size: 1rem;
+  }
+  .breadcrumb {
+    font-size: 0.85rem;
+  }
+}
+/* Estilos para la tabla de requisitos mínimos (os-requirements-table) */
+
+.table-responsive {
+  /* Asegura que la tabla sea desplazable horizontalmente en pantallas pequeñas */
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.os-requirements-table {
+  width: 100%;
+  border-collapse: collapse; /* Elimina el espacio entre los bordes de las celdas */
+  margin: 20px 0;
+  font-size: 0.95em; /* Un poco más pequeño para tablas con mucha información */
+  text-align: left; /* Alinea el texto a la izquierda en todas las celdas */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para la tabla */
+  border-radius: 8px; /* Bordes ligeramente redondeados para la tabla */
+  overflow: hidden; /* Asegura que la sombra y los bordes redondeados se apliquen correctamente */
+}
+
+/* Estilos para el encabezado de la tabla (thead) */
+.os-requirements-table thead {
+  background-color: var(--primary-color); /* Usa tu color primario */
+  color: var(--text-color-light); /* O un color de texto claro si tu primary-color es oscuro */
+  position: sticky; /* Hace que el encabezado sea "pegajoso" al desplazarse */
+  top: 0;
+  z-index: 1; /* Asegura que el encabezado esté por encima del contenido al desplazarse */
+}
+
+.os-requirements-table th {
+  padding: 12px 15px;
+  border-bottom: 2px solid var(--border-color); /* Borde inferior más pronunciado */
+  font-weight: 600; /* Texto del encabezado un poco más negrita */
+  text-transform: uppercase; /* Pone el texto del encabezado en mayúsculas */
+  letter-spacing: 0.5px; /* Pequeño espacio entre letras */
+}
+
+/* Estilos para el cuerpo de la tabla (tbody) */
+.os-requirements-table tbody tr {
+  border-bottom: 1px solid var(--border-color); /* Borde ligero entre filas */
+  transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+.os-requirements-table tbody tr:last-child {
+  border-bottom: none; /* Elimina el borde de la última fila */
+}
+
+.os-requirements-table tbody tr:nth-of-type(even) {
+  background-color: var(--bg-light-color); /* Alterna el color de fondo de las filas (gris claro) */
+}
+
+.os-requirements-table tbody tr:hover {
+  background-color: rgba(var(--primary-color-rgb), 0.1); /* Efecto hover sutil */
+  cursor: pointer;
+}
+
+.os-requirements-table td {
+  padding: 10px 15px;
+  vertical-align: top; /* Alinea el contenido de la celda en la parte superior */
+  color: var(--text-color);
+}
+
+/* Estilos para los iconos dentro de las celdas de la tabla (si aplicas Font Awesome) */
+.os-requirements-table td .fab {
+  margin-right: 8px;
+  color: var(--secondary-color); /* Color para los iconos */
+}
+
+/* Estilos para las notas importantes */
+.requirement-note {
+  background-color: var(
+    --bg-light-color
+  ); /* Fondo ligeramente diferente para la sección de notas */
+  border-left: 5px solid var(--secondary-color); /* Borde izquierdo de color secundario */
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.requirement-note h4 {
+  color: var(--secondary-color); /* Color del título de las notas */
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.requirement-note h4 .fas {
+  margin-right: 10px;
+  color: var(--secondary-color);
+  font-size: 1.2em;
+}
+
+.requirement-note ul {
+  list-style: none; /* Quita los puntos predeterminados */
+  padding: 0;
+  margin: 0;
+}
+
+.requirement-note li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.requirement-note li strong {
+  color: var(--primary-color);
+}
+
+/* Ajustes para pantallas pequeñas (responsive design) */
+@media (max-width: 768px) {
+  .os-requirements-table {
+    font-size: 0.85em; /* Reduce el tamaño de la fuente en pantallas más pequeñas */
+  }
+
+  .os-requirements-table th,
+  .os-requirements-table td {
+    padding: 8px 10px; /* Reduce el padding en celdas */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ocultar algunas columnas si es necesario para pantallas muy pequeñas */
+  .os-requirements-table thead th:nth-child(4), /* Almacenamiento */
+  .os-requirements-table tbody td:nth-child(4) {
+    display: none; /* ¡AHORA ESTÁ ACTIVO! */
+  }
+}

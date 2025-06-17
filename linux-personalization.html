@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Personalización en Linux</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="linux.html">Linux</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Personalización</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Personalización en Linux: Haz Tu Escritorio Único</h2>
+          <p>
+            Una de las mayores fortalezas de Linux es su increíble capacidad de personalización. A
+            diferencia de otros sistemas operativos, Linux te ofrece un control total sobre la
+            apariencia y el comportamiento de tu escritorio, desde los iconos y temas hasta el
+            entorno de escritorio completo. Esta libertad permite a los usuarios crear un entorno de
+            trabajo que no solo es funcional, sino también estéticamente agradable y adaptado a sus
+            preferencias.
+          </p>
+
+          <h3>Conceptos Clave de la Personalización en Linux</h3>
+          <ul>
+            <li>
+              <strong>Entorno de Escritorio (Desktop Environment - DE):</strong> Es el conjunto
+              completo de software que proporciona la interfaz gráfica de usuario. Los DEs más
+              populares incluyen GNOME, KDE Plasma, XFCE, Cinnamon, MATE y LXQt. Cada uno tiene su
+              propio estilo y herramientas de personalización.
+            </li>
+            <li>
+              <strong>Gestor de Ventanas:</strong> Una parte del entorno de escritorio que controla
+              la colocación, tamaño y apariencia de las ventanas.
+            </li>
+            <li>
+              <strong>Temas:</strong> Conjuntos de reglas y gráficos que definen la apariencia de
+              los elementos de la interfaz (ventanas, botones, menús, etc.).
+            </li>
+            <li>
+              <strong>Iconos:</strong> Paquetes de imágenes que reemplazan los iconos
+              predeterminados del sistema y las aplicaciones.
+            </li>
+            <li>
+              <strong>Fondos de Pantalla (Wallpapers):</strong> Imágenes de fondo para tu
+              escritorio.
+            </li>
+            <li>
+              <strong>Fuentes (Fonts):</strong> Tipografías utilizadas en el sistema y las
+              aplicaciones.
+            </li>
+            <li>
+              <strong>Conky:</strong> Un monitor del sistema altamente configurable que muestra
+              información en el escritorio (CPU, RAM, red, etc.).
+            </li>
+          </ul>
+
+          <h3>Personalizando tu Entorno de Escritorio (Ejemplos Comunes)</h3>
+
+          <h4>GNOME (Ubuntu, Fedora Workstation)</h4>
+          <ul>
+            <li>
+              <strong>GNOME Tweaks (Ajustes de GNOME):</strong> Una herramienta esencial para
+              personalizar GNOME. Te permite cambiar temas (GTK, Shell, iconos, cursor), fuentes,
+              configurar extensiones y más.
+              <pre><code>
+# Instalar GNOME Tweaks en Ubuntu/Debian
+<strong>sudo apt install gnome-tweaks</strong>
+
+# Instalar GNOME Tweaks en Fedora
+<strong>sudo dnf install gnome-tweaks</strong>
+              </code></pre>
+            </li>
+            <li>
+              <strong>Extensiones de GNOME:</strong> Pequeños complementos que añaden funcionalidad
+              o cambian aspectos visuales. Puedes instalarlas desde
+              <a href="https://extensions.gnome.org/" target="_blank" rel="noopener noreferrer"
+                >extensions.gnome.org</a
+              >
+              (requiere una extensión del navegador y el paquete `chrome-gnome-shell` o
+              `gnome-shell-extension-browser-connector`).
+            </li>
+            <li>
+              <strong>Temas e Iconos:</strong> Descarga temas de sitios como
+              <a href="https://www.gnome-look.org/" target="_blank" rel="noopener noreferrer"
+                >GNOME-Look.org</a
+              >
+              y extráelos en `~/.themes` y `~/.icons` respectivamente. Luego, aplícalos con GNOME
+              Tweaks.
+            </li>
+          </ul>
+
+          <h4>KDE Plasma (Kubuntu, Fedora KDE Spin)</h4>
+          <ul>
+            <li>
+              <strong>Configuración del Sistema de KDE:</strong> KDE Plasma es conocido por su
+              extrema personalización. Prácticamente todo se puede cambiar desde la aplicación
+              "Configuración del Sistema".
+            </li>
+            <li>
+              <strong>Descarga Integrada:</strong> Desde la propia Configuración del Sistema, puedes
+              buscar y descargar nuevos temas globales, temas de Plasma, temas de aplicaciones (GTK,
+              Qt), esquemas de color, iconos, fondos de pantalla y más directamente desde la
+              comunidad.
+            </li>
+            <li>
+              <strong>Widgets (Plasmoids):</strong> Añade pequeños programas interactivos a tu
+              escritorio o paneles.
+            </li>
+          </ul>
+
+          <h4>XFCE (Xubuntu)</h4>
+          <ul>
+            <li>
+              <strong>Configuración de XFCE:</strong> XFCE es ligero pero muy configurable. La
+              configuración se maneja a través de varias herramientas dentro de su "Configuración"
+              (Apariencia, Gestor de Ventanas, Panel, Escritorio).
+            </li>
+            <li>
+              <strong>Temas:</strong> Puedes instalar temas GTK2/GTK3 y copiarlos a `~/.themes` o
+              `~/.local/share/themes/`.
+            </li>
+            <li>
+              <strong>Paneles:</strong> Los paneles de XFCE son muy flexibles, permitiendo añadir o
+              eliminar elementos, cambiar su posición y tamaño.
+            </li>
+          </ul>
+
+          <h3>Sitios Web Populares para Recursos de Personalización</h3>
+          <ul>
+            <li>
+              <a href="https://www.gnome-look.org/" target="_blank" rel="noopener noreferrer"
+                >GNOME-Look.org</a
+              >
+            </li>
+            <li>
+              <a href="https://store.kde.org/" target="_blank" rel="noopener noreferrer"
+                >KDE Store</a
+              >
+            </li>
+            <li>
+              <a href="https://www.xfce-look.org/" target="_blank" rel="noopener noreferrer"
+                >XFCE-Look.org</a
+              >
+            </li>
+            <li>
+              <a href="https://www.opendesktop.org/" target="_blank" rel="noopener noreferrer"
+                >OpenDesktop.org</a
+              >
+              (Recursos para varios DEs)
+            </li>
+            <li>
+              <a href="https://wallhaven.cc/" target="_blank" rel="noopener noreferrer"
+                >Wallhaven.cc</a
+              >
+              (Fondos de pantalla de alta calidad)
+            </li>
+          </ul>
+
+          <h3>Consideraciones y Consejos</h3>
+          <ul>
+            <li>
+              <strong>Impacto en el Rendimiento:</strong> Algunos entornos de escritorio (ej., KDE
+              Plasma con muchos efectos) o temas muy elaborados pueden consumir más recursos. Si
+              tienes un hardware limitado, opta por DEs más ligeros (XFCE, LXQt) o temas más
+              simples.
+            </li>
+            <li>
+              <strong>Compatibilidad de Temas:</strong> Los temas están diseñados para frameworks
+              específicos (GTK para GNOME/XFCE, Qt para KDE). Asegúrate de descargar temas
+              compatibles con tu entorno.
+            </li>
+            <li>
+              <strong>Haz Copias de Seguridad:</strong> Antes de realizar cambios importantes,
+              considera hacer una copia de seguridad de tus archivos de configuración.
+            </li>
+            <li>
+              <strong>Explora la Comunidad:</strong> Las comunidades de tu distribución o DE
+              favorito (Reddit, foros) son excelentes para encontrar inspiración y ayuda.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Adicionales para Personalización</h3>
+          <ul>
+            <li>
+              <a
+                href="https://itsfoss.com/gnome-tweak-tool/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Guía de GNOME Tweaks (en inglés)</a
+              >
+            </li>
+            <li>
+              <a href="https://kde.org/es/plasma-desktop/" target="_blank" rel="noopener noreferrer"
+                >Documentación de KDE Plasma (en inglés)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs.xfce.org/xfce/xfce4-settings/start"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Documentación de XFCE Settings (en inglés)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/zcot/conky-manager2"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Conky Manager 2 (para Conky)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="linux-ubuntu.html">Primeros pasos con Ubuntu</a></li>
+            <li><a href="linux-fedora-debian.html">Explorando Fedora y Debian</a></li>
+            <li>
+              <a
+                href="https://blog.desdelinux.net/instalar-fuentes-tipograficas-linux/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Cómo instalar y gestionar fuentes en Linux
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

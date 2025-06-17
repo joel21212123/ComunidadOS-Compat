@@ -1,0 +1,212 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4895ef;
+  --dark-color: #2b2d42;
+  --light-color: #f8f9fa;
+  --success-color: #4cc9f0;
+  --error-color: #f72585;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ciVDMyVBRG98ZW58MHx8MHx8fDA%3D') no-repeat;
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(3px);
+  position: relative;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+.login-container {
+  width: 420px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+  50% { transform: translateY(-20px) rotateX(2deg) rotateY(2deg); }
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-header h1 {
+  font-size: 2.5rem;
+  color: var(--light-color);
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.login-header p {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.9rem;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px 20px 15px 50px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  font-size: 1rem;
+  color: var(--light-color);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.input-group input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(67, 97, 238, 0.5);
+}
+
+.input-group input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.input-group i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.8);
+  font-size: 1.2rem;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  color: rgba(255,255,255,0.8);
+}
+
+.remember-me input {
+  margin-right: 8px;
+  accent-color: var(--primary-color);
+}
+
+.forgot-password a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.forgot-password a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.login-button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+  margin-bottom: 20px;
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(67, 97, 238, 0.6);
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+.register-link {
+  text-align: center;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.9rem;
+}
+
+.register-link a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+  color: var(--success-color);
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg');
+  background-size: 1000px 100px;
+  animation: wave 8s linear infinite;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.wave:nth-child(2) {
+  animation-delay: -4s;
+  animation-duration: 12s;
+  opacity: 0.3;
+}
+
+@keyframes wave {
+  0% { background-position-x: 0; }
+  100% { background-position-x: 1000px; }
+}

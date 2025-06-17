@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Compatibilidad de Sistemas Operativos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img
+            src="imagenes/Modern Creative Logo Instagram Post.png"
+            alt="OS-Compat"
+            class="header-logo-img"
+          />
+          OS-<span>Compat</span>
+        </a>
+        <nav class="nav">
+          <ul>
+            <li><a href="#" class="active">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="#">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-left">
+          <div class="social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+          <div class="hero-badge"></div>
+          <h1>
+            Validación de Compatibilidad
+            <span>entre Sistemas Operativos y Hardware</span>
+          </h1>
+          <p>
+            Encuentra toda la información sobre compatibilidad de tu equipo con diferentes sistemas
+            operativos. Verifica requisitos, soluciona problemas y únete a nuestra comunidad de
+            usuarios.
+          </p>
+          <div class="buttons">
+            <a href="compatibility-hardware-checker.html" class="btn btn-primary"
+              >Verificar Compatibilidad</a
+            >
+            <a href="SoporteTecnico.html" class="btn btn-icon"><i class="fas fa-headset"></i></a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <img
+            class="hero-image"
+            src="imagenes/Modern Creative Logo Instagram Post.png"
+            alt="OS-Compat"
+          />
+
+          <div class="float-element light-bulb">
+            <i
+              class="fab fa-windows"
+              style="
+                font-size: 30px;
+                color: #0078d6;
+                display: flex;
+                block-size: 100%;
+                align-items: center;
+                justify-content: center;
+              "
+            ></i>
+          </div>
+          <div class="float-element floating-icon-1">
+            <i class="fab fa-linux"></i>
+          </div>
+          <div class="float-element floating-icon-2">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="os-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Sistemas Operativos</h2>
+          <p>
+            Descubre información detallada sobre cada sistema operativo y su compatibilidad con
+            diferentes componentes
+          </p>
+        </div>
+        <div class="os-cards">
+          <div class="os-card">
+            <div class="os-icon">
+              <i class="fab fa-windows"></i>
+            </div>
+            <h3>Windows</h3>
+            <p>
+              Información sobre todas las versiones de Windows, requisitos de hardware y soluciones
+              a problemas comunes.
+            </p>
+            <a href="windows.html" class="card-link">Explorar <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="os-card">
+            <div class="os-icon">
+              <i class="fab fa-linux"></i>
+            </div>
+            <h3>Linux</h3>
+            <p>
+              Descubre las distribuciones más populares, compatibilidad de hardware y guías de
+              instalación paso a paso.
+            </p>
+            <a href="linux.html" class="card-link">Explorar <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="os-card">
+            <div class="os-icon">
+              <i class="fab fa-apple"></i>
+            </div>
+            <h3>macOS</h3>
+            <p>
+              Conoce los equipos compatibles con macOS, requisitos y opciones para instalar en
+              hardware no Apple.
+            </p>
+            <a href="macos.html" class="card-link">Explorar <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="os-card">
+            <div class="os-icon">
+              <i class="fas fa-laptop"></i>
+            </div>
+            <h3>Chrome OS</h3>
+            <p>
+              Aprende sobre Chrome OS, dispositivos compatibles y cómo instalar en equipos no
+              Chromebook.
+            </p>
+            <a href="chromeos.html" class="card-link"
+              >Explorar <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="compatibility-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Verificador de Compatibilidad</h2>
+          <p>
+            Herramientas para verificar si tu equipo es compatible con el sistema operativo que
+            deseas instalar
+          </p>
+        </div>
+        <div class="compatibility-content">
+          <div class="compatibility-form">
+            <h3>Verifica tu Hardware</h3>
+            <form>
+              <div class="form-group">
+                <label for="os-select">Sistema Operativo</label>
+                <select id="os-select">
+                  <option>Selecciona un sistema operativo</option>
+                  <option>Windows 11</option>
+                  <option>Windows 10</option>
+                  <option>Ubuntu 24.04</option>
+                  <option>macOS Sequoia</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="processor">Procesador</label>
+                <input type="text" id="processor" placeholder="Ej. Intel Core i5-10400" />
+              </div>
+              <div class="form-group">
+                <label for="ram">Memoria RAM (GB)</label>
+                <input type="number" id="ram" placeholder="Ej. 8" />
+              </div>
+              <div class="form-group">
+                <label for="graphics">Tarjeta Gráfica</label>
+                <input type="text" id="graphics" placeholder="Ej. NVIDIA GeForce GTX 1650" />
+              </div>
+              <button type="submit" class="btn btn-primary full-width">
+                Verificar Compatibilidad
+              </button>
+            </form>
+          </div>
+          <div class="compatibility-info">
+            <h3>Requisitos Mínimos Populares</h3>
+            <div class="requirements-table">
+              <div class="req-row req-header">
+                <div class="req-cell">Sistema</div>
+                <div class="req-cell">CPU</div>
+                <div class="req-cell">RAM</div>
+                <div class="req-cell">Almacenamiento</div>
+              </div>
+              <div class="req-row">
+                <div class="req-cell">Windows 11</div>
+                <div class="req-cell">64-bit / 1GHz+</div>
+                <div class="req-cell">4GB</div>
+                <div class="req-cell">64GB</div>
+              </div>
+              <div class="req-row">
+                <div class="req-cell">Windows 10</div>
+                <div class="req-cell">1GHz+</div>
+                <div class="req-cell">2GB</div>
+                <div class="req-cell">32GB</div>
+              </div>
+              <div class="req-row">
+                <div class="req-cell">Ubuntu 24.04</div>
+                <div class="req-cell">2GHz dual core</div>
+                <div class="req-cell">4GB</div>
+                <div class="req-cell">25GB</div>
+              </div>
+            </div>
+            <a href="#" class="text-link"
+              >Ver todos los requisitos <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="community-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Nuestra Comunidad</h2>
+          <p>Únete a miles de usuarios, comparte experiencias y resuelve problemas juntos</p>
+        </div>
+        <div class="community-features">
+          <div class="community-feature">
+            <div class="feature-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3>Foros de Discusión</h3>
+            <p>Participa en conversaciones sobre sistemas operativos, drivers y soluciones.</p>
+          </div>
+          <div class="community-feature">
+            <div class="feature-icon">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <h3>Preguntas y Respuestas</h3>
+            <p>Plantea tus dudas y obtén ayuda de expertos y otros usuarios.</p>
+          </div>
+          <div class="community-feature">
+            <div class="feature-icon">
+              <i class="fas fa-download"></i>
+            </div>
+            <h3>Drivers Verificados</h3>
+            <p>Accede a una biblioteca de drivers seguros y verificados por la comunidad.</p>
+          </div>
+          <div class="community-feature">
+            <div class="feature-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3>Tutoriales</h3>
+            <p>Guías paso a paso creadas por usuarios para resolver problemas comunes.</p>
+          </div>
+        </div>
+        <div class="community-cta">
+          <h3>¿Listo para unirte a nuestra comunidad?</h3>
+          <a href=" InicioSesion.html " class="btn btn-primary">Registrarse Ahora</a>
+        </div>
+      </div>  
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">
+              <img src="imagenes/imagenlogo.png" alt="OS-Compat" class="footer-logo-img" />
+              OS-<span>Compat</span>
+            </a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href=""><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li>
+                <a href="compatibility-hardware-checker.html">Verificador de Compatibilidad</a>
+              </li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+              
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="terminosservicio.html">Términos de Servicio</a>
+            <a href="politicasprivacidad.html">Política de Privacid</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

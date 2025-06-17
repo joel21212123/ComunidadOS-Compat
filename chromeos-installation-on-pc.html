@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Instalación de Chrome OS en PC</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      :root {
+        /* Light Mode colors */
+        --background-color: #f4f7fa;
+        --text-color: #333;
+        --heading-color: #222;
+        --card-background: #ffffff;
+        --border-color: #ddd;
+        --primary-color: #007bff;
+        --code-background-inline: #e6e6e6;
+        --code-background-block: #f4f4f4;
+        --code-text-color: #333;
+        --description-text-color: #555;
+        --setting-group-background: #f8f8f8;
+        --setting-group-heading-color: #333;
+        --info-background: #e9f7fe;
+        --info-border: #007bff;
+        --shortcut-background: #f8f8f8;
+        --shortcut-heading-color: #333;
+        --tip-highlight-color: #007bff;
+        --device-category-background: #f8f8f8;
+        --device-category-heading-color: #333;
+        --device-list-border: #e0e0e0;
+
+        /* Specific for Chrome OS installation page */
+        --caution-background: #fff3cd; /* Fondo de la nota de precaución */
+        --caution-border: #ffc107; /* Borde de la nota de precaución */
+        --caution-text-color: #664d03; /* Color del texto de la nota de precaución */
+        --platform-card-background: #f8f8f8; /* Fondo para las tarjetas de plataforma */
+        --platform-card-heading-color: #333; /* Color del título de las tarjetas de plataforma */
+        --chromeos-brand-color-light: #4285f4; /* Azul de Google para modo claro */
+        --chromeos-brand-color-dark: #8ab4f8; /* Azul de Google que contraste en oscuro */
+      }
+
+      body.dark-mode {
+        /* Dark Mode colors */
+        --background-color: #1a1a2e;
+        --text-color: #e0e0e0;
+        --heading-color: #f0f0f0;
+        --card-background: #2a2a4a;
+        --border-color: #444;
+        --primary-color: #6a8aff;
+        --code-background-inline: #3a3a5a;
+        --code-background-block: #2e2e4e;
+        --code-text-color: #c0c0c0;
+        --description-text-color: #b0b0b0;
+        --setting-group-background: #2a2a4a;
+        --setting-group-heading-color: #e0e0e0;
+        --info-background: #3a3a5a;
+        --info-border: #6a8aff;
+        --shortcut-background: #2a2a4a;
+        --shortcut-heading-color: #e0e0e0;
+        --tip-highlight-color: #88aaff;
+        --device-category-background: #2a2a4a;
+        --device-category-heading-color: #f0f0f0;
+        --device-list-border: #555;
+
+        /* Specific for Chrome OS installation page in Dark Mode */
+        --caution-background: #4a3c22; /* Fondo oscuro que complemente el amarillo */
+        --caution-border: #cc9900; /* Borde amarillo para oscuro */
+        --caution-text-color: #ffda6a; /* Texto amarillo claro para oscuro */
+        --platform-card-background: #2a2a4a; /* Fondo oscuro para las tarjetas de plataforma */
+        --platform-card-heading-color: #f0f0f0; /* Color del título en oscuro */
+        /* --chromeos-brand-color-dark se usará directamente */
+      }
+      /* -- Estilos para la nota de precaución (Caution Note) -- */
+      .caution-note {
+        background-color: var(--caution-background); /* Usa la variable de fondo */
+        border-left: 5px solid var(--caution-border); /* Usa la variable de borde */
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        color: var(--caution-text-color); /* Usa la variable de color de texto */
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra suave para modo claro */
+      }
+
+      body.dark-mode .caution-note {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada en oscuro */
+        /* Los colores ya se adaptarán por las variables */
+      }
+
+      /* -- Estilos para las tarjetas de plataforma (Platform Card) -- */
+      .platform-card {
+        background-color: var(--platform-card-background); /* Usa la variable de fondo */
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border-left: 5px solid var(--chromeos-brand-color-light); /* Usa la variable de color de marca */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        color: var(--text-color); /* Asegura que el texto general use el color del tema */
+      }
+
+      .platform-card h3 {
+        margin-top: 0;
+        color: var(--platform-card-heading-color); /* Usa la variable para el color del título */
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .platform-card h3 .fas {
+        /* Asegura que los íconos también se adapten */
+        color: var(--platform-card-heading-color);
+        margin-right: 8px;
+      }
+
+      .platform-card .btn {
+        margin-top: 15px;
+        display: inline-block;
+      }
+
+      .platform-card ul {
+        list-style: none; /* Eliminar viñetas predeterminadas */
+        padding: 0;
+        margin-top: 15px;
+      }
+
+      .platform-card ul li {
+        margin-bottom: 8px;
+        padding-left: 20px; /* Espacio para el ícono */
+        position: relative;
+      }
+
+      .platform-card ul li strong {
+        color: var(--heading-color); /* Para las palabras "Ventajas", "Desventajas", "Ideal para" */
+      }
+
+      .platform-card ul li::before {
+        content: '\2022'; /* Un punto como viñeta */
+        color: var(--primary-color); /* Usar color primario para la viñeta */
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        position: absolute;
+        left: 0;
+      }
+
+      /* Estilos específicos para MODO OSCURO para estos elementos */
+      body.dark-mode .platform-card {
+        border-left: 5px solid var(--chromeos-brand-color-dark); /* Usa el azul de Google para oscuro */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada en oscuro */
+        /* Los demás colores ya se adaptarán por las variables */
+      }
+
+      body.dark-mode .platform-card ul li::before {
+        color: var(--primary-color); /* Mantener el color primario para la viñeta en oscuro */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="chromeos.html">Chrome OS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Instalación en PC</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Instalando Chrome OS en Hardware no Oficial (PC Antigua)</h2>
+          <p>
+            Aunque Chrome OS está optimizado para Chromebooks, existen soluciones no oficiales que
+            te permiten instalar una versión basada en Chromium OS (el proyecto de código abierto
+            detrás de Chrome OS) en hardware de PC convencional. Esto es ideal para revivir
+            ordenadores antiguos, netbooks o simplemente para experimentar con el sistema operativo
+            ligero de Google sin comprar un nuevo dispositivo.
+          </p>
+          <div class="caution-note">
+            <strong>Importante:</strong> Estas soluciones no son Chrome OS oficial de Google y
+            pueden no ofrecer todas las funciones, el mismo nivel de seguridad o las actualizaciones
+            automáticas garantizadas de un Chromebook. La compatibilidad de hardware varía, y
+            algunas funciones (como el Wi-Fi o el Bluetooth) pueden no funcionar en todos los
+            equipos.
+          </div>
+
+          <h3>Opciones Populares para instalar Chrome OS en PC</h3>
+
+          <div class="platform-card">
+            <h3><i class="fas fa-cloud"></i> ChromeOS Flex (antes CloudReady)</h3>
+            <p>
+              ChromeOS Flex es la solución oficial de Google para instalar una versión de Chrome OS
+              en PCs y Macs. Es una versión de Chrome OS diseñada para empresas y escuelas, pero
+              está disponible para uso personal. Ofrece una experiencia muy cercana a la de un
+              Chromebook, con arranque rápido, seguridad y gestión en la nube. Es el sucesor de
+              CloudReady de Neverware, que fue adquirido por Google.
+            </p>
+            <ul>
+              <li>
+                <strong>Ventajas:</strong> Soporte oficial de Google, actualizaciones automáticas,
+                buen rendimiento en hardware antiguo, interfaz familiar de Chrome OS.
+              </li>
+              <li>
+                <strong>Desventajas:</strong> Algunas funciones premium de Chromebooks (como Google
+                Play Store para apps Android) no están disponibles. La compatibilidad de hardware es
+                buena pero no universal.
+              </li>
+              <li>
+                <strong>Ideal para:</strong> Dar nueva vida a PCs y Macs antiguos, uso en entornos
+                educativos o empresariales, usuarios que buscan una experiencia de Chrome OS lo más
+                cercana posible a la oficial.
+              </li>
+            </ul>
+            <a
+              href="https://chromeos.google/intl/es_es/products/chromeos-flex/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+              >Descargar ChromeOS Flex</a
+            >
+          </div>
+
+          <div class="platform-card">
+            <h3><i class="fas fa-dragon"></i> FydeOS</h3>
+            <p>
+              FydeOS es un sistema operativo basado en Chromium OS con mejoras y características
+              adicionales que no se encuentran en ChromeOS Flex. Está diseñado para ofrecer una
+              experiencia más rica en PCs, incluyendo soporte para Android App Store y aplicaciones
+              Linux (similar a un Chromebook). Es una opción china de terceros que ha ganado
+              popularidad.
+            </p>
+            <ul>
+              <li>
+                <strong>Ventajas:</strong> Soporte para Google Play Store (apps Android) y Linux
+                (Crostini), lo que lo hace más versátil que ChromeOS Flex para el usuario promedio.
+                Amplia compatibilidad con hardware.
+              </li>
+              <li>
+                <strong>Desventajas:</strong> No es un producto de Google, las actualizaciones
+                pueden ser menos frecuentes y el soporte de la comunidad puede ser más limitado para
+                usuarios no chinos. Requiere un poco más de configuración inicial.
+              </li>
+              <li>
+                <strong>Ideal para:</strong> Usuarios que quieren las funcionalidades de Android y
+                Linux en su "Chromebook" de PC, y están dispuestos a experimentar con una solución
+                de terceros.
+              </li>
+            </ul>
+            <a
+              href="https://fydeos.io/download"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+              >Descargar FydeOS</a
+            >
+          </div>
+
+          <h3>Proceso General de Instalación (común a ambos)</h3>
+          <ol>
+            <li>
+              <strong>Verifica la Compatibilidad:</strong> Consulta las listas de hardware
+              compatible (especialmente para ChromeOS Flex).
+            </li>
+            <li>
+              <strong>Descarga la Imagen:</strong> Descarga la imagen ISO o BIN de ChromeOS Flex o
+              FydeOS.
+            </li>
+            <li>
+              <strong>Crea un USB Booteable:</strong> Utiliza una herramienta como Rufus (Windows) o
+              BalenaEtcher (Windows/macOS/Linux) para crear un USB de instalación.
+            </li>
+            <li>
+              <strong>Arranca desde el USB:</strong> Configura la BIOS/UEFI de tu PC para arrancar
+              desde el USB.
+            </li>
+            <li>
+              <strong>Prueba o Instala:</strong> Puedes probar el sistema operativo desde el USB sin
+              instalarlo o proceder directamente con la instalación en tu disco duro (¡esto borrará
+              todos los datos en el disco seleccionado!).
+            </li>
+            <li>
+              <strong>Configuración Inicial:</strong> Sigue los pasos para configurar tu cuenta de
+              Google (o FydeOS) y las opciones de red.
+            </li>
+          </ol>
+
+          <h3>Consideraciones Adicionales</h3>
+          <ul>
+            <li>
+              <strong>Respaldo de Datos:</strong> Siempre realiza una copia de seguridad de tus
+              datos importantes antes de intentar instalar cualquier sistema operativo.
+            </li>
+            <li>
+              <strong>Wi-Fi y Bluetooth:</strong> Estos componentes son los más propensos a tener
+              problemas de compatibilidad. Investiga tu modelo de tarjeta de red antes de instalar.
+            </li>
+            <li>
+              <strong>Rendimiento:</strong> Aunque son ligeros, los sistemas operativos basados en
+              Chromium OS se beneficiarán de un SSD para un arranque y una carga de aplicaciones
+              rápidos.
+            </li>
+            <li>
+              <strong>Dual Boot:</strong> Es posible configurar un dual boot con Windows o Linux,
+              pero es más complejo y requiere particionar el disco con cuidado.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Adicionales</h3>
+          <ul>
+            <li>
+              <a
+                href="https://support.google.com/chromeosflex/answer/11552529?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Guía de instalación de ChromeOS Flex (Google Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://fydeos-io.translate.goog/help/knowledge-base/installation-guides/fydeos-for-pc/install-fydeos-for-pc/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Guía de instalación de FydeOS (Sitio oficial)</a
+              >
+            </li>
+            <li>
+              <a href="https://www.balena.io/etcher/" target="_blank" rel="noopener noreferrer"
+                >BalenaEtcher (Herramienta para crear USB booteables)</a
+              >
+            </li>
+            <li>
+              <a href="https://rufus.ie/es/" target="_blank" rel="noopener noreferrer"
+                >Rufus (Herramienta para crear USB booteables en Windows)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li>
+              <a href="chromeos-compatible-devices.html">Dispositivos Compatibles con Chrome OS</a>
+            </li>
+            <li>
+              <a href="chromeos-android-linux-apps.html"
+                >Uso de Apps Android y Linux en Chrome OS</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/chromebook/answer/4514391?hl=es-419"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Solución de Problemas de Chrome OS
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

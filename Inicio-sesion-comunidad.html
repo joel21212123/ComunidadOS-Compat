@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foro de Sistemas Operativos - Acceso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #e0f7ff;
+        background-image: radial-gradient(at top left, rgba(186, 230, 253, 0.7) 0%, transparent 60%),
+          radial-gradient(at bottom right, rgba(125, 211, 252, 0.7) 0%, transparent 60%);
+        background-attachment: fixed;
+        min-block-size: 100vh;
+        
+        
+      }
+      /* Modo oscuro completo */
+.dark, .dark body {
+  background-color: #0f172a !important;
+  background-image: none !important;
+  color: #f8fafc !important;
+}
+.dark .icono-monitor {
+  color: white !important;
+}
+.dark .form-container {
+  background-color: rgba(15, 23, 42, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .input-field {
+  background-color: rgba(30, 41, 59, 0.7);
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.dark .text-center h1 {
+  color: white !important;
+}
+
+.dark .input-field:focus {
+  background-color: rgba(30, 41, 59, 0.9);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.dark .tab-button {
+  color: #94a3b8;
+  border-block-end-color: transparent;
+}
+
+.dark .tab-button.text-blue-600 {
+  color: #60a5fa;
+  border-block-end-color: #60a5fa;
+}
+
+.dark .social-btn {
+  background-color: rgba(30, 41, 59, 0.7);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+}
+
+.dark .social-btn:hover {
+  background-color: rgba(30, 41, 59, 0.9);
+}
+
+.dark .text-gray-600,
+.dark .text-gray-700,
+.dark .text-gray-500 {
+  color: #cbd5e1;
+}
+
+.dark .text-blue-600 {
+  color: #60a5fa;
+}
+
+.dark .text-sm.text-gray-700 {
+  color: #e2e8f0;
+}
+
+.dark a.text-blue-600:hover {
+  color: #93c5fd;
+}
+
+.dark input[type="checkbox"] {
+  border-color: #64748b;
+  background-color: rgba(30, 41, 59, 0.7);
+}
+
+.dark .gradient-bg {
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+}
+
+.dark .password-toggle {
+  color: #94a3b8;
+}
+
+.dark .password-toggle:hover {
+  color: #60a5fa;
+}
+
+.dark .glass-icon {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(249, 250, 250, 0.25);
+}
+
+.dark .relative.my-6 .border-t {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .relative.flex.justify-center.text-sm span {
+  background-color: rgba(15, 23, 42, 0.7);
+  color: #94a3b8;
+}
+/* Modo oscuro - Fondo */
+
+
+.dark {
+  color: #e2e8f0;
+}
+
+.dark .form-container {
+  background-color: rgba(15, 23, 42, 0.9) !important;
+  backdrop-filter: blur(12px);
+}
+      .dark .gradient-bg {
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%); /* Gradiente oscuro */
+}
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      }
+
+
+      .form-container {
+        background-color: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15), 0 4px 16px 0 rgba(31, 38, 135, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 16px;
+        transition: all 0.3s ease;
+      }
+
+
+      .input-field {
+        background-color: rgba(255, 255, 255, 0.7);
+        transition: all 0.3s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .input-field:focus {
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+
+      .social-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .toggle-form {
+        transition: all 0.4s ease;
+      }
+
+      .hidden-form {
+        opacity: 0;
+        block-size: 0;
+        overflow: hidden;
+      }
+
+      .visible-form {
+        opacity: 1;
+        block-size: auto;
+      }
+
+      .password-toggle {
+        inset-inline-end: 10px;
+        inset-block-start: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .password-toggle:hover {
+        color: #3b82f6;
+      }
+
+      .tab-button {
+        transition: all 0.3s ease;
+      }
+
+      .glass-icon {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .glass-icon:hover {
+        transform: scale(1.05) rotate(5deg);
+      }
+
+      /* Efecto de elevación para el formulario completo */
+      .form-container:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2), 0 6px 20px 0 rgba(31, 38, 135, 0.1);
+      }
+
+      /* Campos ocultos */
+      .hidden-input {
+        opacity: 0;
+        block-size: 0;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      /* Campos visibles */
+      .visible-input {
+        opacity: 1;
+        block-size: auto;
+        margin-block-end: 1.5rem;
+        padding: 0.5rem 0;
+      }
+
+      /* Contenedor de trigger */
+      .input-trigger {
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-block-end: 1rem;
+      }
+
+      .input-trigger:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .input-trigger .trigger-icon {
+        position: absolute;
+        inset-inline-end: 1rem;
+        inset-block-start: 50%;
+        transform: translateY(-50%);
+        transition: all 0.3s ease;
+      }
+
+      .input-trigger:hover .trigger-icon {
+        transform: translateY(-50%) scale(1.1);
+        color: #3b82f6;
+      }
+
+      /* Grupo de campos para manejar el hover */
+      .input-group {
+        position: relative;
+        margin-block-end: 1rem;
+      }
+
+      .input-group:hover .hidden-input {
+        opacity: 1;
+        block-size: auto;
+        margin-block-end: 1.5rem;
+        padding: 0.5rem 0;
+      }
+
+      .input-group:hover .input-trigger {
+        display: none;
+      }
+
+      /* Animación de carga */
+      .loading-spinner {
+        display: inline-block;
+        inline-size: 20px;
+        height: 20px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-block-start-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Notificación */
+      .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateX(200%);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        max-width: 300px;
+      }
+
+      .dark .notification {
+        background: rgba(15, 23, 42, 0.9);
+        color: #f8fafc;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .notification.show {
+        transform: translateX(0);
+      }
+
+      .notification.success {
+        border-left: 4px solid #10b981;
+      }
+
+      .notification.error {
+        border-left: 4px solid #ef4444;
+      }
+
+      .notification i {
+        margin-right: 10px;
+      }
+
+      /* Barra de búsqueda */
+      .search-container {
+        position: relative;
+        transition: all 0.3s ease;
+        width: 40px;
+        overflow: hidden;
+      }
+
+      .search-container.expanded {
+        width: 250px;
+      }
+
+      .search-input {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: transparent;
+        padding: 0 40px 0 15px;
+        outline: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .search-container.expanded .search-input {
+        opacity: 1;
+      }
+
+      .search-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 2;
+      }
+
+      /* Botón de tema oscuro/claro */
+      .theme-toggle {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        margin-left: 10px;
+      }
+
+      .theme-toggle:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      .dark .theme-toggle:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .theme-toggle i {
+        transition: transform 0.3s ease;
+      }
+
+      .theme-toggle:hover i {
+        transform: rotate(20deg) scale(1.1);
+      }
+
+      /* Barra de navegación en modo oscuro */
+      .dark header {
+        background-color: #1e293b;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .dark header a {
+        color: #f8fafc;
+      }
+
+      .dark header nav a {
+        color: #cbd5e1;
+      }
+
+      .dark header nav a:hover {
+        color: #3b82f6;
+      }
+
+      .dark header .header-icons a {
+        color: #cbd5e1;
+      }
+
+      .dark header .header-icons a:hover {
+        color: #3b82f6;
+      }
+
+      /* Header icons */
+      .header-icons {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .header-icons a,
+      .header-icons button {
+        color: #4b5563;
+        transition: all 0.2s ease;
+        font-size: 1.1rem;
+      }
+
+      .header-icons a:hover,
+      .header-icons button:hover {
+        color: #3b82f6;
+        transform: scale(1.1);
+      }
+
+    </style>
+    
+  </head>
+
+  <body class="flex items-center justify-center p-4">
+    <!-- Barra de navegación -->
+    <header class="bg-white shadow-sm fixed top-0 w-full z-50">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold text-gray-800">
+          OS-<span class="text-blue-500">Compat</span>
+        </a>
+        <nav class="space-x-6 text-gray-700">
+          <a href="index.html" class="hover:text-blue-500">Inicio</a>
+          <a href="nosotros.html" class="hover:text-blue-500">Nosotros</a>
+          <a href="#" class="hover:text-blue-500">Sistemas</a>
+          <a href="#" class="hover:text-blue-500">Compatibilidad</a>
+          <a href="comunidad.html" class="text-blue-500 border-b-2 border-blue-500">Comunidad</a>
+          <a href="#" class="hover:text-blue-500">Soporte Técnico</a>
+          <a href="#" class="hover:text-blue-500">Contacto</a>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="w-full max-w-md mt-20">
+      <!-- Notificación -->
+      <div id="notification" class="notification hidden">
+        <i class="fas fa-check-circle text-green-500"></i>
+        <span id="notification-message">Mensaje de notificación</span>
+      </div>
+
+<!-- Logo y título -->
+<div class="text-center mb-8">
+  <div class="glass-icon w-20 h-20 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+    <i class="fas fa-desktop text-black dark:text-white text-3xl"></i>
+  </div>
+  <h1 class="text-3xl font-bold text-gray-800 dark:text-white [color:inherit!important]">Foro de Sistemas Operativos</h1>
+  <p class="text-gray-600 mt-2">Comunidad de expertos en sistemas operativos</p>
+</div>
+
+      <!-- Pestañas de acceso -->
+      <div class="flex border-b border-gray-200 mb-6">
+        <button
+          id="login-tab"
+          class="tab-button flex-1 py-2 px-4 font-medium text-blue-600 border-b-2 border-blue-600 focus:outline-none"
+        >
+          Iniciar sesión
+        </button>
+        <button
+          id="register-tab"
+          class="tab-button flex-1 py-2 px-4 font-medium text-gray-500 hover:text-gray-700 focus:outline-none"
+        >
+          Registrarse
+        </button>
+      </div>
+
+      <!-- Formulario de inicio de sesión -->
+      <div id="login-form" class="form-container p-8 toggle-form visible-form">
+        <form id="login" class="space-y-6">
+          <!-- Grupo para correo -->
+          <div class="input-group">
+            <!-- Trigger para correo -->
+            <div class="input-trigger" id="email-trigger">
+              <span class="text-sm font-medium text-gray-700">Ingresa tu correo electrónico</span>
+              <i class="fas fa-envelope trigger-icon text-gray-400"></i>
+            </div>
+
+            <!-- Campo de correo (oculto inicialmente) -->
+            <div id="email-input" class="hidden-input">
+              <label for="login-email" class="block text-sm font-medium text-gray-700 mb-1"
+                >Correo electrónico</label
+              >
+              <div class="relative">
+                <input
+                  type="email"
+                  id="login-email"
+                  required
+                  class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                  placeholder=""
+                />
+                <i
+                  class="fas fa-envelope absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                ></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Grupo para contraseña -->
+          <div class="input-group">
+            <!-- Trigger para contraseña -->
+            <div class="input-trigger" id="password-trigger">
+              <span class="text-sm font-medium text-gray-700">Ingresa tu contraseña</span>
+              <i class="fas fa-lock trigger-icon text-gray-400"></i>
+            </div>
+
+            <!-- Campo de contraseña (oculto inicialmente) -->
+            <div id="password-input" class="hidden-input">
+              <label for="login-password" class="block text-sm font-medium text-gray-700 mb-1"
+                >Contraseña</label
+              >
+              <div class="relative">
+                <input
+                  type="password"
+                  id="login-password"
+                  required
+                  class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                  placeholder=""
+                />
+                <button
+                  type="button"
+                  class="password-toggle"
+                  onclick="togglePassword('login-password', 'login-eye')"
+                >
+                  <i id="login-eye" class="fas fa-eye-slash text-gray-400"></i>
+                </button>
+              </div>
+              <div class="flex justify-end mt-1">
+                <a href="#" class="text-sm text-blue-600 hover:underline"
+                  >¿Olvidaste tu contraseña?</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="remember-me"
+              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            />
+            <label for="remember-me" class="ml-2 block text-sm text-gray-700"
+              >Recordar mi sesión</label
+            >
+          </div>
+
+          <button
+            type="submit"
+            id="login-btn"
+            class="gradient-bg w-full py-3 px-4 text-white font-medium rounded-lg hover:opacity-90 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+          >
+            <span id="login-text">Iniciar sesión</span>
+            <span id="login-loading" class="hidden">
+              <span class="loading-spinner"></span>
+              <span class="ml-2">Procesando...</span>
+            </span>
+          </button>
+        </form>
+
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white/30 text-gray-500">O continúa con</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <button
+            class="social-btn bg-white/70 border border-gray-300 rounded-lg py-2 px-4 text-gray-700 font-medium hover:bg-gray-100 transition shadow-sm hover:shadow-md"
+          >
+            <i class="fab fa-google text-red-500"></i>
+          </button>
+          <button
+            class="social-btn bg-white/70 border border-gray-300 rounded-lg py-2 px-4 text-gray-700 font-medium hover:bg-gray-100 transition shadow-sm hover:shadow-md"
+          >
+            <i class="fab fa-facebook-f text-blue-600"></i>
+          </button>
+          <button
+            class="social-btn bg-white/70 border border-gray-300 rounded-lg py-2 px-4 text-gray-700 font-medium hover:bg-gray-100 transition shadow-sm hover:shadow-md"
+          >
+            <i class="fab fa-github text-gray-800"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Formulario de registro (oculto inicialmente) -->
+      <div id="register-form" class="form-container p-8 toggle-form hidden-form">
+        <form id="register" class="space-y-6">
+          <!-- Grupo para nombre -->
+          <div class="input-group">
+            <!-- Trigger para nombre -->
+            <div class="input-trigger" id="name-trigger">
+              <span class="text-sm font-medium text-gray-700">Ingresa tu nombre completo</span>
+              <i class="fas fa-user trigger-icon text-gray-400"></i>
+            </div>
+
+            <!-- Campo de nombre (oculto inicialmente) -->
+            <div id="name-input" class="hidden-input">
+              <label for="register-name" class="block text-sm font-medium text-gray-700 mb-1"
+                >Nombre completo</label
+              >
+              <div class="relative">
+                <input
+                  type="text"
+                  id="register-name"
+                  required
+                  class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                  placeholder=""
+                />
+                <i
+                  class="fas fa-user absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                ></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Grupo para correo -->
+          <div class="input-group">
+            <!-- Trigger para correo -->
+            <div class="input-trigger" id="reg-email-trigger">
+              <span class="text-sm font-medium text-gray-700">Ingresa tu correo electrónico</span>
+              <i class="fas fa-envelope trigger-icon text-gray-400"></i>
+            </div>
+
+            <!-- Campo de correo (oculto inicialmente) -->
+            <div id="reg-email-input" class="hidden-input">
+              <label for="register-email" class="block text-sm font-medium text-gray-700 mb-1"
+                >Correo electrónico</label
+              >
+              <div class="relative">
+                <input
+                  type="email"
+                  id="register-email"
+                  required
+                  class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                  placeholder=""
+                />
+                <i
+                  class="fas fa-envelope absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                ></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Grupo para contraseña -->
+          <div class="input-group">
+            <!-- Trigger para contraseña -->
+            <div class="input-trigger" id="reg-password-trigger">
+              <span class="text-sm font-medium text-gray-700">Crea una contraseña</span>
+              <i class="fas fa-lock trigger-icon text-gray-400"></i>
+            </div>
+
+            <!-- Campo de contraseña (oculto inicialmente) -->
+            <div id="reg-password-input" class="hidden-input">
+              <label for="register-password" class="block text-sm font-medium text-gray-700 mb-1"
+                >Contraseña</label
+              >
+              <div class="relative">
+                <input
+                  type="password"
+                  id="register-password"
+                  required
+                  class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                  placeholder=""
+                />
+                <button
+                  type="button"
+                  class="password-toggle"
+                  onclick="togglePassword('register-password', 'register-eye')"
+                >
+                  <i id="register-eye" class="fas fa-eye-slash text-gray-400"></i>
+                </button>
+              </div>
+              <p class="mt-1 text-xs text-gray-500">Mínimo 8 caracteres con letras y números</p>
+            </div>
+          </div>
+
+          <!-- Grupo para confirmar contraseña -->
+          <div class="input-group">
+            <!-- Trigger para confirmar contraseña -->
+            <div class="input-trigger" id="confirm-trigger">
+              <span class="text-sm font-medium text-gray-700">Confirma tu contraseña</span>
+              <i class="fas fa-lock trigger-icon text-gray-400"></i>
+            </div>
+
+            <!-- Campo de confirmación (oculto inicialmente) -->
+            <div id="confirm-input" class="hidden-input">
+              <label for="register-confirm" class="block text-sm font-medium text-gray-700 mb-1"
+                >Confirmar contraseña</label
+              >
+              <div class="relative">
+                <input
+                  type="password"
+                  id="register-confirm"
+                  required
+                  class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                  placeholder=""
+                />
+                <button
+                  type="button"
+                  class="password-toggle"
+                  onclick="togglePassword('register-confirm', 'confirm-eye')"
+                >
+                  <i id="confirm-eye" class="fas fa-eye-slash text-gray-400"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="terms"
+              required
+              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            />
+            <label for="terms" class="ml-2 block text-sm text-gray-700">
+              Acepto los
+              <a href="#" class="text-blue-600 hover:underline">Términos de servicio</a> y la
+              <a href="#" class="text-blue-600 hover:underline">Política de privacidad</a>
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            id="register-btn"
+            class="gradient-bg w-full py-3 px-4 text-white font-medium rounded-lg hover:opacity-90 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+          >
+            <span id="register-text">Crear cuenta</span>
+            <span id="register-loading" class="hidden">
+              <span class="loading-spinner"></span>
+              <span class="ml-2">Procesando...</span>
+            </span>
+          </button>
+        </form>
+
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white/30 text-gray-500">O regístrate con</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <button
+            class="social-btn bg-white/70 border border-gray-300 rounded-lg py-2 px-4 text-gray-700 font-medium hover:bg-gray-100 transition shadow-sm hover:shadow-md"
+          >
+            <i class="fab fa-google text-red-500"></i>
+          </button>
+          <button
+            class="social-btn bg-white/70 border border-gray-300 rounded-lg py-2 px-4 text-gray-700 font-medium hover:bg-gray-100 transition shadow-sm hover:shadow-md"
+          >
+            <i class="fab fa-facebook-f text-blue-600"></i>
+          </button>
+          <button
+            class="social-btn bg-white/70 border border-gray-300 rounded-lg py-2 px-4 text-gray-700 font-medium hover:bg-gray-100 transition shadow-sm hover:shadow-md"
+          >
+            <i class="fab fa-github text-gray-800"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mensaje para cambiar entre formularios -->
+      <div id="toggle-message" class="text-center mt-6 text-sm text-gray-600">
+        ¿No tienes una cuenta?
+        <button id="toggle-to-register" class="text-blue-600 font-medium hover:underline">
+          Regístrate
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Función para alternar entre mostrar/ocultar contraseña
+      function togglePassword(inputId, eyeIconId) {
+        const input = document.getElementById(inputId);
+        const eyeIcon = document.getElementById(eyeIconId);
+
+        if (input.type === 'password') {
+          input.type = 'text';
+          eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
+        } else {
+          input.type = 'password';
+          eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
+        }
+      }
+
+      // Función para mostrar notificación
+      function showNotification(message, isSuccess) {
+        const notification = document.getElementById('notification');
+        const notificationMessage = document.getElementById('notification-message');
+        const notificationIcon = notification.querySelector('i');
+
+        notificationMessage.textContent = message;
+        notification.className = 'notification';
+
+        if (isSuccess) {
+          notification.classList.add('success');
+          notificationIcon.className = 'fas fa-check-circle text-green-500';
+        } else {
+          notification.classList.add('error');
+          notificationIcon.className = 'fas fa-exclamation-circle text-red-500';
+        }
+
+        notification.classList.remove('hidden');
+        notification.classList.add('show');
+
+        setTimeout(() => {
+          notification.classList.remove('show');
+          setTimeout(() => {
+            notification.classList.add('hidden');
+          }, 300);
+        }, 3000);
+      }
+
+      // Función para alternar entre formularios de login y registro
+      function toggleForms(showLogin) {
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const loginTab = document.getElementById('login-tab');
+        const registerTab = document.getElementById('register-tab');
+        const toggleMessage = document.getElementById('toggle-message');
+
+        if (showLogin) {
+          // Mostrar login y ocultar registro
+          loginForm.classList.remove('hidden-form');
+          loginForm.classList.add('visible-form');
+          registerForm.classList.remove('visible-form');
+          registerForm.classList.add('hidden-form');
+
+          // Actualizar pestañas
+          loginTab.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+          loginTab.classList.remove('text-gray-500');
+          registerTab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+          registerTab.classList.add('text-gray-500');
+
+          // Actualizar mensaje inferior
+          toggleMessage.innerHTML =
+            '¿No tienes una cuenta? <button id="toggle-to-register" class="text-blue-600 font-medium hover:underline">Regístrate</button>';
+        } else {
+          // Mostrar registro y ocultar login
+          registerForm.classList.remove('hidden-form');
+          registerForm.classList.add('visible-form');
+          loginForm.classList.remove('visible-form');
+          loginForm.classList.add('hidden-form');
+
+          // Actualizar pestañas
+          registerTab.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+          registerTab.classList.remove('text-gray-500');
+          loginTab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+          loginTab.classList.add('text-gray-500');
+
+          // Actualizar mensaje inferior
+          toggleMessage.innerHTML =
+            '¿Ya tienes una cuenta? <button id="toggle-to-login" class="text-blue-600 font-medium hover:underline">Inicia sesión</button>';
+        }
+
+        // Reasignar event listeners a los nuevos botones
+        if (showLogin) {
+          document
+            .getElementById('toggle-to-register')
+            .addEventListener('click', () => toggleForms(false));
+        } else {
+          document
+            .getElementById('toggle-to-login')
+            .addEventListener('click', () => toggleForms(true));
+        }
+      }
+
+      // Event listeners iniciales
+      document.getElementById('login-tab').addEventListener('click', () => toggleForms(true));
+      document.getElementById('register-tab').addEventListener('click', () => toggleForms(false));
+      document
+        .getElementById('toggle-to-register')
+        .addEventListener('click', () => toggleForms(false));
+
+      // Manejo de envío de formularios (simulado)
+      document.getElementById('login').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        const loginBtn = document.getElementById('login-btn');
+        const loginText = document.getElementById('login-text');
+        const loginLoading = document.getElementById('login-loading');
+
+        // Mostrar estado de carga
+        loginText.classList.add('hidden');
+        loginLoading.classList.remove('hidden');
+        loginBtn.disabled = true;
+
+        // Simular autenticación
+        setTimeout(() => {
+          if (email && password) {
+            showNotification('Inicio de sesión exitoso. Redirigiendo al foro...', true);
+
+            // Aquí iría la lógica real de autenticación y redirección
+            setTimeout(() => {
+              // Simular redirección
+              window.location.href = '#';
+            }, 1500);
+          } else {
+            showNotification('Por favor completa todos los campos', false);
+
+            // Restaurar estado del botón
+            loginText.classList.remove('hidden');
+            loginLoading.classList.add('hidden');
+            loginBtn.disabled = false;
+          }
+        }, 1500);
+      });
+
+      document.getElementById('register').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        const confirm = document.getElementById('register-confirm').value;
+        const terms = document.getElementById('terms').checked;
+
+        const registerBtn = document.getElementById('register-btn');
+        const registerText = document.getElementById('register-text');
+        const registerLoading = document.getElementById('register-loading');
+
+        // Mostrar estado de carga
+        registerText.classList.add('hidden');
+        registerLoading.classList.remove('hidden');
+        registerBtn.disabled = true;
+
+        // Simular registro
+        setTimeout(() => {
+          if (!name || !email || !password || !confirm) {
+            showNotification('Por favor completa todos los campos', false);
+
+            // Restaurar estado del botón
+            registerText.classList.remove('hidden');
+            registerLoading.classList.add('hidden');
+            registerBtn.disabled = false;
+            return;
+          }
+
+          if (password !== confirm) {
+            showNotification('Las contraseñas no coinciden', false);
+
+            // Restaurar estado del botón
+            registerText.classList.remove('hidden');
+            registerLoading.classList.add('hidden');
+            registerBtn.disabled = false;
+            return;
+          }
+
+          if (password.length < 8) {
+            showNotification('La contraseña debe tener al menos 8 caracteres', false);
+
+            // Restaurar estado del botón
+            registerText.classList.remove('hidden');
+            registerLoading.classList.add('hidden');
+            registerBtn.disabled = false;
+            return;
+          }
+
+          if (!terms) {
+            showNotification('Debes aceptar los términos y condiciones', false);
+
+            // Restaurar estado del botón
+            registerText.classList.remove('hidden');
+            registerLoading.classList.add('hidden');
+            registerBtn.disabled = false;
+            return;
+          }
+
+          showNotification('Registro exitoso. Por favor inicia sesión.', true);
+
+          // Restaurar estado del botón
+          registerText.classList.remove('hidden');
+          registerLoading.classList.add('hidden');
+          registerBtn.disabled = false;
+
+          // Cambiar al formulario de login
+          setTimeout(() => {
+            toggleForms(true);
+          }, 1500);
+        }, 1500);
+      });
+
+      // Efecto hover para botones sociales
+      document.querySelectorAll('.social-btn').forEach((btn) => {
+        btn.addEventListener('mouseenter', function () {
+          this.style.transform = 'translateY(-2px)';
+        });
+        btn.addEventListener('mouseleave', function () {
+          this.style.transform = '';
+        });
+      });
+
+      // Validación en tiempo real para el formulario de registro
+      document.getElementById('register-password').addEventListener('input', function () {
+        const password = this.value;
+        const strengthIndicator = document.createElement('div');
+        strengthIndicator.className = 'text-xs mt-1';
+
+        if (password.length === 0) {
+          return;
+        }
+
+        let strength = 0;
+        let message = '';
+        let color = '';
+
+        // Verificar longitud
+        if (password.length >= 8) strength++;
+        if (password.length >= 12) strength++;
+
+        // Verificar caracteres especiales
+        if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength++;
+
+        // Verificar números
+        if (/\d/.test(password)) strength++;
+
+        // Verificar mayúsculas y minúsculas
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+
+        // Determinar mensaje y color según la fuerza
+        if (strength <= 2) {
+          message = 'Débil';
+          color = 'text-red-500';
+        } else if (strength <= 4) {
+          message = 'Moderada';
+          color = 'text-yellow-500';
+        } else {
+          message = 'Fuerte';
+          color = 'text-green-500';
+        }
+
+        // Mostrar indicador
+        const existingIndicator = this.parentElement.querySelector('.password-strength');
+        if (existingIndicator) {
+          existingIndicator.textContent = `Seguridad: ${message}`;
+          existingIndicator.className = `password-strength text-xs mt-1 ${color}`;
+        } else {
+          strengthIndicator.textContent = `Seguridad: ${message}`;
+          strengthIndicator.className = `password-strength text-xs mt-1 ${color}`;
+          this.parentElement.appendChild(strengthIndicator);
+        }
+      });
+
+      // Efecto hover para mostrar/ocultar campos automáticamente
+      document.querySelectorAll('.input-group').forEach((group) => {
+        let timeoutId;
+
+        group.addEventListener('mouseenter', () => {
+          clearTimeout(timeoutId);
+          const hiddenInput = group.querySelector('.hidden-input');
+          const trigger = group.querySelector('.input-trigger');
+
+          hiddenInput.classList.add('visible-input'); 
+          hiddenInput.classList.remove('hidden-input');
+          trigger.style.display = 'none';
+        });
+
+        group.addEventListener('mouseleave', () => {
+          timeoutId = setTimeout(() => {
+            const hiddenInput = group.querySelector('.visible-input');
+            const trigger = group.querySelector('.input-trigger');
+
+            if (hiddenInput && !hiddenInput.querySelector('input:focus')) {
+              hiddenInput.classList.add('hidden-input');
+              hiddenInput.classList.remove('visible-input');
+              trigger.style.display = 'block';
+            }
+          }, 300);
+        });
+
+        // Mantener visible si el campo tiene foco
+        group.querySelectorAll('input').forEach((input) => {
+          input.addEventListener('focus', () => {
+            clearTimeout(timeoutId);
+            const hiddenInput = group.querySelector('.hidden-input');
+            const trigger = group.querySelector('.input-trigger');
+
+            if (hiddenInput) {
+              hiddenInput.classList.add('visible-input');
+              hiddenInput.classList.remove('hidden-input');
+              trigger.style.display = 'none';
+            }
+          });
+
+          input.addEventListener('blur', () => {
+            timeoutId = setTimeout(() => {
+              const hiddenInput = group.querySelector('.visible-input');
+              const trigger = group.querySelector('.input-trigger');
+
+              if (hiddenInput && !group.matches(':hover')) {
+                hiddenInput.classList.add('hidden-input');
+                hiddenInput.classList.remove('visible-input');
+                trigger.style.display = 'block';
+              }
+            }, 300);
+          });
+        });
+      });
+
+      // Toggle de tema oscuro/claro
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  
+  const icon = themeToggle.querySelector('i');
+  if (document.body.classList.contains('dark')) {
+    icon.classList.replace('fa-moon', 'fa-sun');
+  } else {
+    icon.classList.replace('fa-sun', 'fa-moon');
+  }
+});
+
+      // Función para expandir/contraer la barra de búsqueda
+      const searchIcon = document.querySelector('.header-icons .fa-search').parentElement;
+      searchIcon.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Crear contenedor de búsqueda si no existe
+        let searchContainer = document.querySelector('.search-container');
+        if (!searchContainer) {
+          searchContainer = document.createElement('div');
+          searchContainer.className = 'search-container';
+
+          const searchInput = document.createElement('input');
+          searchInput.type = 'text';
+          searchInput.placeholder = 'Buscar en el foro...';
+          searchInput.className = 'search-input';
+
+          const searchIcon = document.createElement('i');
+          searchIcon.className = 'fas fa-search search-icon text-gray-500';
+
+          searchContainer.appendChild(searchInput);
+          searchContainer.appendChild(searchIcon);
+
+          // Insertar antes del botón de tema
+          searchIcon.parentElement.insertBefore(searchContainer, themeToggle.parentElement);
+
+          // Ocultar el icono de búsqueda original
+          document.querySelector('.header-icons .fa-search').parentElement.style.display = 'none';
+        }
+
+        // Alternar estado expandido
+        searchContainer.classList.toggle('expanded');
+
+        // Enfocar el input cuando se expande
+        if (searchContainer.classList.contains('expanded')) {
+          setTimeout(() => {
+            searchContainer.querySelector('input').focus();
+          }, 300);
+        }
+
+        // Cerrar al hacer clic fuera
+        document.addEventListener('click', function closeSearch(e) {
+          if (!searchContainer.contains(e.target) && e.target !== searchIcon) {
+            searchContainer.classList.remove('expanded');
+            document.removeEventListener('click', closeSearch);
+
+            // Si está contraído, eliminar después de la animación
+            if (!searchContainer.classList.contains('expanded')) {
+              setTimeout(() => {
+                if (searchContainer && !searchContainer.classList.contains('expanded')) {
+                  searchContainer.remove();
+                  document.querySelector('.header-icons .fa-search').parentElement.style.display =
+                    'block';
+                }
+              }, 300);
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

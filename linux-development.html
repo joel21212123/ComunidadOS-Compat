@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Desarrollo en Linux</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      /* Estilos específicos para CLI si hay ejemplos de comandos */
+      code {
+        background-color: #e6e6e6; /* Un gris claro para el fondo */
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada */
+        font-size: 0.9em;
+        white-space: nowrap; /* Evita que los comandos se rompan en varias líneas */
+      }
+      pre {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto; /* Para comandos largos */
+      }
+      pre code {
+        display: block; /* Para que cada comando en un bloque pre tenga su propia línea */
+        white-space: pre-wrap; /* Permite el salto de línea dentro de comandos largos si es necesario */
+        background-color: transparent; /* No doble fondo */
+        background-color: #1e1e1e;
+        color: #dcdcdc;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="linux.html">Linux</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Desarrollo en Linux</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Desarrollo en Linux: Un Entorno Potente y Flexible para Programadores</h2>
+          <p>
+            Linux es un sistema operativo preferido por muchos desarrolladores debido a su
+            naturaleza de código abierto, su potente línea de comandos, su estabilidad y la gran
+            cantidad de herramientas de desarrollo disponibles. Configurar un entorno de desarrollo
+            en Linux es relativamente sencillo y ofrece una flexibilidad incomparable para trabajar
+            con casi cualquier lenguaje de programación y tecnología.
+          </p>
+
+          <h3>Ventajas de Usar Linux para el Desarrollo</h3>
+          <ul>
+            <li>
+              <strong>Línea de Comandos Robusta:</strong> La terminal de Linux es una herramienta
+              esencial para la programación, permitiendo la automatización de tareas, gestión de
+              paquetes y ejecución de scripts.
+            </li>
+            <li>
+              <strong>Código Abierto:</strong> Acceso al código fuente de casi todo el sistema, lo
+              que facilita la depuración y la personalización.
+            </li>
+            <li>
+              <strong>Compatibilidad con Servidores:</strong> Muchos servidores web y de
+              aplicaciones (LAMP/LEMP stacks) se ejecutan en Linux, lo que facilita el desarrollo y
+              despliegue.
+            </li>
+            <li>
+              <strong>Gestores de Paquetes Eficientes:</strong> Herramientas como APT
+              (Debian/Ubuntu) o DNF (Fedora) simplifican la instalación y gestión de librerías,
+              dependencias y herramientas.
+            </li>
+            <li>
+              <strong>Flexibilidad y Ligereza:</strong> Permite configurar entornos de desarrollo
+              específicos sin el "bloat" de otros sistemas, optimizando los recursos.
+            </li>
+            <li>
+              <strong>Vasta Comunidad:</strong> Una comunidad activa que comparte soluciones,
+              tutoriales y herramientas.
+            </li>
+          </ul>
+
+          <h3>Configurando tu Entorno de Desarrollo Básico</h3>
+          <p>
+            Los pasos generales para configurar tu entorno en la mayoría de las distribuciones
+            (usando `apt` para Debian/Ubuntu como ejemplo):
+          </p>
+
+          <h4>1. Mantén tu Sistema Actualizado</h4>
+          <pre><code>
+<strong>sudo apt update</strong>      # Actualiza la lista de paquetes
+<strong>sudo apt upgrade</strong>     # Actualiza los paquetes instalados
+          </code></pre>
+
+          <h4>2. Instala Herramientas Esenciales de Desarrollo (Build-Essentials)</h4>
+          <p>
+            Este paquete incluye compiladores (GCC, G++), make, y otras herramientas necesarias para
+            compilar software.
+          </p>
+          <pre><code>
+<strong>sudo apt install build-essential</strong>
+          </code></pre>
+
+          <h4>3. Instala Git (Control de Versiones)</h4>
+          <pre><code>
+<strong>sudo apt install git</strong>
+<strong>git --version</strong>        # Verifica la instalación
+<strong>git config --global user.name "Tu Nombre"</strong>
+<strong>git config --global user.email "tu@email.com"</strong>
+          </code></pre>
+
+          <h4>4. Instala tu Editor de Código/IDE Preferido</h4>
+          <p>Algunas opciones populares:</p>
+          <ul>
+            <li>
+              <strong>Visual Studio Code:</strong> Ampliamente utilizado, con muchísimas
+              extensiones.
+              <pre><code>
+# En Ubuntu/Debian (descargar .deb o usar Snap)
+<strong>sudo snap install --classic code</strong>
+
+# En Fedora
+<strong>sudo dnf install code</strong>
+              </code></pre>
+            </li>
+            <li>
+              <strong>Vim/Neovim:</strong> Editor de terminal muy potente para usuarios avanzados.
+              <pre><code>
+<strong>sudo apt install vim</strong>
+              </code></pre>
+            </li>
+            <li>
+              <strong>IntelliJ IDEA / PyCharm / WebStorm (JetBrains IDEs):</strong> IDEs comerciales
+              muy completos para diferentes lenguajes.
+            </li>
+            <li><strong>Sublime Text:</strong> Editor rápido y con muchas características.</li>
+          </ul>
+
+          <h4>5. Instala Lenguajes de Programación y sus Gestores de Paquetes</h4>
+          <p>Ejemplos de instalación de algunos lenguajes comunes:</p>
+
+          <h5>Python</h5>
+          <pre><code>
+# Python 3 suele estar preinstalado.
+<strong>python3 --version</strong>
+
+# Instalar pip (gestor de paquetes de Python)
+<strong>sudo apt install python3-pip</strong>
+
+# Instalar venv (para entornos virtuales)
+<strong>sudo apt install python3-venv</strong>
+          </code></pre>
+
+          <h5>Node.js y npm/yarn</h5>
+          <pre><code>
+# Usar NVM (Node Version Manager) es lo más recomendado
+<strong>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash</strong>
+# Cierra y vuelve a abrir el terminal, luego:
+<strong>nvm install node</strong>   # Instala la última versión LTS
+<strong>nvm use node</strong>
+<strong>node -v && npm -v</strong> # Verifica instalación
+          </code></pre>
+
+          <h5>Java (OpenJDK)</h5>
+          <pre><code>
+# Instalar OpenJDK (máquina virtual Java y JDK)
+<strong>sudo apt install openjdk-17-jdk</strong>
+<strong>java --version</strong> # Verifica instalación
+          </code></pre>
+
+          <h5>PHP</h5>
+          <pre><code>
+# Instalar PHP y extensiones comunes
+<strong>sudo apt install php libapache2-mod-php php-cli php-mysql php-mbstring php-xml php-zip</strong>
+<strong>php -v</strong> # Verifica instalación
+          </code></pre>
+
+          <h5>Docker (Contenedores)</h5>
+          <p>Esencial para el desarrollo moderno y la consistencia de entornos.</p>
+          <ul>
+            <li>
+              Sigue la
+              <a
+                href="https://docs.docker.com/engine/install/ubuntu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >guía oficial de Docker para Ubuntu</a
+              >
+              o tu distribución.
+            </li>
+          </ul>
+
+          <h3>Consejos para Desarrolladores en Linux</h3>
+          <ul>
+            <li>
+              <strong>Usa Entornos Virtuales:</strong> Para Python (`venv`), Node.js (`nvm`), Ruby
+              (`rvm`), etc., para aislar dependencias de proyectos.
+            </li>
+            <li>
+              <strong>Aprende la Línea de Comandos:</strong> Invierte tiempo en `bash`, `zsh`,
+              tuberías (`|`), redirecciones (`>`, `>>`), `grep`, `awk`, `sed`.
+            </li>
+            <li>
+              <strong>Explora los Gestores de Paquetes:</strong> APT, DNF, Pacman (Arch), Zypper
+              (openSUSE) son poderosos.
+            </li>
+            <li><strong>Configura SSH:</strong> Para conexiones seguras a servidores remotos.</li>
+            <li>
+              <strong>Personaliza tu Terminal:</strong> Shells como Zsh con Oh My Zsh o Fish, junto
+              con multiplexores como Tmux o Screen, pueden mejorar mucho tu productividad.
+            </li>
+            <li>
+              <strong>Recursos de la Comunidad:</strong> Stack Overflow, foros de distribuciones, y
+              GitHub son excelentes fuentes de ayuda.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos y Herramientas para Desarrollo</h3>
+          <ul>
+            <li>
+              <a
+                href="https://code.visualstudio.com/docs/setup/linux"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Instalación de VS Code en Linux</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs.docker.com/desktop/install/linux-install/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Instalación de Docker Desktop en Linux</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Configurando-Git-por-primera-vez"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Primeros pasos con Git</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://nodejs.org/es/download/package-manager"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Instalar Node.js con gestores de paquetes</a
+              >
+            </li>
+            <li>
+              <a href="https://nvm.sh/" target="_blank" rel="noopener noreferrer"
+                >NVM (Node Version Manager)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs.python.org/es/3/library/venv.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Documentación de venv (Python)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="linux-cli.html">Dominando la Línea de Comandos en Linux</a></li>
+            <li><a href="linux-ubuntu.html">Primeros pasos con Ubuntu</a></li>
+            <li>
+              <a
+                href="https://www.ibm.com/docs/es/was/9.0.5?topic=console-web-server-configuration"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Configuración de Servidores Web
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

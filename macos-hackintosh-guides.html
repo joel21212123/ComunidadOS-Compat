@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Guías Hackintosh</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="macos.html">macOS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Guías Hackintosh</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Hackintosh: Instalando macOS en Hardware de PC Convencional</h2>
+          <p>
+            Un "Hackintosh" es un ordenador no-Apple que ejecuta el sistema operativo macOS. Aunque
+            Apple diseña macOS para funcionar exclusivamente en su hardware Mac, la comunidad ha
+            encontrado formas de instalarlo en PCs con componentes compatibles. Esto permite a los
+            usuarios disfrutar de macOS sin la necesidad de comprar un Mac, lo que puede ser una
+            opción más económica para quienes ya poseen hardware de PC potente o desean una mayor
+            flexibilidad en la elección de componentes.
+          </p>
+          <p class="caution-note">
+            <strong>Advertencia:</strong> Crear un Hackintosh no está oficialmente soportado por
+            Apple y puede ser un proceso complejo. Implica la anulación de la licencia de software
+            de Apple y la comunidad de Hackintosh depende de la ingeniería inversa. Puede haber
+            problemas de estabilidad, actualizaciones, o compatibilidad con hardware específico.
+            Procede bajo tu propio riesgo y con la comprensión de que no recibirás soporte oficial
+            de Apple.
+          </p>
+
+          <h3>Requisitos del Hardware para Hackintosh</h3>
+          <p>
+            La clave para un Hackintosh exitoso es la elección cuidadosa de los componentes. Los
+            componentes "compatibles" se refieren a aquellos que tienen controladores (kexts) bien
+            desarrollados por la comunidad, o que son utilizados por Apple en sus Macs.
+          </p>
+          <ul>
+            <li>
+              <strong>CPU:</strong> Procesadores Intel (especialmente Core i series de 6ª generación
+              en adelante son los más compatibles). Los procesadores AMD Ryzen son posibles, pero
+              más complejos de configurar.
+            </li>
+            <li>
+              <strong>Placa Base (Motherboard):</strong> Modelos específicos de marcas como Gigabyte
+              o ASUS suelen tener buena compatibilidad. Buscar placas con chipsets Intel compatibles
+              es crucial.
+            </li>
+            <li>
+              <strong>Tarjeta Gráfica (GPU):</strong> Las GPUs de AMD (series RX, Vega) son
+              generalmente más compatibles "out of the box" con macOS. Las GPUs de NVIDIA
+              (especialmente las más recientes) son problemáticas debido a la falta de soporte de
+              drivers por parte de NVIDIA en macOS.
+            </li>
+            <li>
+              <strong>RAM:</strong> Asegúrate de tener suficiente RAM (mínimo 8GB, recomendado 16GB
+              o más).
+            </li>
+            <li>
+              <strong>Almacenamiento:</strong> Un SSD NVMe o SATA es altamente recomendado para un
+              buen rendimiento.
+            </li>
+            <li>
+              <strong>Red (Ethernet/Wi-Fi):</strong> Ciertas tarjetas de red (Intel I210/I211,
+              Atheros, Broadcom) son más compatibles. Es posible que necesites comprar una tarjeta
+              Wi-Fi/Bluetooth específica compatible.
+            </li>
+          </ul>
+          <p>
+            <strong
+              >La mejor forma de saber si tu hardware es compatible es buscar "Hackintosh [Tu modelo
+              de CPU/placa base/GPU]" en foros especializados.</strong
+            >
+          </p>
+
+          <h3>Herramientas Esenciales para un Hackintosh</h3>
+          <ul>
+            <li>
+              <strong>Clover Bootloader / OpenCore:</strong> Son los cargadores de arranque
+              (bootloaders) que permiten que macOS se inicie en hardware no-Apple. OpenCore es la
+              opción más moderna y recomendada por la comunidad para la mayoría de las
+              configuraciones recientes, ofreciendo mayor estabilidad y compatibilidad con las
+              últimas versiones de macOS.
+            </li>
+            <li>
+              <strong>Kexts:</strong> Son extensiones del kernel (controladores) específicas para
+              hardware no-Apple, necesarias para que componentes como audio, Ethernet, Wi-Fi o
+              gráficos funcionen.
+            </li>
+            <li>
+              <strong>Archivos EFI:</strong> Una carpeta especial en tu disco de arranque que
+              contiene el bootloader, kexts, y configuraciones necesarias para que macOS se inicie.
+            </li>
+            <li>
+              <strong>Una Mac (real) o Máquina Virtual:</strong> A menudo necesitas acceso a un Mac
+              o una máquina virtual con macOS para descargar la imagen de instalación, crear el
+              instalador USB y preparar los archivos EFI.
+            </li>
+            <li><strong>USB de al menos 16GB:</strong> Para crear el instalador de macOS.</li>
+          </ul>
+
+          <h3>Proceso General de Instalación (simplificado)</h3>
+          <p>
+            El proceso es intrincado y varía mucho según el hardware, pero estos son los pasos
+            básicos:
+          </p>
+          <ol>
+            <li>
+              <strong>Preparar el Instalador de macOS:</strong> Descarga la aplicación de
+              instalación de macOS desde la App Store (necesitas un Mac real o una VM con macOS).
+              Crea un USB de instalación booteable.
+            </li>
+            <li>
+              <strong>Configurar el Bootloader (OpenCore):</strong> Prepara la carpeta EFI en tu USB
+              de instalación con OpenCore, los kexts necesarios para tu hardware, y un archivo
+              `config.plist` meticulosamente configurado para tu sistema. Este es el paso más
+              crítico y propenso a errores.
+            </li>
+            <li>
+              <strong>Configurar la BIOS/UEFI:</strong> Ajusta varias configuraciones en la
+              BIOS/UEFI de tu placa base (ej., deshabilitar Secure Boot, habilitar XMP, etc.) según
+              las guías.
+            </li>
+            <li>
+              <strong>Instalar macOS:</strong> Arranca desde el USB preparado y procede con la
+              instalación de macOS como lo harías en un Mac.
+            </li>
+            <li>
+              <strong>Post-Instalación:</strong> Una vez instalado macOS, deberás copiar tu carpeta
+              EFI al disco duro principal para arrancar sin el USB, y ajustar los kexts y
+              configuraciones para que todo el hardware (audio, Wi-Fi, etc.) funcione correctamente.
+            </li>
+            <li>
+              <strong>Actualizaciones:</strong> Las actualizaciones de macOS pueden romper tu
+              Hackintosh. Siempre haz una copia de seguridad y sigue las guías de la comunidad antes
+              de actualizar.
+            </li>
+          </ol>
+
+          <h3>Comunidades y Recursos Útiles</h3>
+          <p>Dada la complejidad, la comunidad es tu mejor aliada:</p>
+          <ul>
+            <li>
+              <a
+                href="https://dortania.github.io/OpenCore-Install-Guide/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><strong>OpenCore Install Guide:</strong></a
+              >
+              La guía más completa y actualizada para instalar macOS con OpenCore. ¡Lectura
+              obligatoria!
+            </li>
+            <li>
+              <a href="https://www.tonymacx86.com/" target="_blank" rel="noopener noreferrer"
+                ><strong>tonymacx86:</strong></a
+              >
+              Un foro muy popular con bases de datos de hardware compatible y guías (aunque suelen
+              centrarse en Clover).
+            </li>
+            <li>
+              <a
+                href="https://www.reddit.com/r/hackintosh/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><strong>r/hackintosh (Reddit):</strong></a
+              >
+              Una comunidad activa para preguntas, ayuda y compartir experiencias.
+            </li>
+            <li>
+              <a
+                href="https://github.com/dortania/OpenCore-Post-Install"
+                target="_blank"
+                rel="noopener noreferrer"
+                >OpenCore Post-Install Guide:</a
+              >
+              Guía para configurar tu Hackintosh después de la instalación.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos y Herramientas Hackintosh</h3>
+          <ul>
+            <li>
+              <a
+                href="https://dortania.github.io/OpenCore-Install-Guide/prerequisites.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Requisitos de OpenCore</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/corpnewt/gibMacOS"
+                target="_blank"
+                rel="noopener noreferrer"
+                >gibMacOS (Herramienta para descargar macOS)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/corpnewt/ProperTree"
+                target="_blank"
+                rel="noopener noreferrer"
+                >ProperTree (Editor de config.plist)</a
+              >
+            </li>
+            <li>
+              <a href="https://dortania.github.io/docs/" target="_blank" rel="noopener noreferrer"
+                >Documentación de Dortania (OpenCore)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="macos-compatible-models.html">Modelos Compatibles de macOS</a></li>
+            <li><a href="macos-updates-versions.html">Actualizaciones y Versiones de macOS</a></li>
+            <li>
+              <a
+                href="https://support.apple.com/es-us/guide/mac-help/mh35727/mac"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Diagnosticar problemas en la Mac</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

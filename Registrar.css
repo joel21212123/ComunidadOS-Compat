@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --accent-color: #4895ef;
+    --dark-color: #2b2d42;
+    --light-color: #f8f9fa;
+    --success-color: #4cc9f0;
+    --error-color: #f72585;
+    --gold-color: #ffd700;
+    --purple-color: #9d4edd;    
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Partículas de fondo */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: float-particle linear infinite;
+}
+
+@keyframes float-particle {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Efecto de neón */
+.neon-circle {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(157,78,221,0.2) 0%, rgba(157,78,221,0) 70%);
+    filter: blur(20px);
+    animation: pulse 8s infinite alternate;
+    z-index: -1;
+}
+
+.neon-circle:nth-child(1) {
+    top: -150px;
+    left: -150px;
+    background: radial-gradient(circle, rgba(67,97,238,0.2) 0%, rgba(67,97,238,0) 70%);
+    animation-delay: 0.5s;
+}
+
+.neon-circle:nth-child(2) {
+    bottom: -150px;
+    right: -150px;
+    background: radial-gradient(circle, rgba(76,201,240,0.2) 0%, rgba(76,201,240,0) 70%);
+    animation-delay: 1s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+.register-container {
+    width: 450px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    animation: float 6s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.register-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        transparent 0%,
+        rgba(255, 215, 0, 0.1) 20%,
+        transparent 40%,
+        rgba(157, 78, 221, 0.1) 60%,
+        transparent 80%,
+        rgba(67, 97, 238, 0.1) 100%
+    );
+    transform: rotate(30deg);
+    animation: shine 8s infinite;
+    z-index: -1;
+}
+
+@keyframes shine {
+    0% {
+        transform: rotate(30deg) translate(-30%, -30%);
+    }
+    100% {
+        transform: rotate(30deg) translate(30%, 30%);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+    50% { transform: translateY(-15px) rotateX(2deg) rotateY(2deg); }
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.register-header h1 {
+    font-size: 2.5rem;
+    color: var(--light-color);
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    background: linear-gradient(90deg, var(--gold-color), var(--accent-color), var(--purple-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-shift 8s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.register-header p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 20px 15px 50px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    font-size: 1rem;
+    color: var(--light-color);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.input-group input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(67, 97, 238, 0.5);
+    border: 1px solid var(--accent-color);
+}
+
+.input-group input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+.input-group i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 1.2rem;
+    transition: all 0.3s;
+}
+
+.input-group input:focus + i {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+.password-strength {
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0;
+    background: var(--error-color);
+    transition: all 0.3s ease;
+}
+
+.strength-text {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 4px;
+    text-align: right;
+    transition: all 0.3s;
+}
+
+.terms {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+}
+
+.terms input {
+    margin-right: 10px;
+    accent-color: var(--primary-color);
+}
+
+.terms a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+    color: var(--success-color);
+}
+
+.register-button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.register-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s;
+}
+
+.register-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(157, 78, 221, 0.6);
+}
+
+.register-button:hover::before {
+    left: 100%;
+}
+
+.register-button:active {
+    transform: translateY(0);
+}
+
+.login-link {
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+}
+
+.login-link a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+    color: var(--success-color);
+}
+
+/* Efecto de confeti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--gold-color);
+    opacity: 0;
+}
+
+/* Validación */
+.error-message {
+    color: var(--error-color);
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.input-group.error input {
+    border-color: var(--error-color);
+    box-shadow: 0 0 10px rgba(247, 37, 133, 0.5);
+}
+
+.input-group.error i {
+    color: var(--error-color);
+}
+
+.input-group.success input {
+    border-color: var(--success-color);
+    box-shadow: 0 0 10px rgba(76, 201, 240, 0.5);
+}
+
+.input-group.success i {
+    color: var(--success-color);
+}
+
+/* Animación de confeti */
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(calc(100vh + 100px)) rotate(360deg);
+        opacity: 0;
+    }
+}

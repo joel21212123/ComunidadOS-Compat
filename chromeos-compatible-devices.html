@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Dispositivos Compatibles de Chrome OS</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      :root {
+        /* Light Mode colors */
+        --background-color: #f4f7fa;
+        --text-color: #333;
+        --heading-color: #222; /* Color general para h1, h2, h3 */
+        --card-background: #ffffff;
+        --border-color: #ddd;
+        --primary-color: #007bff; /* Azul para el borde izquierdo general */
+        --code-background-inline: #e6e6e6;
+        --code-background-block: #f4f4f4;
+        --code-text-color: #333;
+        --description-text-color: #555;
+        --setting-group-background: #f8f8f8;
+        --setting-group-heading-color: #333;
+        --info-background: #e9f7fe;
+        --info-border: #007bff;
+        --shortcut-background: #f8f8f8;
+        --shortcut-heading-color: #333;
+        --tip-highlight-color: #007bff;
+
+        /* Specific for Chrome OS page */
+        --device-category-background: #f8f8f8; /* Fondo para las categorías de dispositivo */
+        --device-category-heading-color: #333; /* Color del título de las categorías */
+        --device-list-border: #e0e0e0; /* Color del borde punteado en las listas */
+        --chromeos-brand-color-light: #4285f4; /* Azul de Google para modo claro */
+        --chromeos-brand-color-dark: #8ab4f8; /* Azul de Google que contraste en oscuro */
+      }
+
+      body.dark-mode {
+        /* Dark Mode colors */
+        --background-color: #1a1a2e;
+        --text-color: #e0e0e0;
+        --heading-color: #f0f0f0; /* Color general para h1, h2, h3 en oscuro */
+        --card-background: #2a2a4a;
+        --border-color: #444;
+        --primary-color: #6a8aff; /* Azul que contraste en oscuro */
+        --code-background-inline: #3a3a5a;
+        --code-background-block: #2e2e4e;
+        --code-text-color: #c0c0c0;
+        --description-text-color: #b0b0b0;
+        --setting-group-background: #2a2a4a;
+        --setting-group-heading-color: #e0e0e0;
+        --info-background: #3a3a5a;
+        --info-border: #6a8aff;
+        --shortcut-background: #2a2a4a;
+        --shortcut-heading-color: #e0e0e0;
+        --tip-highlight-color: #88aaff;
+
+        /* Specific for Chrome OS page in Dark Mode */
+        --device-category-background: #2a2a4a; /* Fondo oscuro para las categorías de dispositivo */
+        --device-category-heading-color: #f0f0f0; /* Color del título en oscuro */
+        --device-list-border: #555; /* Borde punteado en oscuro */
+        /* --chromeos-brand-color-light es solo para light mode, usamos --chromeos-brand-color-dark directamente en dark mode */
+      }
+
+      /* -- Estilos para las categorías de dispositivos (Chrome OS Compatible Devices) -- */
+      .device-category {
+        margin-bottom: 30px;
+        background-color: var(--device-category-background); /* Usa la variable de fondo */
+        padding: 20px;
+        border-left: 5px solid var(--chromeos-brand-color-light); /* Usa la variable para el azul de Google */
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        color: var(--text-color); /* Asegura que el texto general use el color del tema */
+      }
+
+      .device-category h3 {
+        margin-top: 0;
+        color: var(--device-category-heading-color); /* Usa la variable para el color del título */
+        font-size: 1.3em;
+        margin-bottom: 10px;
+      }
+
+      .device-category h3 .fas {
+        /* Asegura que los íconos también se adapten */
+        color: var(--device-category-heading-color);
+        margin-right: 8px;
+      }
+
+      .device-category ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .device-category ul li {
+        margin-bottom: 8px;
+        padding: 5px 0;
+        border-bottom: 1px dotted var(--device-list-border); /* Usa la variable para el borde punteado */
+      }
+
+      .device-category ul li:last-child {
+        border-bottom: none;
+      }
+
+      /* Estilos específicos para MODO OSCURO para estos elementos */
+      body.dark-mode .device-category {
+        border-left: 5px solid var(--chromeos-brand-color-dark); /* Usa el azul de Google para oscuro */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada en oscuro */
+        /* Los demás colores ya se adaptarán por las variables */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="chromeos.html">Chrome OS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dispositivos Compatibles</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Dispositivos Compatibles con Chrome OS: Chromebooks y Más Allá</h2>
+          <p>
+            Chrome OS está diseñado principalmente para funcionar en dispositivos específicos
+            fabricados por diversos socios de hardware de Google, conocidos como Chromebooks,
+            Chromeboxes y Chromebases. Estos dispositivos están optimizados para el rendimiento de
+            Chrome OS, ofreciendo una experiencia fluida, segura y con actualizaciones automáticas.
+          </p>
+          <p>
+            A diferencia de Windows o Linux, Chrome OS no está diseñado para ser instalado
+            universalmente en cualquier PC. Sin embargo, hay opciones para hardware no oficial que
+            exploraremos en la sección de "Instalación en PC".
+          </p>
+
+          <h3>Tipos de Dispositivos Oficiales de Chrome OS</h3>
+
+          <div class="device-category">
+            <h3><i class="fas fa-laptop-code"></i> Chromebooks</h3>
+            <p>
+              Los Chromebooks son portátiles que ejecutan Chrome OS. Son conocidos por su arranque
+              rápido, seguridad robusta y una gran duración de batería. Son ideales para tareas
+              basadas en la web, educación y trabajo remoto.
+            </p>
+            <ul>
+              <li>Acer Chromebook (varios modelos)</li>
+              <li>Asus Chromebook (varios modelos, incluyendo Flip)</li>
+              <li>Dell Chromebook (ej. Dell Latitude Chromebook)</li>
+              <li>HP Chromebook (varios modelos)</li>
+              <li>Lenovo Chromebook (ej. Duet, Flex)</li>
+              <li>Samsung Chromebook (ej. Galaxy Chromebook)</li>
+              <li>Google Pixelbook y Pixelbook Go (línea premium de Google)</li>
+              <li>Modelos de otros fabricantes como CTL, Toshiba, etc.</li>
+            </ul>
+            <p>
+              Cada Chromebook está diseñado con especificaciones optimizadas para Chrome OS,
+              garantizando un rendimiento y una seguridad óptimos.
+            </p>
+          </div>
+
+          <div class="device-category">
+            <h3><i class="fas fa-box"></i> Chromeboxes</h3>
+            <p>
+              Las Chromeboxes son versiones de escritorio de los Chromebooks. Son pequeños
+              ordenadores de sobremesa compactos que se conectan a un monitor, teclado y ratón
+              externos. Son perfectos para oficinas, centros de llamadas o usuarios que prefieren
+              una configuración de escritorio.
+            </p>
+            <ul>
+              <li>Acer Chromebox</li>
+              <li>Asus Chromebox</li>
+              <li>HP Chromebox</li>
+              <li>Lenovo Chromebox</li>
+              <li>Dell Chromebox</li>
+              <li>Google Chromebox (modelos más antiguos)</li>
+            </ul>
+          </div>
+
+          <div class="device-category">
+            <h3><i class="fas fa-tv"></i> Chromebases y Chrome OS Tablets</h3>
+            <p>
+              Las Chromebases son ordenadores "todo en uno" con pantallas integradas, mientras que
+              las tablets con Chrome OS ofrecen una experiencia táctil completa.
+            </p>
+            <ul>
+              <li>LG Chromebase</li>
+              <li>Acer Chromebase</li>
+              <li>HP Chromebase</li>
+              <li>Lenovo IdeaPad Duet Chromebook (híbrido 2 en 1 que funciona como tablet)</li>
+              <li>Google Pixel Slate (tablet con Chrome OS, descontinuada)</li>
+            </ul>
+          </div>
+
+          <h3>¿Cómo saber si un dispositivo es compatible?</h3>
+          <p>
+            La forma más sencilla es buscar el dispositivo y verificar si es un "Chromebook",
+            "Chromebox" o "Chromebase" oficial. Google y los fabricantes suelen indicar claramente
+            si el dispositivo ejecuta Chrome OS.
+          </p>
+          <p>
+            Además, Google proporciona actualizaciones garantizadas para cada modelo de Chromebook
+            hasta una fecha específica, conocida como la "Fecha de Caducidad de Actualización
+            Automática" (AUE - Auto Update Expiration). Es importante verificar esta fecha si
+            planeas comprar un dispositivo usado o si quieres asegurarte de que tu dispositivo
+            seguirá recibiendo actualizaciones de seguridad y características. Puedes encontrar esta
+            información en la página de soporte de Google.
+          </p>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Oficiales de Chrome OS</h3>
+          <ul>
+            <li>
+              <a
+                href="https://www-starryhope-com.translate.goog/chromebooks/chromebook-comparison-chart/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Comparar Chromebooks (Google)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/chrome/a/answer/6220366?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Fechas de Caducidad de Actualización Automática (AUE) de Chromebooks (Google
+                Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/chromebook/?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Centro de Ayuda de Chromebook (Google Support)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li>
+              <a href="chromeos-installation-on-pc.html"
+                >Instalación de Chrome OS en PC (CloudReady/FydeOS)</a
+              >
+            </li>
+            <li>
+              <a href="chromeos-android-linux-apps.html"
+                >Uso de Apps Android y Linux en Chrome OS</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/chromebook/answer/9340236?hl=es-419"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Mantenimiento y Optimización de Chrome OS
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

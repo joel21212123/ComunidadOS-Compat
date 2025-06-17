@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Modelos Compatibles de macOS</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      /* Estilos específicos para tablas si es necesario */
+      .compatible-models-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background-color: var(--card-background); 
+        overflow: hidden; /* Ensures rounded corners apply to content */
+      }
+
+      .compatible-models-table th,
+      .compatible-models-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+        color: var(--text-color);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .compatible-models-table th {
+        background-color: #007bff;
+        background-color: var(--primary-color);  /* Color primario de tu sitio */
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9em;
+      }
+
+      .compatible-models-table tbody tr:nth-child(even) {
+        background-color: var(--secondary-background);
+      }
+
+      .compatible-models-table tbody tr:hover {
+        background-color: var(--hover-background); /* Un color de resaltado al pasar el ratón */
+      }
+
+      .compatible-models-table td:first-child {
+        font-weight: bold;
+      }
+      .table-responsive {
+        overflow-x: auto;
+      }
+      :root {
+        /* Light Mode colors */
+        --background-color: #f4f7fa;
+        --text-color: #333;
+        --card-background: #ffffff;
+        --border-color: #eee;
+        --primary-color: #007bff; /* Color azul, como el de tus encabezados de tabla */
+        --secondary-background: #f8f8f8; /* Color para filas pares de tabla */
+        --hover-background: #e9f7fe; /* Color de resaltado de tabla */
+      }
+      
+      body.dark-mode {
+        /* Dark Mode colors */
+        --background-color: #1a1a2e;
+        --text-color: #e0e0e0;
+        --card-background: #2a2a4a;
+        --border-color: #444;
+        --primary-color: #6a8aff; /* Un azul que destaque en oscuro */
+        --secondary-background: #333355; /* Fondo más oscuro para filas pares */
+        --hover-background: #444477; /* Resaltado más oscuro */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="macos.html">macOS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Modelos Compatibles</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Modelos Compatibles de macOS: Asegurando la Compatibilidad</h2>
+          <p>
+            Apple actualiza anualmente macOS con nuevas funciones, mejoras de rendimiento y
+            seguridad. Sin embargo, no todos los modelos de Mac son compatibles con las últimas
+            versiones del sistema operativo. Generalmente, Apple descontinúa el soporte para modelos
+            más antiguos, lo que significa que no recibirán las últimas actualizaciones de macOS,
+            incluyendo nuevas características y parches de seguridad.
+          </p>
+          <p>
+            Es crucial verificar la compatibilidad de tu modelo de Mac antes de intentar actualizar,
+            ya que instalar una versión no soportada puede llevar a problemas de rendimiento o
+            inestabilidad.
+          </p>
+
+          <h3>¿Cómo Verificar la Compatibilidad de tu Mac?</h3>
+          <p>Para identificar el modelo exacto de tu Mac y su año:</p>
+          <ol>
+            <li>
+              Haz clic en el menú Apple (<i class="fab fa-apple"></i>) en la esquina superior
+              izquierda de la pantalla.
+            </li>
+            <li>Selecciona "Acerca de este Mac" (About This Mac).</li>
+            <li>
+              La ventana que aparece te mostrará la versión de macOS instalada, y una línea que
+              indica el modelo (ej. "MacBook Pro (13 pulgadas, 2017)").
+            </li>
+          </ol>
+
+          <h3>Compatibilidad General con las Últimas Versiones de macOS (ej. macOS Sonoma)</h3>
+          <p>
+            A continuación, se presenta una lista general de los modelos de Mac compatibles con
+            macOS Sonoma (14.x), la última versión disponible en el momento de esta guía. Ten en
+            cuenta que esta lista puede cambiar con futuras versiones de macOS. Siempre es
+            recomendable consultar la página oficial de Apple para la información más actualizada.
+          </p>
+
+          <div class="table-responsive">
+            <table class="compatible-models-table">
+              <thead>
+                <tr>
+                  <th>Tipo de Mac</th>
+                  <th>Modelos Compatibles (generalmente de 2018 o posterior)</th>
+                  <th>Notas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>iMac</strong></td>
+                  <td>iMac (2019 o posterior)</td>
+                  <td>Incluye iMac Retina 4K y 5K.</td>
+                </tr>
+                <tr>
+                  <td><strong>iMac Pro</strong></td>
+                  <td>iMac Pro (2017)</td>
+                  <td>Este modelo sigue siendo compatible a pesar de ser de 2017.</td>
+                </tr>
+                <tr>
+                  <td><strong>MacBook Air</strong></td>
+                  <td>MacBook Air (2018 o posterior)</td>
+                  <td>Modelos con Touch ID, chips Intel y Apple Silicon.</td>
+                </tr>
+                <tr>
+                  <td><strong>MacBook Pro</strong></td>
+                  <td>MacBook Pro (2018 o posterior)</td>
+                  <td>Modelos con Touch Bar, chips Intel y Apple Silicon.</td>
+                </tr>
+                <tr>
+                  <td><strong>Mac mini</strong></td>
+                  <td>Mac mini (2018 o posterior)</td>
+                  <td>Modelos con chips Intel y Apple Silicon.</td>
+                </tr>
+                <tr>
+                  <td><strong>Mac Studio</strong></td>
+                  <td>Mac Studio (Todos los modelos)</td>
+                  <td>Lanzado en 2022, compatible con las últimas versiones.</td>
+                </tr>
+                <tr>
+                  <td><strong>Mac Pro</strong></td>
+                  <td>Mac Pro (2019 o posterior)</td>
+                  <td>Incluye los modelos torre y rack.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Qué Hacer si tu Mac no es Compatible con la Última Versión</h3>
+          <p>Si tu Mac no es compatible con la última versión de macOS, aún tienes opciones:</p>
+          <ul>
+            <li>
+              <strong>Continuar con la última versión compatible:</strong> Tu Mac seguirá
+              funcionando con la última versión de macOS que soporta, aunque dejarás de recibir
+              nuevas características. Apple suele proporcionar actualizaciones de seguridad para las
+              dos o tres versiones anteriores de macOS.
+            </li>
+            <li>
+              <strong>Considerar un Hackintosh:</strong> Si tienes hardware de PC y eres un usuario
+              avanzado, puedes intentar instalar macOS (Hackintosh). Sin embargo, esto no está
+              oficialmente soportado y puede requerir conocimientos técnicos avanzados. Consulta
+              nuestra <a href="macos-hackintosh-guides.html">Guía de Hackintosh</a> para más
+              información.
+            </li>
+            <li>
+              <strong>Actualizar tu Hardware:</strong> La opción más directa para acceder a las
+              últimas características y la mejor seguridad es actualizar a un modelo de Mac más
+              reciente que sea compatible.
+            </li>
+            <li>
+              <strong>Instalar Otro Sistema Operativo:</strong> Si no necesitas macOS, puedes
+              instalar Windows o una distribución de Linux en tu Mac.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Oficiales de Apple</h3>
+          <ul>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/105151"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Identificar el modelo de tu Mac (Apple Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.apple.com/es/newsroom/2023/09/macos-sonoma-is-available-today/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Página oficial de macOS Sonoma (Apple)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/HT201541"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Cómo actualizar macOS en tu Mac (Apple Support)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li>
+              <a href="macos-hackintosh-guides.html">Guías Hackintosh: Instala macOS en PC</a>
+            </li>
+            <li><a href="macos-updates-versions.html">Actualizaciones y Versiones de macOS</a></li>
+            <li>
+              <a
+                href="https://www.crucial.mx/articles/mac-users/how-to-clean-and-optimize-mac"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Mantenimiento y Optimización de macOS (Pendiente)</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

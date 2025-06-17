@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial="device-width, initial-scale=1.0" />
+    <title>OS-Compat - Actualizaciones y Versiones de macOS</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      /* -- Estilos para la lista de versiones (cards) -- */
+      .version-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .version-list li {
+        margin-bottom: 15px;
+        background-color: var(--card-background); /* Usa la variable de fondo para las tarjetas */
+        padding: 15px;
+        border-left: 5px solid var(--primary-color); /* Usa la variable del color primario para el borde */
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra para modo claro */
+        color: var(--text-color); /* Asegura que el texto use el color de texto del tema */
+      }
+
+      .version-list li strong {
+        display: block;
+        font-size: 1.2em;
+        margin-bottom: 5px;
+        color: var(--text-color); /* Asegura que el texto fuerte use el color de texto del tema */
+      }
+
+      .version-list li p {
+        margin-bottom: 5px;
+        color: var(--text-color); /* Asegura que los párrafos usen el color de texto del tema */
+      }
+
+      /* Estilos específicos para la lista de versiones en MODO OSCURO */
+      body.dark-mode .version-list li {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada en oscuro */
+        /* Los colores de fondo, texto y borde ya se adaptarán por las variables definidas en body.dark-mode */
+      }
+      :root {
+        /* Light Mode colors */
+        --background-color: #f4f7fa;
+        --text-color: #333;
+        --card-background: #ffffff; /* Fondo para elementos como las tarjetas de versión */
+        --border-color: #eee;
+        --primary-color: #007bff; /* Color azul para bordes, etc. */
+      }
+
+      body.dark-mode {
+        /* Dark Mode colors */
+        --background-color: #1a1a2e;
+        --text-color: #e0e0e0;
+        --card-background: #2a2a4a; /* Fondo más oscuro para tarjetas de versión */
+        --border-color: #444;
+        --primary-color: #6a8aff; /* Un azul que destaque en oscuro */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="macos.html">macOS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Actualizaciones y Versiones</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Actualizaciones y Versiones de macOS: Mantén tu Mac al Día</h2>
+          <p>
+            Apple lanza anualmente una nueva versión principal de macOS, generalmente anunciada en
+            la Conferencia Mundial de Desarrolladores (WWDC) en junio y lanzada para el público en
+            otoño. Estas actualizaciones traen consigo nuevas características, mejoras de
+            rendimiento, parches de seguridad y compatibilidad con el hardware más reciente. Además
+            de las versiones principales, Apple también lanza actualizaciones menores (ej., 14.1,
+            14.2) que incluyen correcciones de errores y parches de seguridad.
+          </p>
+
+          <h3>Cómo Actualizar macOS</h3>
+          <p>
+            Actualizar tu Mac es un proceso sencillo que se realiza a través de la Configuración del
+            Sistema (o Preferencias del Sistema en versiones antiguas).
+          </p>
+          <ol>
+            <li>
+              <strong>Realiza una Copia de Seguridad:</strong> Antes de cualquier actualización
+              mayor, es **altamente recomendado** hacer una copia de seguridad completa de tu Mac
+              utilizando Time Machine o un método alternativo.
+            </li>
+            <li>
+              <strong>Verifica la Compatibilidad:</strong> Asegúrate de que tu modelo de Mac es
+              compatible con la nueva versión de macOS. Puedes consultarlo en nuestra
+              <a href="macos-compatible-models.html">página de Modelos Compatibles</a> o en el sitio
+              web de Apple.
+            </li>
+            <li>
+              <strong>Libera Espacio:</strong> Una actualización mayor puede requerir entre 20 GB y
+              60 GB de espacio libre en disco. Asegúrate de tener suficiente espacio.
+            </li>
+            <li>
+              <strong>Conecta a la Corriente y a Internet:</strong> Conecta tu Mac a una fuente de
+              alimentación y a una conexión a Internet estable y rápida.
+            </li>
+            <li>
+              <strong>Inicia la Actualización:</strong>
+              <ul>
+                <li>
+                  Ve a
+                  <strong>Menú Apple (<i class="fab fa-apple"></i>) > Ajustes del Sistema</strong>
+                  (o Preferencias del Sistema).
+                </li>
+                <li>Haz clic en <strong>General > Actualización de software</strong>.</li>
+                <li>
+                  Si hay una actualización disponible, haz clic en "Actualizar ahora" o "Actualizar
+                  a macOS [Nombre de la versión]".
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Sigue las Instrucciones:</strong> Tu Mac se reiniciará varias veces durante el
+              proceso de actualización. Ten paciencia y no lo apagues.
+            </li>
+          </ol>
+          <p>
+            Para actualizaciones menores o de seguridad, el proceso es el mismo y suelen ser más
+            rápidas.
+          </p>
+
+          <h3>Historial de Versiones Recientes de macOS</h3>
+          <p>
+            Apple ha cambiado el esquema de nombres de OS X a macOS y ha adoptado nombres de lugares
+            icónicos de California.
+          </p>
+          <ul class="version-list">
+            <li>
+              <strong>macOS Sonoma (14.x)</strong>
+              <p>Lanzamiento: Otoño 2023</p>
+              <p>
+                Características clave: Widgets interactivos en el escritorio, Modo Juego, Nuevos
+                salvapantallas, Perfiles de Safari, Mejoras en videollamadas.
+              </p>
+            </li>
+            <li>
+              <strong>macOS Ventura (13.x)</strong>
+              <p>Lanzamiento: Otoño 2022</p>
+              <p>
+                Características clave: Stage Manager, Cámara de Continuidad, Freeform, Mail y
+                Mensajes mejorados, Rediseño de Ajustes del Sistema.
+              </p>
+            </li>
+            <li>
+              <strong>macOS Monterey (12.x)</strong>
+              <p>Lanzamiento: Otoño 2021</p>
+              <p>
+                Características clave: Atajos, Control Universal, Modo Concentración, Notas rápidas,
+                AirPlay a Mac.
+              </p>
+            </li>
+            <li>
+              <strong>macOS Big Sur (11.x)</strong>
+              <p>Lanzamiento: Otoño 2020</p>
+              <p>
+                Características clave: Rediseño de la interfaz de usuario, Centro de Control, Centro
+                de Notificaciones, Safari mejorado, soporte para chips Apple Silicon.
+              </p>
+            </li>
+            <li>
+              <strong>macOS Catalina (10.15)</strong>
+              <p>Lanzamiento: Otoño 2019</p>
+              <p>
+                Características clave: iTunes dividido en Música, Podcasts y TV; Sidecar, Tiempo de
+                Uso, Project Catalyst, Voice Control.
+              </p>
+            </li>
+          </ul>
+
+          <h3>Consideraciones Importantes al Actualizar</h3>
+          <ul>
+            <li>
+              <strong>Compatibilidad de Aplicaciones:</strong> Antes de una actualización mayor,
+              verifica que tus aplicaciones críticas sean compatibles con la nueva versión de macOS.
+              Las aplicaciones de 32 bits, por ejemplo, dejaron de ser compatibles con macOS
+              Catalina.
+            </li>
+            <li>
+              <strong>Hardware Antiguo:</strong> Si tu Mac es un modelo antiguo, considera si la
+              última versión de macOS ofrecerá un buen rendimiento o si es mejor quedarse en una
+              versión anterior soportada.
+            </li>
+            <li>
+              <strong>Dispositivos Periféricos:</strong> Asegúrate de que los drivers de tus
+              impresoras, escáneres u otros periféricos sean compatibles con la nueva versión.
+            </li>
+            <li>
+              <strong>Hackintosh:</strong> Si tienes un Hackintosh, las actualizaciones de macOS son
+              significativamente más complejas y conllevan el riesgo de romper tu sistema. Siempre
+              consulta las guías de la comunidad (ej., OpenCore) antes de intentar cualquier
+              actualización.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Oficiales de Apple</h3>
+          <ul>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/HT201541"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Cómo actualizar macOS en tu Mac (Apple Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/HT201260"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Cómo usar Time Machine para hacer copias de seguridad (Apple Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/HT201475"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Información sobre las versiones de macOS (Apple Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/macos/sonoma"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Página oficial de macOS Sonoma (Apple)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="macos-compatible-models.html">Modelos Compatibles de macOS</a></li>
+            <li>
+              <a href="macos-hackintosh-guides.html">Guías Hackintosh: Instalando macOS en PC</a>
+            </li>
+            <li>
+              <a
+                href="https://www.crucial.mx/articles/mac-users/how-to-clean-and-optimize-mac"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Mantenimiento y Optimización de macOS</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1159 @@
+/* comunidad.css */
+
+/* Asegura que padding y border se incluyan en el ancho/alto de los elementos */
+* {
+    box-sizing: border-box;
+}
+
+/* Estilos base para html y body */
+html, body {
+    block-size: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-block-size: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+/* Variables CSS para los colores y dimensiones principales */
+:root {
+  --primary-color: #3b82f6; /* Tailwind blue-500 */
+  --bg-color: #1a202c; /* Tailwind gray-900 (fondo oscuro) */
+  --card-bg-color: #2d3748; /* Tailwind gray-800 (fondo de tarjetas) */
+  --text-color: #e2e8f0; /* Tailwind gray-200 (texto principal claro) */
+  --text-light-color: #a0aec0; /* Tailwind gray-400 (texto secundario más claro) */
+  --border-color: #4a5568; /* Tailwind gray-600 (bordes) */
+  --input-bg: #4a5568; /* Tailwind gray-600 (fondo de inputs) */
+  --button-hover-darken: #2563eb; /* Tailwind blue-600 */
+  --bg-light-color: #2c313a; /* Un color ligeramente más claro para items no leídos */
+
+  /* Dimensiones para los elementos "finos" y fijos */
+  --header-height: 48px; /* Altura del header */
+  --primary-sidebar-width: 64px; /* Ancho de la barra lateral de iconos */
+  --secondary-sidebar-width: 280px; /* Ancho de la barra lateral de categorías */
+}
+
+/* Modo claro (valores por defecto si no hay 'dark-mode' o los sobrescribimos) */
+body:not(.dark-mode) {
+  /* Aquí podrías definir colores para el modo claro si es necesario */
+  --primary-color: #1d4ed8; 
+ --bg-color: #ffffff; 
+  --card-bg-color: #f0f2f5; 
+   --text-color: #333333; 
+   --text-light-color: #666666; 
+   --border-color: #cccccc; 
+   --input-bg: #e0e0e0; 
+   --button-hover-darken: #1e40af; 
+   --bg-light-color: #e9ebee; 
+}
+
+/* Modo Oscuro (se activa con la clase 'dark-mode' en el body) */
+body.dark-mode {
+  --primary-color: #3b82f6;
+  --bg-color: #1a202c;
+  --card-bg-color: #2d3748;
+  --text-color: #e2e8f0;
+  --text-light-color: #a0aec0;
+  --border-color: #4a5568;
+  --input-bg: #4a5568;
+  --button-hover-darken: #2563eb;
+  --bg-light-color: #2c313a;
+}
+
+/* Aplicación de variables a clases CSS (para compatibilidad con HTML no-Tailwind directo) */
+.bg-bg-color { background-color: var(--bg-color); }
+.bg-card-bg-color { background-color: var(--card-bg-color); }
+.text-text-color { color: var(--text-color); }
+.text-text-light-color { color: var(--text-light-color); }
+.border-border-color { border-color: var(--border-color); }
+.bg-input-bg { background-color: var(--input-bg); }
+.text-primary-color { color: var(--primary-color); }
+.focus\:ring-primary-color:focus { --tw-ring-color: var(--primary-color); }
+.hover\:text-primary-color:hover { color: var(--primary-color); }
+.hover\:bg-button-hover-darken:hover { background-color: var(--button-hover-darken); }
+.accent-primary-color { accent-color: var(--primary-color); }
+.border-primary-color { border-color: var(--primary-color); }
+.bg-bg-light-color { background-color: var(--bg-light-color); }
+
+/* --- Header "fino" y fijo --- */
+.header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  block-size: var(--header-height); /* Usando variable para altura fina */
+  background-color: var(--card-bg-color);
+  border-block-end: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 1000;
+  justify-content: space-between;
+}
+
+.header-left {
+  /* Alineado con la barra lateral primaria cuando el layout lo permita */
+  inline-size: calc(var(--primary-sidebar-width) + var(--secondary-sidebar-width)); /* Espacio para ambas barras en desktop */
+  min-inline-size: calc(var(--primary-sidebar-width) + var(--secondary-sidebar-width));
+  justify-content: flex-start; /* Alinea el logo a la izquierda */
+  display: flex;
+  align-items: center;
+  padding-inline-start: 1rem; /* Espacio para el logo */
+}
+
+.header-left .logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: 1.125rem;
+  gap: 0.5rem;
+  white-space: nowrap; /* Evita que el texto del logo se rompa */
+}
+
+.header-left .logo img {
+  block-size: 32px;
+}
+
+.header-center {
+  flex: 1;
+  justify-content: center;
+  display: flex;
+}
+
+.header-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-item {
+  color: var(--text-light-color);
+  font-size: 1.25rem;
+  transition: color 0.2s;
+}
+
+.nav-item:hover {
+  color: var(--primary-color);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-search {
+  position: relative;
+  inline-size: 300px; /* Ancho fijo para la búsqueda en desktop */
+}
+
+.header-search input {
+  inline-size: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  border-radius: 9999px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  outline: none; /* Remover outline por defecto */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.header-search input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* Sombra para enfoque */
+}
+
+
+.header-search button {
+  position: absolute;
+  inset-inline-end: 0.5rem;
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-light-color);
+  cursor: pointer;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notification-btn, .settings-btn {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--text-light-color);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.notification-btn:hover, .settings-btn:hover {
+  color: var(--primary-color);
+}
+
+.notification-badge {
+  position: absolute;
+  inset-block-start: -5px;
+  inset-inline-end: -5px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.125rem 0.375rem;
+  border-radius: 9999px;
+}
+
+.user-profile {
+  position: relative;
+  inline-size: 32px;
+  block-size: 32px;
+}
+
+.user-profile img {
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+}
+
+.status-indicator {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  inline-size: 10px;
+  block-size: 10px;
+  background-color: #10b981;
+  border-radius: 50%;
+  border: 2px solid var(--card-bg-color);
+}
+
+/* --- Barras laterales (Contenedor, Primaria "fina" y Secundaria) --- */
+.sidebar-container {
+  position: fixed;
+  inset-block-start: var(--header-height); /* Empieza debajo del header */
+  inset-inline-start: 0;
+  block-size: calc(100vh - var(--header-height)); /* Ocupa el resto de la altura */
+  display: flex; /* Para que la primaria y secundaria estén en fila */
+  z-index: 900;
+  background-color: var(--card-bg-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  inline-size: calc(var(--primary-sidebar-width) + var(--secondary-sidebar-width)); /* Ancho total de las dos barras */
+}
+
+.primary-sidebar { /* Barra lateral de iconos "fina" */
+  inline-size: var(--primary-sidebar-width);
+  min-inline-size: var(--primary-sidebar-width); /* Asegura que no se haga más pequeña */
+  background-color: var(--card-bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block-start: 1rem;
+  border-inline-end: 1px solid var(--border-color);
+}
+
+.sidebar-item {
+  position: relative;
+  inline-size: 100%;
+  padding: 0.75rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: var(--bg-light-color);
+}
+
+.sidebar-item-icon {
+  inline-size: 24px;
+  block-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.sidebar-item-text { /* Texto que aparece al hacer hover */
+  position: absolute;
+  inset-inline-start: calc(100% + 8px); /* Aparece a la derecha del icono */
+  background-color: var(--card-bg-color);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  border: 1px solid var(--border-color);
+}
+
+.sidebar-item:hover .sidebar-item-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+.secondary-sidebar { /* Barra lateral de categorías (más ancha) */
+  inline-size: var(--secondary-sidebar-width);
+  min-inline-size: var(--secondary-sidebar-width); /* Asegura que no se haga más pequeña */
+  background-color: var(--card-bg-color);
+  padding: 1rem;
+  overflow-y: auto; /* Permite scroll si el contenido es largo */
+}
+
+/* --- Layout Principal de tres columnas (DEFAULT for large screens >= 1024px) --- */
+.main-layout {
+  flex: 1; /* Hace que el contenido principal ocupe todo el espacio disponible */
+  min-block-size: 0; /* Permite que el contenido se desborde correctamente */
+  margin-inline-start: calc(var(--primary-sidebar-width) + var(--secondary-sidebar-width));
+  margin-block-start: var(--header-height);
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 2rem;
+  max-inline-size: 1920px;
+  margin-inline-end: auto;
+  inline-size: 100%;
+  position: relative; /* Para posicionamiento de elementos internos */
+  overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+}
+
+/* Aseguramos que la barra lateral derecha siempre sea un bloque y visible */
+.right-sidebar {
+  display: block;
+  background-color: transparent;
+  position: sticky; /* Hace que la barra derecha se mantenga visible al hacer scroll */
+  inset-block-start: calc(var(--header-height) + 2rem); /* Se mantiene debajo del header */
+  block-size: calc(100vh - var(--header-height) - 4rem); /* Altura ajustada al viewport */
+  overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+}
+
+/* Estilos de las secciones dentro de las barras laterales */
+.section-title {
+  padding: 1rem;
+  margin: 0;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-block-end: 1px solid var(--border-color);
+  color: var(--primary-color);
+  margin-block-end: 0.5rem; /* Pequeño margen inferior */
+}
+
+.categories-list, .chat-rooms {
+  list-style: none; /* Asegurar que no haya viñetas */
+  padding: 0;
+  margin: 0;
+}
+
+.category-item, .chat-room {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: background-color 0.2s;
+  gap: 1rem;
+  border-block-end: 1px solid var(--border-color);
+}
+.category-item:last-child, .chat-room:last-child {
+    border-block-end: none;
+}
+
+.category-item:hover, .chat-room:hover {
+  background-color: var(--bg-light-color);
+}
+
+.category-info, .room-info {
+  flex: 1;
+}
+
+.category-info h3, .room-info h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+}
+
+.category-info p, .room-info p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-light-color);
+}
+
+.post-count, .active-users {
+  font-size: 0.75rem;
+  color: var(--text-light-color);
+  margin-block-start: 0.25rem;
+  display: block;
+}
+
+/* --- Columna central - Feed principal --- */
+.main-content { 
+  /* No se necesita padding aquí, ya está en main-layout */
+}
+
+.post-creator {
+  background-color: var(--card-bg-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-block-end: 1rem;
+}
+
+.post-creator-header {
+  display: flex;
+  gap: 1rem;
+  margin-block-end: 1rem;
+}
+
+.post-creator-header img {
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: 50%;
+}
+
+.post-creator-header input {
+  flex: 1;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  color: var(--text-color);
+  outline: none; /* Remover outline por defecto */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.post-creator-header input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* Sombra para enfoque */
+}
+
+
+.post-creator-actions {
+  display: flex;
+  gap: 0.5rem;
+  border-block-start: 1px solid var(--border-color);
+  padding-block-start: 1rem;
+  flex-wrap: wrap; /* Permite que los botones se envuelvan en pantallas pequeñas */
+  align-items: center; /* Alinea verticalmente los items */
+}
+
+/* Estilo para el input de archivo personalizado */
+.file-input-wrapper {
+  position: relative;
+  display: inline-flex; /* Para que el span del nombre del archivo esté al lado */
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.file-input-wrapper .file-name {
+    font-size: 0.875rem; /* text-sm */
+    color: var(--text-light-color);
+    white-space: nowrap; /* Evita que el nombre del archivo se rompa */
+    overflow: hidden; /* Oculta el texto que desborda */
+    text-overflow: ellipsis; /* Añade puntos suspensivos */
+    max-inline-size: 150px; /* Limita el ancho para nombres largos */
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  color: var(--text-light-color);
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+  border-radius: 4px;
+}
+
+.action-btn:hover {
+  color: var(--primary-color);
+  background-color: rgba(59, 130, 246, 0.1); /* Ligero fondo al pasar el ratón */
+}
+
+.publish-btn {
+  margin-inline-start: auto;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 600;
+}
+
+.publish-btn:hover {
+  background-color: var(--button-hover-darken);
+}
+
+.feed-filters {
+  background-color: var(--card-bg-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-block-end: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Para que los filtros se envuelvan en móviles */
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-block-end: 0.5rem; /* Margen si los tabs se envuelven */
+}
+
+.filter-tab {
+  background: none;
+  border: none;
+  color: var(--text-light-color);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.filter-tab.active {
+  color: var(--primary-color);
+  border-block-end: 2px solid var(--primary-color);
+  font-weight: 600;
+}
+
+.feed-search {
+  position: relative;
+  inline-size: 300px;
+}
+
+.feed-search input {
+  inline-size: 100%;
+  padding: 0.5rem 2.5rem;
+  border-radius: 20px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.feed-search input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.feed-search i {
+  position: absolute;
+  inset-inline-start: 0.75rem;
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light-color);
+}
+
+/* Publicaciones (Posts) */
+.posts-container {
+  /* Contenedor para las publicaciones */
+}
+
+.post-card {
+  background-color: var(--card-bg-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-block-end: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block-end: 1rem;
+}
+
+.post-header img {
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+}
+
+.post-text {
+  white-space: pre-wrap; /* Mantiene saltos de línea y espacios */
+  word-wrap: break-word; /* Rompe palabras largas */
+}
+
+/* Interacciones (Likes, Comentarios) */
+.like-btn, .comment-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text-light-color); /* Color por defecto */
+}
+
+.like-btn i, .comment-toggle-btn i {
+  color: var(--text-light-color);
+}
+.like-btn:hover i, .comment-toggle-btn:hover i {
+    color: var(--primary-color);
+}
+.like-btn .fa-heart.text-red-500 { /* Clase para corazón liked */
+    color: #ef4444; /* Rojo */
+}
+
+/* Sección de comentarios */
+.comments-section {
+  border-block-start: 1px solid var(--border-color);
+  padding-block-start: 1rem;
+  margin-block-start: 1rem;
+}
+.comments-section .flex.items-center.space-x-2 { /* Input de comentario */
+    margin-block-start: 1rem;
+}
+
+/* --- Columna derecha - Perfil, temas populares y anuncios --- */
+.user-profile-card, .popular-topics-right, .announcements {
+  background-color: var(--card-bg-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-block-end: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile-card img {
+  border: 2px solid var(--primary-color);
+}
+
+.user-profile-card .profile-header {
+    text-align: center;
+    margin-block-end: 1rem;
+}
+.user-profile-card .profile-header img {
+    inline-size: 80px;
+    block-size: 80px;
+    border-radius: 50%;
+    margin: 0 auto 0.5rem auto;
+    display: block;
+}
+.user-profile-card .profile-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-color);
+}
+.user-profile-card .profile-header p {
+    font-size: 0.875rem;
+    color: var(--text-light-color);
+    margin: 0;
+}
+.user-profile-card .view-profile-btn {
+    display: block;
+    inline-size: 100%;
+    padding: 0.75rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 600;
+}
+.user-profile-card .view-profile-btn:hover {
+    background-color: var(--button-hover-darken);
+}
+
+
+.popular-topics-right ul, .announcements ul, .announcements .announcement-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popular-topics-right li, .announcements .announcement {
+  margin-block-end: 0.75rem;
+  padding-block-end: 0.75rem; /* Espacio para el borde */
+  border-block-end: 1px solid var(--border-color);
+}
+.popular-topics-right li:last-child, .announcements .announcement:last-child {
+    border-block-end: none;
+    margin-block-end: 0;
+    padding-block-end: 0;
+}
+
+.popular-topics-right a {
+  text-decoration: none;
+  color: var(--text-color); /* Color de texto normal */
+  transition: color 0.2s;
+}
+.popular-topics-right a:hover {
+    color: var(--primary-color); /* Cambia a primary al hover */
+}
+.popular-topics-right span {
+    color: var(--text-light-color); /* Color para el contador de posts */
+    font-size: 0.875rem;
+}
+.popular-topics-right li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.announcement h4 {
+  margin: 0 0 0.25rem 0;
+  color: var(--primary-color);
+  font-size: 1.125rem;
+}
+.announcement p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+.announcement span {
+    font-size: 0.8rem;
+    color: var(--text-light-color);
+}
+
+
+/* --- Modal de Encuesta --- */
+.modal-overlay {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  inset-block-end: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: var(--card-bg-color);
+  padding: 2rem;
+  border-radius: 8px;
+  inline-size: 90%;
+  max-inline-size: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#poll-modal .remove-option-btn {
+  color: #ef4444;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+#poll-modal .remove-option-btn:hover {
+  color: #b91c1c;
+}
+#poll-modal .add-option-btn {
+    font-weight: 600;
+}
+
+
+/* Estilos para el scrollbar personalizado */
+.custom-scrollbar::-webkit-scrollbar {
+  inline-size: 8px;
+  block-size: 8px; /* Para scrollbars horizontales si los hay */
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--card-bg-color);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--text-light-color);
+}
+
+
+/* --- Media Queries para Responsividad (Actualizado) --- */
+
+/* Por defecto (pantallas grandes, >= 1024px): 3 columnas */
+/* El header-left se alinea con las dos sidebars */
+.header-left {
+  inline-size: calc(var(--primary-sidebar-width) + var(--secondary-sidebar-width));
+  min-inline-size: calc(var(--primary-sidebar-width) + var(--secondary-sidebar-width));
+  justify-content: flex-start;
+  padding-inline-start: 1rem;
+}
+
+/* El sidebar-container tiene el ancho combinado de las dos sidebars */
+.sidebar-container {
+  inline-size: calc(var(--primary-sidebar-width) + var(--secondary-sidebar-width));
+}
+
+/* El main-layout tiene el margen de las dos sidebars y 2 columnas */
+.main-layout {
+  margin-inline-start: calc(var(--primary-sidebar-width) + var(--secondary-sidebar-width));
+  /* Dos columnas: 1fr para contenido y 300px fijo para la derecha */
+  grid-template-columns: minmax(0, 1fr) 300px;
+}
+
+
+/* Para pantallas medianas (de 640px a 1023px): 2 columnas (contenido + derecha), secundaria izquierda oculta */
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* Ocultar barra lateral secundaria (categorías) */
+  .secondary-sidebar {
+    display: none;
+    inline-size: 0; /* Asegura que no ocupe espacio */
+    padding: 0;
+  }
+
+  /* Ajustar el contenedor de sidebar para que solo contenga la primaria */
+  .sidebar-container {
+    inline-size: var(--primary-sidebar-width);
+  }
+
+  /* Ajustar el header-left para que solo se alinee con la primary-sidebar */
+  .header-left {
+    inline-size: var(--primary-sidebar-width);
+    min-inline-size: var(--primary-sidebar-width);
+    justify-content: center; /* Centrar el logo en el espacio de la primaria */
+    padding-inline-start: 0; /* Remover padding adicional */
+  }
+
+  /* Ajustar margen izquierdo del layout principal (solo compensa la barra primaria) */
+  .main-layout {
+    margin-inline-start: var(--primary-sidebar-width);
+    /* Dos columnas: flexible para contenido, y una barra derecha de ANCHO FIJO más pequeña */
+    grid-template-columns: minmax(0, 1fr) 250px; /* Ancho fijo de 250px para la derecha */
+    gap: 1.5rem; /* Reducir espacio entre columnas */
+    padding-inline-start: 1.5rem;
+    padding-inline-end: 1.5rem;
+  }
+
+  /* Asegurar que la barra lateral derecha esté visible */
+  .right-sidebar {
+    display: block;
+  }
+}
+
+/* Para pantallas pequeñas (hasta 639px): 1 columna (modo móvil) */
+@media (max-width: 639px) {
+  /* Header se vuelve flexible y se apila */
+  .header {
+    flex-wrap: wrap;
+    block-size: auto;
+    padding: 0.5rem 1rem;
+    justify-content: center;
+    position: relative; /* Ya no es fijo para dejar espacio al contenido */
+  }
+
+  .header-left, .header-right {
+    inline-size: 100%;
+    justify-content: center;
+    margin-block-end: 0.5rem;
+    padding-inline-start: 0; /* Asegurar no padding */
+  }
+  .header-center { /* Ocultar nav principal en móvil */
+    display: none;
+  }
+  .header-search {
+    inline-size: 90%; /* Ancho de búsqueda en móvil */
+    margin-block-start: 0.5rem;
+  }
+  .header-actions {
+    inline-size: 100%;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-block-start: 0.5rem;
+  }
+  .header-left .logo {
+    font-size: 1.5rem;
+    gap: 0.75rem;
+  }
+
+  /* Barras laterales se ocultan o transforman en un menú inferior/toggle */
+  .sidebar-container {
+    position: fixed; /* Ahora es fijo en la parte inferior */
+    inset-block-start: auto;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    inline-size: 100%;
+    block-size: var(--primary-sidebar-width); /* Altura basada en la barra de iconos */
+    flex-direction: row; /* Iconos en fila horizontal */
+    justify-content: space-around;
+    padding: 0.5rem 0;
+    border-block-start: 1px solid var(--border-color);
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    background-color: var(--card-bg-color);
+  }
+
+  .primary-sidebar { /* Los items de la barra principal se muestran en fila */
+    inline-size: 100%;
+    flex-direction: row; /* Iconos en fila */
+    justify-content: space-around;
+    padding: 0;
+    border-inline-end: none;
+    background-color: transparent;
+  }
+  .primary-sidebar .sidebar-item-icon {
+    font-size: 1.5rem;
+  }
+  .primary-sidebar .sidebar-item-text { /* Ocultar texto al pasar el ratón en móviles para la barra de iconos */
+    display: none;
+  }
+  .secondary-sidebar { /* La barra secundaria de categorías se oculta completamente en móvil */
+    display: none;
+  }
+
+  /* Ajustar el layout principal para móviles */
+  .main-layout {
+    margin-inline-start: 0; /* Sin margen por sidebar fijo a la izquierda */
+    margin-block-start: 1rem; /* Pequeño margen superior para el contenido */
+    padding: 1rem; /* Reducir padding general */
+    grid-template-columns: 1fr; /* Una sola columna */
+    padding-block-end: calc(var(--primary-sidebar-width) + 1rem); /* Espacio para el nav inferior */
+  }
+
+  /* La barra lateral derecha se apilará automáticamente debajo del contenido principal */
+  /* No necesitamos display:none aquí, ya que el grid 1fr lo maneja */
+}
+
+/* --- Notificaciones (Dropdown) --- */
+.notification-dropdown {
+  position: absolute;
+  inset-block-start: var(--header-height); /* Se muestra justo debajo del header */
+  inset-inline-end: 1rem; /* Alineado a la derecha */
+  inline-size: 380px; /* Ancho fijo para el dropdown */
+  max-block-size: calc(100vh - var(--header-height) - 2rem); /* Altura máxima con scroll */
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  overflow: hidden; /* Asegura que el contenido se corte si se desborda */
+  display: flex; /* Para flex-direction column */
+  flex-direction: column;
+}
+
+.notification-dropdown.hidden {
+  display: none;
+}
+
+.notification-header {
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-block-end: 1px solid var(--border-color);
+}
+
+.notification-header h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  color: var(--text-color);
+}
+
+.mark-all-read-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.mark-all-read-btn:hover {
+  color: var(--button-hover-darken);
+}
+
+.notification-list {
+  flex-grow: 1; /* Permite que la lista ocupe el espacio restante */
+  overflow-y: auto; /* Permite scroll si hay muchas notificaciones */
+  padding: 0.5rem 0;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start; /* Alinea los ítems arriba para texto multi-línea */
+  padding: 0.75rem 1rem;
+  gap: 0.75rem;
+  border-block-end: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none; /* Para que si es un <a> no tenga subrayado */
+}
+
+.notification-item:last-child {
+  border-block-end: none;
+}
+
+.notification-item:hover {
+  background-color: var(--bg-light-color);
+}
+
+.notification-item.unread {
+  background-color: var(--bg-light-color); /* Ligeramente más claro para no leídas */
+}
+
+.notification-item-avatar {
+  flex-shrink: 0; /* Evita que el avatar se encoja */
+  inline-size: 36px; /* Tamaño más pequeño para el avatar */
+  block-size: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--primary-color); /* Borde sutil */
+}
+
+.notification-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-content h4 {
+  margin: 0;
+  font-size: 0.95rem; /* Tamaño de fuente para el título */
+  font-weight: 600;
+  color: var(--text-color);
+  line-height: 1.3;
+}
+
+.notification-content p {
+  margin: 0;
+  font-size: 0.85rem; /* Tamaño de fuente para el mensaje */
+  color: var(--text-light-color);
+  line-height: 1.3;
+}
+
+.notification-timestamp {
+  font-size: 0.75rem; /* Tamaño de fuente para el timestamp */
+  color: var(--text-light-color);
+  margin-block-start: 0.25rem;
+}
+
+.notification-icon {
+  flex-shrink: 0;
+  font-size: 1.1rem; /* Tamaño del icono */
+  color: var(--primary-color);
+  margin-inline-start: 0.5rem; /* Espacio a la izquierda del icono */
+  align-self: center; /* Alinea el icono verticalmente */
+}
+
+.notification-footer {
+  padding: 0.75rem 1rem;
+  border-block-start: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.view-all-notifications-btn {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.view-all-notifications-btn:hover {
+  color: var(--button-hover-darken);
+}
+
+.no-notifications-message {
+  font-style: italic;
+  color: var(--text-light-color);
+}
+
+
+/* Animación para el badge de notificación (opcional) */
+@keyframes ping-once {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.notification-badge.animate-ping-once {
+  animation: ping-once 1s forwards;
+}
+
+/* Media Query para ajustar el dropdown en pantallas pequeñas */
+@media (max-width: 639px) {
+  .notification-dropdown {
+    inline-size: calc(100% - 2rem); /* Ocupa casi todo el ancho de la pantalla */
+    inset-inline-end: 1rem; /* Margen a la derecha */
+    inset-inline-start: 1rem; /* Margen a la izquierda */
+    max-block-size: 60vh; /* Ajustar altura máxima para móvil */
+    inset-block-start: var(--header-height); /* Se mantiene debajo del header si el header no es fixed */
+  }
+}
+
+/* Footer siempre al final */
+.footer {
+  margin-block-start: auto; /* Empuja el footer al final cuando hay poco contenido */
+  background: var(--card-bg-color);
+  color: var(--text-light-color);
+  padding: 3rem 0 1rem;
+  position: relative; /* Para posicionamiento de elementos internos */
+  z-index: 10; /* Asegura que esté por encima de otros elementos */
+}
+
+/* Media Queries actualizados para mejor responsividad */
+@media (max-width: 1023px) {
+  .main-layout {
+    margin-inline-start: var(--primary-sidebar-width);
+    grid-template-columns: 1fr; /* Una sola columna en tablets */
+    padding: 1rem;
+  }
+
+  .right-sidebar {
+    position: static; /* La barra derecha se vuelve normal en el flujo */
+    block-size: auto;
+    margin-block-start: 2rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .main-layout {
+    margin-inline-start: 0;
+    margin-block-start: auto; /* Ajusta el margen superior en móviles */
+    padding: 1rem;
+    padding-block-end: calc(var(--primary-sidebar-width) + 1rem);
+  }
+
+  .sidebar-container {
+    position: fixed;
+    inset-block-start: auto;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    inline-size: 100%;
+    block-size: var(--primary-sidebar-width);
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0.5rem 0;
+    border-block-start: 1px solid var(--border-color);
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    background-color: var(--card-bg-color);
+  }
+
+  .footer {
+    margin-block-end: var(--primary-sidebar-width); /* Espacio para la barra de navegación móvil */
+  }
+}

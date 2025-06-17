@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Personalización de macOS</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      :root {
+        /* Light Mode colors */
+        --background-color: #f4f7fa;
+        --text-color: #333;
+        --card-background: #ffffff;
+        --border-color: #ddd;
+        --primary-color: #007bff; /* Azul para el borde izquierdo */
+        --code-background-inline: #e6e6e6;
+        --code-background-block: #f4f4f4;
+        --code-text-color: #333;
+        --description-text-color: #555;
+        --setting-group-background: #f8f8f8; /* Nuevo: Fondo para los bloques de configuración */
+        --setting-group-heading-color: #333; /* Nuevo: Color de título para los bloques de configuración */
+        --info-background: #e9f7fe; /* Nuevo: Fondo para los bloques de herramientas externas */
+        --info-border: #007bff; /* Nuevo: Borde para los bloques de herramientas externas */
+      }
+
+      body.dark-mode {
+        /* Dark Mode colors */
+        --background-color: #1a1a2e;
+        --text-color: #e0e0e0;
+        --card-background: #2a2a4a;
+        --border-color: #444;
+        --primary-color: #6a8aff; /* Azul que contraste en oscuro */
+        --code-background-inline: #3a3a5a;
+        --code-background-block: #2e2e4e;
+        --code-text-color: #c0c0c0;
+        --description-text-color: #b0b0b0;
+        --setting-group-background: #2a2a4a; /* Fondo oscuro para los bloques de configuración */
+        --setting-group-heading-color: #e0e0e0; /* Texto claro para títulos en oscuro */
+        --info-background: #3a3a5a; /* Fondo oscuro para bloques de herramientas externas */
+        --info-border: #6a8aff; /* Borde que contraste en oscuro */
+      }
+      /* -- Estilos para los grupos de configuración -- */
+      .setting-group {
+        background-color: var(--setting-group-background); /* Usa la nueva variable de fondo */
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border-left: 5px solid var(--primary-color); /* Usa la variable del color primario */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        color: var(--text-color); /* Asegura que el texto general use el color del tema */
+      }
+
+      .setting-group h4 {
+        margin-top: 0;
+        color: var(
+          --setting-group-heading-color
+        ); /* Usa la nueva variable para el color del título */
+        font-size: 1.15em;
+        margin-bottom: 10px;
+      }
+
+      .setting-group ul {
+        list-style: disc;
+        margin-left: 20px;
+        padding-left: 0;
+      }
+
+      .setting-group ul li {
+        margin-bottom: 8px;
+      }
+
+      /* -- Estilos para las herramientas externas -- */
+      .external-tool {
+        background-color: var(--info-background); /* Usa la nueva variable de fondo informativo */
+        border: 1px dashed var(--info-border); /* Usa la nueva variable de borde informativo */
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 15px;
+        color: var(--text-color); /* Asegura que el texto use el color del tema */
+      }
+
+      .external-tool a {
+        color: var(
+          --primary-color
+        ); /* Asegura que los enlaces dentro de .external-tool también se adapten */
+      }
+
+      /* Estilos específicos para MODO OSCURO para estos elementos */
+      body.dark-mode .setting-group,
+      body.dark-mode .external-tool {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada en oscuro */
+        /* Los colores ya se adaptarán por las variables */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="macos.html">macOS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Personalización</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Personalización de macOS: Dale tu Toque Único a tu Mac</h2>
+          <p>
+            macOS ofrece una gran cantidad de opciones de personalización, permitiéndote adaptar la
+            apariencia y el comportamiento de tu sistema para que se ajuste perfectamente a tus
+            preferencias y flujo de trabajo. Desde el fondo de pantalla hasta el Dock, la barra de
+            menú y las preferencias del sistema, puedes hacer que tu Mac se sienta verdaderamente
+            tuyo.
+          </p>
+
+          <h3>Ajustes del Sistema (o Preferencias del Sistema)</h3>
+          <p>
+            La mayor parte de la personalización de macOS se realiza a través de la aplicación
+            "Ajustes del Sistema" (llamada "Preferencias del Sistema" en versiones anteriores de
+            macOS).
+          </p>
+
+          <div class="setting-group">
+            <h4>1. Fondo de Pantalla (Wallpaper)</h4>
+            <ul>
+              <li>Ve a <strong>Ajustes del Sistema > Fondo de pantalla</strong>.</li>
+              <li>
+                Puedes elegir entre las imágenes dinámicas de Apple, imágenes fijas, colores sólidos
+                o seleccionar tus propias fotos.
+              </li>
+              <li>
+                Las imágenes dinámicas cambian a lo largo del día para coincidir con la hora local.
+              </li>
+            </ul>
+          </div>
+
+          <div class="setting-group">
+            <h4>2. Escritorio y Dock</h4>
+            <ul>
+              <li>Ve a <strong>Ajustes del Sistema > Escritorio y Dock</strong>.</li>
+              <li><strong>Tamaño del Dock:</strong> Ajusta el tamaño de los iconos en el Dock.</li>
+              <li>
+                <strong>Ampliación:</strong> Activa la ampliación para ver los iconos más grandes al
+                pasar el ratón.
+              </li>
+              <li>
+                <strong>Posición en pantalla:</strong> Coloca el Dock en la parte inferior,
+                izquierda o derecha.
+              </li>
+              <li>
+                <strong>Efecto de minimización:</strong> Elige entre los efectos "Genio" o "Escala".
+              </li>
+              <li>
+                <strong>Ocultar/mostrar automáticamente:</strong> Haz que el Dock aparezca solo
+                cuando mueves el puntero a su posición.
+              </li>
+              <li>
+                <strong>Stacks (Grupos de Escritorio):</strong> Haz clic derecho en el escritorio y
+                selecciona "Usar grupos" para organizar automáticamente tus archivos.
+              </li>
+              <li>
+                <strong>Esquinas Activas (Hot Corners):</strong> Configura acciones rápidas al
+                llevar el puntero a una esquina de la pantalla. (También en Escritorio y Dock).
+              </li>
+            </ul>
+          </div>
+
+          <div class="setting-group">
+            <h4>3. Barra de Menú y Centro de Control</h4>
+            <ul>
+              <li>Ve a <strong>Ajustes del Sistema > Centro de Control</strong>.</li>
+              <li>
+                Puedes decidir qué módulos del Centro de Control se muestran y cuáles aparecen
+                directamente en la barra de menú.
+              </li>
+              <li>
+                Arrastra elementos del Centro de Control a la barra de menú para acceso rápido.
+              </li>
+              <li>Configura el reloj, la fecha y el nombre de tu Mac en la barra de menú.</li>
+            </ul>
+          </div>
+
+          <div class="setting-group">
+            <h4>4. Apariencia y Colores</h4>
+            <ul>
+              <li>Ve a <strong>Ajustes del Sistema > Apariencia</strong>.</li>
+              <li>
+                <strong>Modo:</strong> Elige entre Claro, Oscuro o Automático. El modo Automático
+                cambia según la hora del día.
+              </li>
+              <li>
+                <strong>Acento:</strong> Cambia el color de resaltado de botones, menús y otros
+                elementos de la interfaz.
+              </li>
+              <li>
+                <strong>Color de resaltado:</strong> Elige el color que se usa para resaltar texto
+                seleccionado.
+              </li>
+            </ul>
+          </div>
+
+          <div class="setting-group">
+            <h4>5. Sonido, Notificaciones y Enfoque</h4>
+            <ul>
+              <li>
+                <strong>Sonido:</strong> En <strong>Ajustes del Sistema > Sonido</strong>,
+                personaliza los efectos de sonido de alerta, la salida y entrada de audio.
+              </li>
+              <li>
+                <strong>Notificaciones:</strong> En
+                <strong>Ajustes del Sistema > Notificaciones</strong>, configura cómo y cuándo te
+                llegan las alertas de cada aplicación.
+              </li>
+              <li>
+                <strong>Enfoque (Focus):</strong> En <strong>Ajustes del Sistema > Enfoque</strong>,
+                crea modos personalizados para silenciar notificaciones o permitir solo las
+                importantes durante ciertas actividades.
+              </li>
+            </ul>
+          </div>
+
+          <h3>Personalización Avanzada con Herramientas de Terceros</h3>
+          <p>Para una personalización más profunda, existen aplicaciones de terceros:</p>
+          <div class="external-tool">
+            <h4><i class="fas fa-magic"></i> Bartender</h4>
+            <p>
+              Te permite organizar los iconos de la barra de menú, ocultándolos en un menú
+              secundario para mantener el orden.
+              <a href="https://www.macbartender.com/" target="_blank" rel="noopener noreferrer"
+                >Visitar el sitio de Bartender</a
+              >
+            </p>
+          </div>
+          <div class="external-tool">
+            <h4><i class="fas fa-rocket"></i> CleanMyMac X (o alternativas)</h4>
+            <p>
+              Aunque es principalmente para limpieza, también ofrece herramientas para gestionar
+              aplicaciones, extensiones de inicio y optimización del sistema, lo que indirectamente
+              contribuye a una experiencia personalizada y fluida.
+              <a href="https://macpaw.com/cleanmymac" target="_blank" rel="noopener noreferrer"
+                >Visitar el sitio de CleanMyMac X</a
+              >
+            </p>
+          </div>
+          <div class="external-tool">
+            <h4><i class="fas fa-layer-group"></i> iStats Menus</h4>
+            <p>
+              Añade monitores de sistema personalizables a tu barra de menú, mostrando información
+              detallada sobre CPU, RAM, red, batería, etc.
+              <a href="https://bjango.com/mac/istatmenus/" target="_blank" rel="noopener noreferrer"
+                >Visitar el sitio de iStats Menus</a
+              >
+            </p>
+          </div>
+          <div class="external-tool">
+            <h4><i class="fas fa-keyboard"></i> Raycast / Alfred</h4>
+            <p>
+              Lanzadores de aplicaciones y productividad que reemplazan o amplían Spotlight,
+              permitiendo automatizar tareas, buscar en la web, gestionar portapapeles y mucho más.
+              <a href="https://www.raycast.com/" target="_blank" rel="noopener noreferrer"
+                >Visitar el sitio de Raycast</a
+              >
+              /
+              <a href="https://www.alfredapp.com/" target="_blank" rel="noopener noreferrer"
+                >Visitar el sitio de Alfred</a
+              >
+            </p>
+          </div>
+
+          <h3>Consejos Adicionales</h3>
+          <ul>
+            <li>
+              <strong>Organiza tu Escritorio:</strong> Mantén tu escritorio limpio usando Stacks o
+              guardando tus archivos en carpetas adecuadas.
+            </li>
+            <li>
+              <strong>Gestiona tus Elementos de Inicio:</strong> Revisa en
+              <strong>Ajustes del Sistema > General > Ítems de inicio</strong> qué aplicaciones se
+              abren al iniciar sesión. Deshabilita las que no necesites para un arranque más rápido.
+            </li>
+            <li>
+              <strong>Personaliza tu Shell:</strong> Si usas la Terminal, puedes personalizar tu
+              shell (Zsh, Bash) con temas y plugins (como Oh My Zsh) para una experiencia de línea
+              de comandos más agradable.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Adicionales de Apple</h3>
+          <ul>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/guide/mac-help/mchl7493a778/mac"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Cambiar el fondo de pantalla (Apple Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/guide/mac-help/mchlp2760/mac"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Cambiar los ajustes de Dock (Apple Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/guide/mac-help/mchle2d4710a/mac"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Usar el Centro de Control (Apple Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/guide/mac-help/mh35848/mac"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Usar el modo Oscuro (Apple Support)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="macos-tips-shortcuts.html">Trucos y Atajos de macOS</a></li>
+            <li><a href="macos-terminal.html">Terminal de macOS</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="Contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

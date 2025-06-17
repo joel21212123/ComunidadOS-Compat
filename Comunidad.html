@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comunidad OS-Compat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="comunidad.css" />
+  </head>
+  <body class="bg-bg-color text-text-color min-h-screen flex flex-col dark-mode">
+    <header class="header">
+      <div class="header-left">
+        <a href="index.html" class="logo">
+          <img
+            src="imagenes/Modern Creative Logo Instagram Post.png"
+            alt="OS-Compat"
+            style="block-size: 32px"
+          />
+          <span>OS-Compat</span>
+        </a>
+      </div>
+
+      <div class="header-center">
+        <div class="header-nav">
+          <a href="#" class="nav-item" title="Inicio"><i class="fas fa-home"></i></a>
+          <a href="#" class="nav-item" title="Miembros"><i class="fas fa-users"></i></a>
+          <a href="#" class="nav-item" title="Mensajes"><i class="fas fa-comment-dots"></i></a>
+          <a href="#" class="nav-item" title="Actividad"><i class="fas fa-chart-line"></i></a>
+          <a href="#" class="nav-item" title="Ayuda"><i class="fas fa-question-circle"></i></a>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="header-search">
+          <input
+            type="text"
+            placeholder="Buscar en la comunidad..."
+            aria-label="Buscar en la comunidad"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="header-actions">
+         <button id="notification-btn" class="notification-btn" title="Notificaciones">
+            <i class="fas fa-bell"></i>
+            <span id="notification-badge" class="notification-badge">3</span>
+          </button>
+           <div id="notification-dropdown" class="notification-dropdown hidden">
+             <div class="notification-header">
+               <h3>Notificaciones</h3> 
+                <button id="mark-all-read-btn" class="mark-all-read-btn"
+                >Marcar todas como leídas</button>
+             </div>
+             <div id="notification-list" class="notification-list custom-scrollbar">
+               <p class="no-notifications-message text-text-light-color text-center py-4">
+                No hay notificaciones nuevas. </p>
+             </div>
+           </div>
+          <button id="theme-toggle" class="settings-btn" title="Alternar tema">
+            <i class="fas fa-moon"></i>
+          </button>
+            <button class="settings-btn" title="Ajustes">
+    <i class="fas fa-cog"></i>
+  </button>
+          <div class="user-profile">
+            <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="Tu avatar" />
+            <span class="status-indicator"></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="sidebar-container custom-scrollbar">
+      <nav class="primary-sidebar">
+        <a href="#" class="sidebar-item">
+          <span class="sidebar-item-icon"><i class="fas fa-desktop"></i></span>
+          <span class="sidebar-item-text">Temas y Categorías</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <span class="sidebar-item-icon"><i class="fas fa-check-circle"></i></span>
+          <span class="sidebar-item-text">Mis Suscripciones</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <span class="sidebar-item-icon"><i class="fas fa-headset"></i></span>
+          <span class="sidebar-item-text">Soporte Técnico</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <span class="sidebar-item-icon"><i class="fas fa-envelope"></i></span>
+          <span class="sidebar-item-text">Mensajes Privados</span>
+        </a>
+        </nav>
+
+      <div class="secondary-sidebar custom-scrollbar">
+        <div class="section-title">
+          <i class="fas fa-fire"></i>
+          <h3>Temas Populares</h3>
+        </div>
+        <ul class="categories-list">
+          <li class="category-item">
+            <div class="category-info">
+              <h3>Windows 11 Tips</h3>
+              <p>Consejos y trucos para optimizar Windows 11</p>
+              <span class="post-count">256 temas • 1.024 respuestas</span>
+            </div>
+          </li>
+          <li class="category-item">
+            <div class="category-info">
+              <h3>Linux Gaming</h3>
+              <p>Juegos en Linux y compatibilidad con Steam</p>
+              <span class="post-count">342 temas • 1.560 respuestas</span>
+            </div>
+          </li>
+          <li class="category-item">
+            <div class="category-info">
+              <h3>Seguridad Informática</h3>
+              <p>Protección, privacidad y ciberseguridad</p>
+              <span class="post-count">180 temas • 750 respuestas</span>
+            </div>
+          </li>
+          <li class="category-item">
+            <div class="category-info">
+              <h3>Hardware y Componentes</h3>
+              <p>Discusión sobre PC, laptops y periféricos</p>
+              <span class="post-count">400 temas • 2.000 respuestas</span>
+            </div>
+          </li>
+          <li class="category-item">
+            <div class="category-info">
+              <h3>Programación y Desarrollo</h3>
+              <p>Lenguajes, frameworks y proyectos open source</p>
+              <span class="post-count">150 temas • 600 respuestas</span>
+            </div>
+          </li>
+          <li class="category-item">
+            <div class="category-info">
+              <h3>Software Libre</h3>
+              <p>Alternativas, licencias y filosofía FOSS</p>
+              <span class="post-count">280 temas • 1.100 respuestas</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="section-title mt-4">
+          <i class="fas fa-comments"></i>
+          <h3>Salas de Chat</h3>
+        </div>
+        <ul class="chat-rooms">
+          <li class="chat-room">
+            <i class="fas fa-hashtag text-primary-color"></i>
+            <div class="room-info">
+              <h3>#General</h3>
+              <p>Charla general sobre tecnología</p>
+              <span class="active-users">250 usuarios activos</span>
+            </div>
+          </li>
+          <li class="chat-room">
+            <i class="fas fa-hashtag text-primary-color"></i>
+            <div class="room-info">
+              <h3>#SoporteLinux</h3>
+              <p>Ayuda específica para Linux</p>
+              <span class="active-users">80 usuarios activos</span>
+            </div>
+          </li>
+        </ul>
+             <div class="announcements">
+          <div class="section-title">
+            <i class="fas fa-bullhorn"></i>
+            <h3>Anuncios y Novedades</h3>
+          </div>
+          <div class="announcement-list">
+            <div class="announcement">
+              <h4>¡Actualización Importante!</h4>
+              <p>Nuevas funciones disponibles para la comunidad.</p>
+              <span>Hace 2 días</span>
+            </div>
+            <div class="announcement">
+              <h4>Mantenimiento Programado</h4>
+              <p>La plataforma estará offline el 15 de Julio de 2 AM a 4 AM.</p>
+              <span>Hace 1 semana</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main class="main-layout custom-scrollbar">
+      <section class="main-content">
+        <div class="post-creator">
+          <div class="post-creator-header">
+            <img src="https://randomuser.me/api/portraits/men/78.jpg" alt="Tu avatar" />
+            <input
+              type="text"
+              placeholder="¿Qué tienes en mente, John Doe?"
+              id="post-input"
+            />
+          </div>
+          <div class="post-creator-actions">
+            <div class="file-input-wrapper">
+              <input type="file" id="file-upload-input" class="hidden" />
+              <button class="action-btn" id="select-file-btn">
+                <i class="fas fa-paperclip"></i> Seleccionar archivo
+              </button>
+              <span id="selected-file-name" class="file-name">Sin archivos seleccionados</span>
+            </div>
+
+            <button class="action-btn" id="photo-btn">
+              <i class="fas fa-image"></i> Foto
+            </button>
+            <button class="action-btn" id="video-btn">
+              <i class="fas fa-video"></i> Video
+            </button>
+            <button class="action-btn" id="file-btn">
+              <i class="fas fa-file-alt"></i> Archivo
+            </button>
+            <button class="action-btn" id="poll-btn">
+              <i class="fas fa-poll"></i> Encuesta
+            </button>
+            <button class="publish-btn" id="publish-btn">Publicar</button>
+          </div>
+        </div>
+
+        <div class="feed-filters">
+          <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">Todo</button>
+            <button class="filter-tab" data-filter="followed">Seguidos</button>
+            <button class="filter-tab" data-filter="popular">Populares</button>
+            <button class="filter-tab" data-filter="latest">Más Recientes</button>
+          </div>
+          <div class="feed-search" id="search-container">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              placeholder="Buscar en el feed..."
+              id="main-search-input"
+              class="w-full"
+            />
+          </div>
+        </div>
+
+        <div class="posts-container" id="posts-container">
+          <div class="post-card">
+            <div class="post-header">
+              <img src="https://randomuser.me/api/portraits/men/90.jpg" alt="Avatar" />
+              <div>
+                <div class="font-bold text-text-color">Mike Johnson</div>
+                <div class="text-sm text-text-light-color">
+                  hace 2 horas en
+                  <a href="#" class="text-primary-color hover:underline">#LinuxGaming</a>
+                </div>
+              </div>
+            </div>
+            <p class="post-text text-text-color mb-4">
+              Mint en mi laptop antigua y funciona de maravilla. ¡Equipo!
+              #Linux #OSCompat
+            </p>
+            <div class="flex justify-between items-center text-text-light-color text-sm">
+              <div class="flex space-x-4">
+                <button class="like-btn" data-post-id="1">
+                  <i class="fas fa-heart"></i>
+                  <span>120</span>
+                </button>
+                <button class="comment-toggle-btn" data-post-id="1">
+                  <i class="fas fa-comment"></i>
+                  <span>45</span>
+                </button>
+              </div>
+              <div class="flex space-x-2">
+                <i class="fas fa-share-alt"></i>
+                <i class="fas fa-bookmark"></i>
+              </div>
+            </div>
+            <div class="comments-section hidden" data-post-id="1">
+              <div class="mt-4 p-2 bg-input-bg rounded-md text-text-color">
+                <p>
+                  <span class="font-semibold">UsuarioX:</span> ¡Genial! ¿Qué modelo de laptop
+                  es?
+                </p>
+              </div>
+              <div class="mt-2 p-2 bg-input-bg rounded-md text-text-color">
+                <p>
+                  <span class="font-semibold">LinuxFan:</span> Linux Mint es un salvavidas para
+                  hardware antiguo.
+                </p>
+              </div>
+              <div class="mt-4 flex items-center space-x-2">
+                <img
+                  src="https://randomuser.me/api/portraits/men/78.jpg"
+                  alt="Tu avatar"
+                  class="w-8 h-8 rounded-full"
+                />
+                <input
+                  type="text"
+                  placeholder="Añade un comentario..."
+                  class="flex-1 px-3 py-2 rounded-full bg-input-bg border border-border-color text-text-color"
+                />
+                <button class="text-primary-color hover:text-button-hover-darken">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-header">
+              <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Avatar" />
+              <div>
+                <div class="font-bold text-text-color">Jane Smith</div>
+                <div class="text-sm text-text-light-color">
+                  hace 5 horas en
+                  <a href="#" class="text-primary-color hover:underline"
+                    >#ProgramaciónYDesarrollo</a
+                  >
+                </div>
+              </div>
+            </div>
+            <p class="post-text text-text-color mb-4">
+              Estoy experimentando con Rust para un proyecto de sistema operativo. ¡Es
+              desafiante pero fascinante!
+            </p>
+            <div class="flex justify-between items-center text-text-light-color text-sm">
+              <div class="flex space-x-4">
+                <button class="like-btn" data-post-id="2">
+                  <i class="fas fa-heart"></i>
+                  <span>80</span>
+                </button>
+                <button class="comment-toggle-btn" data-post-id="2">
+                  <i class="fas fa-comment"></i>
+                  <span>20</span>
+                </button>
+              </div>
+              <div class="flex space-x-2">
+                <i class="fas fa-share-alt"></i>
+                <i class="fas fa-bookmark"></i>
+              </div>
+            </div>
+            <div class="comments-section hidden" data-post-id="2">
+              </div>
+          </div>
+        </div>
+      </section>
+ 
+    </main>
+
+    <footer class="bg-card-bg-color text-text-light-color py-6 mt-8 border-t border-border-color">
+      <div class="container mx-auto px-4 text-center">
+        <p>&copy; 2024 OS-Compat. Todos los derechos reservados.</p>
+        <div class="flex justify-center space-x-4 mt-2">
+          <a href="#" class="hover:text-primary-color"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="hover:text-primary-color"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" class="hover:text-primary-color"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" class="hover:text-primary-color"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <div id="poll-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <h2 class="text-xl font-bold mb-4 text-primary-color">Crear Encuesta</h2>
+        <input
+          type="text"
+          id="poll-question-input"
+          placeholder="Pregunta de la encuesta"
+          class="w-full px-4 py-2 border border-border-color rounded-md bg-input-bg text-text-color focus:outline-none focus:ring-2 focus:ring-primary-color mb-4"
+        />
+        <div id="poll-options-container">
+          <div class="flex items-center space-x-2 mb-2">
+            <input
+              type="text"
+              class="poll-option-input w-full px-4 py-2 border border-border-color rounded-md bg-input-bg text-text-color focus:outline-none focus:ring-2 focus:ring-primary-color"
+              placeholder="Opción 1"
+            />
+            <button class="remove-option-btn text-red-500 hover:text-red-700 hidden">
+              <i class="fas fa-times-circle"></i>
+            </button>
+          </div>
+          <div class="flex items-center space-x-2 mb-2">
+            <input
+              type="text"
+              class="poll-option-input w-full px-4 py-2 border border-border-color rounded-md bg-input-bg text-text-color focus:outline-none focus:ring-2 focus:ring-primary-color"
+              placeholder="Opción 2"
+            />
+            <button class="remove-option-btn text-red-500 hover:text-red-700 hidden">
+              <i class="fas fa-times-circle"></i>
+            </button>
+          </div>
+        </div>
+        <button
+          id="add-option-btn"
+          class="text-primary-color hover:text-button-hover-darken text-sm flex items-center mb-6"
+        >
+          <i class="fas fa-plus-circle mr-2"></i> Añadir Opción
+        </button>
+        <div class="flex justify-end space-x-4">
+          <button
+            id="cancel-poll-btn"
+            class="bg-gray-600 text-white px-5 py-2 rounded-full hover:bg-gray-700"
+          >
+            Cancelar
+          </button>
+          <button
+            id="post-poll-btn"
+            class="bg-primary-color text-white px-5 py-2 rounded-full hover:bg-button-hover-darken"
+          >
+            Publicar Encuesta
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="comunidad.js"></script>
+  </body>
+</html>

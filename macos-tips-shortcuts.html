@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Trucos y Atajos de macOS</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      :root {
+        /* Light Mode colors */
+        --background-color: #f4f7fa;
+        --text-color: #333;
+        --card-background: #ffffff; /* General background for card-like elements */
+        --border-color: #ddd;
+        --primary-color: #007bff; /* Azul vibrante para el modo claro */
+        --code-background-inline: #e6e6e6;
+        --code-background-block: #f4f4f4;
+        --code-text-color: #333;
+        --description-text-color: #555;
+        --setting-group-background: #f8f8f8;
+        --setting-group-heading-color: #333;
+        --info-background: #e9f7fe;
+        --info-border: #007bff;
+        --shortcut-background: #f8f8f8; /* Fondo para los elementos de atajos */
+        --shortcut-heading-color: #333; /* Color del texto del atajo */
+        --tip-highlight-color: #007bff; /* Color para el texto de sugerencia */
+      }
+
+      body.dark-mode {
+        /* Dark Mode colors */
+        --background-color: #1a1a2e;
+        --text-color: #e0e0e0;
+        --card-background: #2a2a4a; /* Darker background for card-like elements */
+        --border-color: #444;
+        --primary-color: #6a8aff; /* Azul que contraste en oscuro */
+        --code-background-inline: #3a3a5a;
+        --code-background-block: #2e2e4e;
+        --code-text-color: #c0c0c0;
+        --description-text-color: #b0b0b0;
+        --setting-group-background: #2a2a4a;
+        --setting-group-heading-color: #e0e0e0;
+        --info-background: #3a3a5a;
+        --info-border: #6a8aff;
+        --shortcut-background: #2a2a4a; /* Fondo oscuro para los elementos de atajos */
+        --shortcut-heading-color: #e0e0e0; /* Color del texto del atajo en oscuro */
+        --tip-highlight-color: #88aaff; /* Color de sugerencia que contraste mejor en oscuro */
+      }
+      /* -- Estilos para la lista de atajos -- */
+      .shortcut-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .shortcut-list li {
+        margin-bottom: 15px;
+        background-color: var(--shortcut-background); /* Usa la variable de fondo */
+        padding: 15px;
+        border-left: 5px solid var(--primary-color); /* Usa la variable del color primario */
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        color: var(--text-color); /* Asegura que el texto general use el color del tema */
+      }
+
+      .shortcut-list li strong {
+        display: block;
+        font-size: 1.1em;
+        margin-bottom: 5px;
+        color: var(
+          --shortcut-heading-color
+        ); /* Usa la variable para el color del texto del atajo */
+      }
+
+      .shortcut-list li p {
+        margin-bottom: 0;
+      }
+
+      /* Estilos para el elemento <kbd> dentro de la lista de atajos */
+      .shortcut-list kbd {
+        background-color: var(--code-background-inline); /* Fondo para las teclas */
+        color: var(--code-text-color); /* Texto para las teclas */
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-family: monospace;
+        font-size: 0.9em;
+        border: 1px solid var(--border-color); /* Borde para las teclas */
+      }
+
+      .tip-highlight {
+        font-style: italic;
+        color: var(--tip-highlight-color); /* Usa la variable para el color de resaltado */
+      }
+
+      /* Estilos específicos para MODO OSCURO para estos elementos */
+      body.dark-mode .shortcut-list li {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada en oscuro */
+        /* Los colores ya se adaptarán por las variables */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="macos.html">macOS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Trucos y Atajos</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Trucos y Atajos de macOS: Optimiza tu Flujo de Trabajo</h2>
+          <p>
+            macOS está lleno de funcionalidades ocultas y atajos de teclado que pueden acelerar
+            drásticamente tu productividad. Conocer y utilizar estos trucos y atajos te permitirá
+            navegar, gestionar archivos y ejecutar comandos de forma más eficiente, haciendo que tu
+            experiencia con Mac sea aún más fluida y poderosa.
+          </p>
+
+          <h3>Atajos de Teclado Esenciales</h3>
+          <p>
+            Estos son algunos de los atajos más útiles que todo usuario de macOS debería conocer:
+          </p>
+          <ul class="shortcut-list">
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>C</kbd> / <kbd>Cmd</kbd> + <kbd>V</kbd></strong>
+              <p>Copiar / Pegar.</p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>X</kbd></strong>
+              <p>
+                Cortar (para texto). Para mover archivos en Finder, usa <kbd>Cmd</kbd> +
+                <kbd>C</kbd> para copiar y luego <kbd>Option</kbd> + <kbd>Cmd</kbd> +
+                <kbd>V</kbd> para mover.
+              </p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>Z</kbd></strong>
+              <p>Deshacer la última acción.</p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>S</kbd></strong>
+              <p>Guardar el documento actual.</p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>F</kbd></strong>
+              <p>Abrir la barra de búsqueda en la aplicación actual o Finder.</p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>Q</kbd></strong>
+              <p>Cerrar la aplicación activa.</p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>W</kbd></strong>
+              <p>Cerrar la ventana actual.</p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>Tab</kbd></strong>
+              <p>
+                Cambiar entre aplicaciones abiertas (mantén <kbd>Cmd</kbd> presionado y usa
+                <kbd>Tab</kbd> para seleccionar).
+              </p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>Espacio</kbd></strong>
+              <p>
+                Abrir Spotlight Search (búsqueda rápida de archivos, aplicaciones, conversiones,
+                etc.).
+              </p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>Mayús</kbd> + <kbd>3</kbd></strong>
+              <p>Tomar una captura de pantalla de toda la pantalla (guardada en el escritorio).</p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>Mayús</kbd> + <kbd>4</kbd></strong>
+              <p>
+                Tomar una captura de pantalla de una selección específica (arrastra para seleccionar
+                un área).
+              </p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>Mayús</kbd> + <kbd>5</kbd></strong>
+              <p>
+                Abrir las opciones de captura de pantalla (grabar pantalla, seleccionar ventana,
+                etc.) (macOS Mojave y posterior).
+              </p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>Control</kbd> + <kbd>Espacio</kbd></strong>
+              <p>Abrir el visor de caracteres para emojis y símbolos.</p>
+            </li>
+            <li>
+              <strong><kbd>Control</kbd> + <kbd>Cmd</kbd> + <kbd>Barra Espaciadora</kbd></strong>
+              <p>
+                Abrir el selector de Emojis y Símbolos (alternativa a la anterior en algunos
+                contextos).
+              </p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>Esc</kbd></strong>
+              <p>Forzar la salida de una aplicación que no responde.</p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>,</kbd> (coma)</strong>
+              <p>Abrir las preferencias de la aplicación activa (si está disponible).</p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>N</kbd></strong>
+              <p>Abrir una nueva ventana o documento.</p>
+            </li>
+            <li>
+              <strong><kbd>Cmd</kbd> + <kbd>T</kbd></strong>
+              <p>Abrir una nueva pestaña en el navegador o Terminal.</p>
+            </li>
+            <li>
+              <strong><kbd>F3</kbd> (o <kbd>Fn</kbd> + <kbd>F3</kbd> en algunos teclados)</strong>
+              <p>
+                Activar Mission Control para ver todas las ventanas abiertas y escritorios
+                virtuales.
+              </p>
+            </li>
+          </ul>
+
+          <h3>Trucos Útiles de macOS</h3>
+          <ul>
+            <li>
+              <strong>Vista Rápida (Quick Look):</strong> Selecciona cualquier archivo en Finder y
+              presiona la barra espaciadora para obtener una vista previa instantánea sin abrir la
+              aplicación.
+            </li>
+            <li>
+              <strong>Stacks en el Escritorio:</strong> Organiza automáticamente los archivos de tu
+              escritorio en grupos ordenados. Haz clic derecho en el escritorio y selecciona "Usar
+              grupos" (Use Stacks).
+            </li>
+            <li>
+              <strong>Hot Corners (Esquinas Activas):</strong> Configura las esquinas de tu pantalla
+              para activar acciones como Mission Control, Mostrar Escritorio, o poner la pantalla en
+              reposo al pasar el ratón. Ve a
+              <strong>Ajustes del Sistema > Escritorio y Dock > Esquinas activas</strong>.
+            </li>
+            <li>
+              <strong>Modo Oscuro:</strong> Reduce la fatiga visual activando el modo oscuro. Ve a
+              <strong>Ajustes del Sistema > Apariencia > Oscuro</strong>.
+            </li>
+            <li>
+              <strong>Dictado:</strong> Presiona la tecla <kbd>Fn</kbd> dos veces (o configura un
+              atajo en Preferencias del Sistema > Teclado > Dictado) para dictar texto en cualquier
+              campo de entrada.
+            </li>
+            <li>
+              <strong>Ajustes de Batería (Portátiles):</strong> En portátiles, ve a
+              <strong>Ajustes del Sistema > Batería</strong> para gestionar el estado de la batería,
+              optimizar la carga y ajustar el rendimiento.
+            </li>
+            <li>
+              <strong>Renombrar Múltiples Archivos:</strong> Selecciona varios archivos en Finder,
+              haz clic derecho y selecciona "Renombrar X ítems". Puedes añadir texto, reemplazarlo o
+              formatear.
+            </li>
+            <li>
+              <strong>Firmar Documentos en Vista Previa:</strong> Abre un PDF o imagen en Vista
+              Previa, haz clic en el icono de Marcado (Toolbar) y luego en el icono de Firma para
+              añadir tu firma digitalizada (puedes crear una usando tu trackpad o la cámara).
+            </li>
+          </ul>
+
+          <h3>Personalización de Atajos de Teclado</h3>
+          <p>
+            Puedes crear tus propios atajos de teclado para cualquier comando de menú en cualquier
+            aplicación. Ve a <strong>Ajustes del Sistema > Teclado > Atajos de teclado</strong>.
+            Aquí puedes añadir atajos personalizados para aplicaciones específicas o para todo el
+            sistema.
+          </p>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Adicionales</h3>
+          <ul>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/HT201236"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Atajos de teclado de Mac (Apple Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/guide/mac-help/mchl42061131/mac"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Usar la Vista Rápida (Apple Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/guide/mac-help/mchlc5458315/mac"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Organizar el escritorio con Stacks (Apple Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/guide/mac-help/mchl58ff3926/mac"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Usar Esquinas activas (Apple Support)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="macos-terminal.html">Terminal de macOS</a></li>
+            <li><a href="macos-personalization.html">Personalización de macOS</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

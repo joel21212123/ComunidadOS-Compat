@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos de Servicio | OS-Compat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary-color: rgb(7, 8, 22);
+        --dark-color: #1e293b;
+        --light-color: #f8fafc;
+        --gray-color: #e2e8f0;
+        --success-color: #10b981;
+        --bg-color: #f5f7fa;
+        --header-bg: white;
+        --card-bg: white;
+        --text-color: #1e293b;
+        --text-light: #64748b;
+        --accent-color: #8b5cf6;
+      }
+
+      [data-theme="dark"] {
+        --primary-color: #3b82f6;
+        --primary-dark: #2563eb;
+        --secondary-color: #d1d5db;
+        --dark-color: #f8fafc;
+        --light-color: #1e293b;
+        --gray-color: #334155;
+        --success-color: #10b981;
+        --bg-color: #0f172a;
+        --header-bg: #1e293b;
+        --card-bg: #1e293b;
+        --text-color: #f8fafc;
+        --text-light: #94a3b8;
+        --accent-color: #a78bfa;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: var(--text-color);
+        line-height: 1.6;
+        background-color: var(--bg-color);
+        transition: all 0.3s ease;
+      }
+
+      /* HEADER (Mismo estilo que el anterior) */
+      header {
+        background-color: var(--header-bg);
+        padding: 1rem 2rem;
+        border-bottom: 1px solid var(--gray-color);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition: background-color 0.3s;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 2.1rem;
+        padding-right: 20rem;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        font-family: Arial, sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .logo:hover {
+        color: var(--primary-color);
+      }
+
+      nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      nav > * {
+        display: flex;
+        align-items: center;
+      }
+
+      nav a,
+      .has-dropdown > a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+        padding: 0.5rem 0;
+        position: relative;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+      }
+
+      nav a:hover,
+      .has-dropdown > a:hover {
+        color: var(--primary-color);
+      }
+
+      nav a.active,
+      .has-dropdown > a.active {
+        color: var(--primary-color);
+      }
+
+      nav a::after,
+      .has-dropdown > a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover::after,
+      nav a.active::after,
+      .has-dropdown > a:hover::after,
+      .has-dropdown > a.active::after {
+        width: 100%;
+      }
+
+      /* MENÚS DESPLEGABLES */
+      .has-dropdown {
+        position: relative;
+      }
+
+      .dropdown {
+        display: none;
+        position: absolute;
+        background-color: var(--header-bg);
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        border-radius: 4px;
+        padding: 0.5rem 0;
+        top: 100%;
+        left: 0;
+        transition: background-color 0.3s;
+      }
+
+      .has-dropdown:hover .dropdown {
+        display: block;
+      }
+
+      .dropdown li {
+        padding: 0;
+        list-style: none;
+      }
+
+      .dropdown a {
+        color: var(--text-color);
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        display: block;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+      }
+
+      .dropdown a:hover {
+        background-color: var(--gray-color);
+        color: var(--primary-color);
+        padding-left: 1.2rem;
+      }
+
+      .has-dropdown > a i {
+        font-size: 0.8rem;
+        transition: transform 0.3s;
+        margin-left: 0.3rem;
+      }
+
+      .has-dropdown:hover > a i {
+        transform: rotate(180deg);
+      }
+
+      /* Botón de modo oscuro */
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin-left: 1rem;
+        transition: transform 0.3s, color 0.3s;
+      }
+
+      .theme-toggle:hover {
+        color: var(--primary-color);
+        transform: rotate(30deg);
+      }
+
+      /* HERO SECTION MODERNA */
+      .terms-hero {
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        color: white;
+        padding: 5rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        margin-bottom: 3rem;
+      }
+
+      .terms-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,100 L100,100 L100,0 Q50,20 0,0 Z"></path></svg>');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: bottom;
+      }
+
+      .terms-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        position: relative;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .terms-hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0.9;
+        position: relative;
+      }
+
+      /* CONTENIDO TÉRMINOS */
+      .terms-container {
+        max-width: 1200px;
+        margin: 0 auto 4rem;
+        padding: 0 5rem;
+      }
+
+      .terms-content {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+      }
+
+      /* NAVEGACIÓN LATERAL INTERACTIVA */
+      .terms-nav {
+         margin-top: -20px;
+  padding-top: 0;
+        position: sticky;
+        top: 20px;
+        align-self: start;
+        height: fit-content;
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .terms-nav h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary-color);
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-color);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .terms-nav h3 i {
+        font-size: 1.1rem;
+      }
+
+      .terms-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .terms-nav li {
+        margin-bottom: 0.5rem;
+        position: relative;
+      }
+
+      .terms-nav a {
+        display: block;
+        padding: 0.75rem 1rem;
+        color: var(--text-color);
+        text-decoration: none;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      .terms-nav a i {
+        font-size: 0.8rem;
+        color: var(--text-light);
+        transition: all 0.3s;
+      }
+
+      .terms-nav a:hover, .terms-nav a.active {
+        background-color: rgba(37, 99, 235, 0.1);
+        color: var(--primary-color);
+        transform: translateX(5px);
+      }
+
+      .terms-nav a:hover i, .terms-nav a.active i {
+        color: var(--primary-color);
+      }
+
+      .terms-nav a.active {
+        font-weight: 600;
+      }
+
+      /* ARTÍCULOS CON DISEÑO MODERNO */
+      .terms-articles {
+     margin-left: 225px; /* Asegura espacio para la barra lateral */
+     padding: 50px 40px; /* Espaciado interno generoso */
+    margin-top: 120px; /* Separación desde arriba */
+}
+
+      .terms-article {
+        margin-bottom: 50px; /* Espacio entre secciones */
+  padding-bottom: 20px; /* Espacio interno inferior */
+  border-bottom: 1px solid #eee; 
+      }
+
+      .terms-article:last-child {
+        margin-bottom: 0;
+      }
+
+      .terms-article h2 {
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--gray-color);
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .terms-article h2 i {
+        font-size: 1.4rem;
+      }
+
+      .terms-article h3 {
+        color: var(--text-color);
+        margin: 2rem 0 1rem;
+        font-size: 1.4rem;
+        position: relative;
+        padding-left: 1.5rem;
+      }
+
+      .terms-article h3::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.6rem;
+        height: 0.5rem;
+        width: 0.5rem;
+        background-color: var(--accent-color);
+        border-radius: 50%;
+      }
+
+      .terms-article p {
+        margin-bottom: 1.2rem;
+        color: var(--text-color);
+        line-height: 1.7;
+      }
+
+      .terms-article ul, .terms-article ol {
+        margin: 1.2rem 0 1.2rem 2rem;
+        line-height: 1.7;
+      }
+
+      .terms-article li {
+        margin-bottom: 0.7rem;
+        position: relative;
+        padding-left: 0.5rem;
+      }
+
+      .terms-article li::before {
+        content: '•';
+        color: var(--accent-color);
+        font-weight: bold;
+        position: absolute;
+        left: -1rem;
+      }
+
+      /* DESTACADOS ELEGANTES */
+      .highlight-box {
+        background-color: rgba(37, 99, 235, 0.05);
+        border-left: 4px solid var(--accent-color);
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0 8px 8px 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .highlight-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(139, 92, 246, 0.03) 0%, transparent 100%);
+      }
+
+      .highlight-box p {
+        margin-bottom: 0;
+        position: relative;
+      }
+
+      .highlight-box .icon {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        color: rgba(139, 92, 246, 0.1);
+        font-size: 3rem;
+      }
+
+      /* FOOTER MODERNO */
+      footer {
+        background-color: var(--light-color);
+        color: var(--text-color);
+        padding: 4rem 0 0;
+        margin-top: 4rem;
+        position: relative;
+      }
+
+      footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(37,99,235,0.03)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: top;
+        pointer-events: none;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        position: relative;
+      }
+
+      .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-logo i {
+        color: var(--primary-color);
+      }
+
+      .footer-about p {
+        color: var(--text-light);
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background-color: rgba(37, 99, 235, 0.1);
+        color: var(--primary-color);
+        border-radius: 50%;
+        transition: all 0.3s;
+      }
+
+      .social-links a:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .footer-links h4 {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-color);
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+
+      .footer-links h4::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary-color);
+      }
+
+      .footer-links ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-links a {
+        color: var(--text-light);
+        text-decoration: none;
+        transition: color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-links a i {
+        font-size: 0.8rem;
+        color: var(--primary-color);
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 3rem;
+        border-top: 1px solid var(--gray-color);
+        color: var(--text-light);
+        font-size: 0.9rem;
+        position: relative;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768) {
+        .terms-content {
+          grid-template-columns: 1fr;
+        }
+        
+        .terms-nav {
+          position: static;
+          margin-bottom: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          flex-direction: column;
+          align-items: flex-start;
+          padding-right: 1.5rem;
+        }
+
+        .logo {
+          margin-bottom: 1rem;
+        }
+
+        nav {
+          flex-direction: column;
+          gap: 0.5rem;
+          width: 100%;
+          align-items: flex-start;
+        }
+
+        .has-dropdown {
+          width: 100%;
+        }
+
+        .dropdown {
+          position: static;
+          width: 100%;
+          box-shadow: none;
+        }
+
+        .terms-hero {
+          padding: 4rem 1.5rem;
+          clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+        }
+
+        .terms-hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .terms-articles {
+          margin-left: 225px; /* Asegura espacio para la barra lateral */
+  padding: 30px 40px; /* Espaciado interno generoso */
+  margin-top: 20px; 
+}
+      }
+
+      /* ANIMACIONES */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .terms-article {
+        animation: fadeIn 0.6s ease-out forwards;
+        opacity: 0;
+      }
+
+      .terms-article:nth-child(1) { animation-delay: 0.1s; }
+      .terms-article:nth-child(2) { animation-delay: 0.2s; }
+      .terms-article:nth-child(3) { animation-delay: 0.3s; }
+      .terms-article:nth-child(4) { animation-delay: 0.4s; }
+      .terms-article:nth-child(5) { animation-delay: 0.5s; }
+      .terms-article:nth-child(6) { animation-delay: 0.6s; }
+      .terms-article:nth-child(7) { animation-delay: 0.7s; }
+      .terms-article:nth-child(8) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <header>
+      <div class="header-container">
+        <a href="index.html" class="logo">OS-Compat</a>
+        
+        <nav>
+          <a href="index.html">Inicio</a>
+          <a href="nosotros.html">Nosotros</a>
+
+          <div class="has-dropdown">
+            <a href="#">Sistemas <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+
+          <div class="has-dropdown">
+            <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+              <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+              <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+            </ul>
+          </div>
+
+          <a href="Comunidad.html">Comunidad</a>
+          <a href="SoporteTecnico.html">Soporte Técnico</a>
+          <a href="contacto.html">Contacto</a>
+          
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <section class="terms-hero">
+      <h1><i class="fas fa-file-contract"></i> Términos de Servicio</h1>
+      <p>Última actualización: 26 de Mayo, 2025</p>
+    </section>
+
+   <main class="terms-container">
+  <div class="terms-content">
+    <nav class="terms-nav" style="margin-top: -20px; padding-top: 0;">
+      <h3><i class="fas fa-list-ul"></i> Contenido</h3>
+      <ul>
+        <li><a href="#aceptacion" class="active"><i class="fas fa-check-circle"></i> Aceptación</a></li>
+        <li><a href="#cuentas"><i class="fas fa-user-circle"></i> Cuentas</a></li>
+        <li><a href="#propiedad"><i class="fas fa-copyright"></i> Propiedad</a></li>
+        <li><a href="#conducta"><i class="fas fa-user-shield"></i> Conducta</a></li>
+        <li><a href="#contenido"><i class="fas fa-file-alt"></i> Contenido</a></li>
+        <li><a href="#terminacion"><i class="fas fa-power-off"></i> Terminación</a></li>
+        <li><a href="#limitacion"><i class="fas fa-shield-alt"></i> Limitación</a></li>
+        <li><a href="#ley"><i class="fas fa-balance-scale"></i> Ley Aplicable</a></li>
+      </ul>
+    </nav>
+
+        <div class="terms-articles">
+          <article id="aceptacion" class="terms-article">
+            <h2><i class="fas fa-check-double"></i> 1. Aceptación de los Términos</h2>
+            <p>Al acceder y utilizar los servicios de OS-Compat ("Servicio"), usted acepta estar sujeto a estos Términos de Servicio ("Términos"). Si no está de acuerdo con alguna parte de los términos, no debe utilizar el Servicio.</p>
+            
+            <h3>Modificaciones</h3>
+            <p>Nos reservamos el derecho de modificar estos Términos en cualquier momento. Le notificaremos sobre cambios significativos publicando la nueva versión en nuestro sitio y actualizando la fecha de "Última actualización".</p>
+            
+            <div class="highlight-box">
+              <i class="fas fa-exclamation-circle icon"></i>
+              <p><strong>Importante:</strong> El uso continuado del Servicio después de dichas modificaciones constituirá su consentimiento a los cambios.</p>
+            </div>
+          </article>
+
+          <article id="cuentas" class="terms-article">
+            <h2><i class="fas fa-user-lock"></i> 2. Cuentas de Usuario</h2>
+            <p>Para acceder a ciertas funciones del Servicio, puede ser necesario crear una cuenta.</p>
+            
+            <h3>Responsabilidades</h3>
+            <p>Usted es responsable de:</p>
+            <ul>
+              <li>Mantener la confidencialidad de su contraseña</li>
+              <li>Toda la actividad que ocurra bajo su cuenta</li>
+              <li>Proporcionar información precisa y actualizada</li>
+            </ul>
+            
+            <h3>Seguridad</h3>
+            <p>Debe notificarnos inmediatamente cualquier violación de seguridad o uso no autorizado de su cuenta.</p>
+          </article>
+
+          <article id="propiedad" class="terms-article">
+            <h2><i class="fas fa-copyright"></i> 3. Propiedad Intelectual</h2>
+            <p>El Servicio y su contenido original, características y funcionalidad son propiedad de OS-Compat y están protegidos por leyes internacionales de derechos de autor, marcas registradas, patentes y otras leyes de propiedad intelectual.</p>
+            
+            <h3>Licencia Limitada</h3>
+            <p>Le concedemos una licencia limitada, no exclusiva, intransferible y revocable para acceder y utilizar el Servicio según estos Términos.</p>
+            
+            <div class="highlight-box">
+              <i class="fas fa-lightbulb icon"></i>
+              <p><strong>Nota:</strong> No se permite el uso de nuestro contenido para fines comerciales sin nuestra autorización expresa por escrito.</p>
+            </div>
+          </article>
+
+          <article id="conducta" class="terms-article">
+            <h2><i class="fas fa-gavel"></i> 4. Conducta del Usuario</h2>
+            <p>Al utilizar el Servicio, usted acepta no:</p>
+            <ul>
+              <li>Violar leyes o regulaciones aplicables</li>
+              <li>Infringir derechos de propiedad intelectual</li>
+              <li>Publicar contenido falso, engañoso o ilegal</li>
+              <li>Interferir con la seguridad del Servicio</li>
+              <li>Realizar actividades de hacking o explotación de vulnerabilidades</li>
+            </ul>
+          </article>
+
+          <article id="contenido" class="terms-article">
+            <h2><i class="fas fa-file-upload"></i> 5. Contenido del Usuario</h2>
+            <p>Usted conserva todos los derechos de propiedad sobre el contenido que publique en nuestro Servicio ("Contenido del Usuario").</p>
+            
+            <h3>Licencia de Uso</h3>
+            <p>Al publicar Contenido del Usuario, nos concede una licencia mundial, no exclusiva, libre de regalías para usar, reproducir, modificar y mostrar dicho contenido en relación con el Servicio.</p>
+          </article>
+
+          <article id="terminacion" class="terms-article">
+            <h2><i class="fas fa-ban"></i> 6. Terminación</h2>
+            <p>Podemos terminar o suspender su acceso al Servicio inmediatamente, sin previo aviso ni responsabilidad, si incumple estos Términos.</p>
+            
+            <h3>Efectos de la Terminación</h3>
+            <p>Al terminar, su derecho a utilizar el Servicio cesará inmediatamente. Todas las disposiciones de estos Términos que por su naturaleza deban sobrevivir, sobrevivirán a la terminación.</p>
+          </article>
+
+          <article id="limitacion" class="terms-article">
+            <h2><i class="fas fa-shield-virus"></i> 7. Limitación de Responsabilidad</h2>
+            <p>En la máxima medida permitida por la ley aplicable, en ningún caso OS-Compat será responsable por daños indirectos, incidentales, especiales, consecuentes o punitivos.</p>
+            
+            <h3>Garantías</h3>
+            <p>El Servicio se proporciona "tal cual" y "según disponibilidad". No ofrecemos garantías de que el Servicio sea ininterrumpido, seguro o libre de errores.</p>
+            
+            <div class="highlight-box">
+              <i class="fas fa-info-circle icon"></i>
+              <p><strong>Exclusión:</strong> Algunas jurisdicciones no permiten la exclusión de ciertas garantías, por lo que es posible que las exclusiones anteriores no se apliquen a usted.</p>
+            </div>
+          </article>
+
+          <article id="ley" class="terms-article">
+            <h2><i class="fas fa-balance-scale-left"></i> 8. Ley Aplicable</h2>
+            <p>Estos Términos se regirán e interpretarán de acuerdo con las leyes de España, sin tener en cuenta sus disposiciones sobre conflictos de leyes.</p>
+            
+            <h3>Resolución de Disputas</h3>
+            <p>Cualquier disputa relacionada con estos Términos se resolverá en los tribunales competentes de Madrid, España.</p>
+            
+            <h3>Disposiciones Generales</h3>
+            <p>Si cualquier disposición de estos Términos resulta ser inválida o inaplicable, las disposiciones restantes continuarán en pleno vigor y efecto.</p>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-about">
+          <div class="footer-logo"><i class="fas fa-shield-alt"></i> OS-Compat</div>
+          <p>Plataforma líder en compatibilidad de sistemas operativos y hardware, proporcionando soluciones técnicas confiables desde 2020.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Explorar</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+            <li><a href="nosotros.html"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
+            <li><a href="Comunidad.html"><i class="fas fa-chevron-right"></i> Comunidad</a></li>
+            <li><a href="SoporteTecnico.html"><i class="fas fa-chevron-right"></i> Soporte</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="terminos-servicio.html"><i class="fas fa-chevron-right"></i> Términos de Servicio</a></li>
+            <li><a href="politicas-privacidad.html"><i class="fas fa-chevron-right"></i> Política de Privacidad</a></li>
+            <li><a href="cookies.html"><i class="fas fa-chevron-right"></i> Política de Cookies</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Contacto</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:info@os-compat.com">info@os-compat.com</a></li>
+            <li><i class="fas fa-phone-alt"></i> +34 910 123 456</li>
+            <li><i class="fas fa-map-marker-alt"></i> Madrid, España</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 OS-Compat. Todos los derechos reservados. | Diseñado con <i class="fas fa-heart" style="color: #e74c3c;"></i> para la comunidad tecnológica</p>
+      </div>
+    </footer>
+
+    <script>
+      // Función para alternar el modo oscuro
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      const icon = themeToggle.querySelector('i');
+      
+      // Verificar preferencia del sistema o tema guardado
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const currentTheme = localStorage.getItem('theme');
+      
+      // Aplicar tema inicial
+      if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+        body.setAttribute('data-theme', 'dark');
+        icon.classList.replace('fa-moon', 'fa-sun');
+      }
+      
+      // Escuchar clicks en el botón
+      themeToggle.addEventListener('click', () => {
+        if (body.getAttribute('data-theme') === 'dark') {
+          body.setAttribute('data-theme', 'light');
+          icon.classList.replace('fa-sun', 'fa-moon');
+          localStorage.setItem('theme', 'light');
+        } else {
+          body.setAttribute('data-theme', 'dark');
+          icon.classList.replace('fa-moon', 'fa-sun');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      // Navegación lateral interactiva
+      const sections = document.querySelectorAll('.terms-article');
+      const navLinks = document.querySelectorAll('.terms-nav a');
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          
+          if (pageYOffset >= (sectionTop - 150)) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // Smooth scrolling para enlaces de navegación
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+          
+          // Actualizar URL sin recargar la página
+          history.pushState(null, null, targetId);
+        });
+      });
+
+      // Animación de carga para los artículos
+      document.addEventListener('DOMContentLoaded', () => {
+        const articles = document.querySelectorAll('.terms-article');
+        articles.forEach(article => {
+          article.style.opacity = '1';
+        });
+      });
+    </script>
+</body>
+</html>

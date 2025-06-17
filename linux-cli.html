@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Línea de Comandos en Linux</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      /* Estilos específicos para la página de CLI para destacar comandos */
+      code {
+        background-color: #e6e6e6; /* Un gris claro para el fondo */
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada */
+        font-size: 0.9em;
+        white-space: nowrap; /* Evita que los comandos se rompan en varias líneas */
+      }
+      pre {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto; /* Para comandos largos */
+      }
+      pre code {
+        display: block; /* Para que cada comando en un bloque pre tenga su propia línea */
+        white-space: pre-wrap; /* Permite el salto de línea dentro de comandos largos si es necesario */
+        background-color: transparent; /* No doble fondo */
+        background-color: #1e1e1e;
+        color: #dcdcdc;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="linux.html">Linux</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Línea de Comandos</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>La Línea de Comandos en Linux: Tu Herramienta Más Poderosa</h2>
+          <p>
+            Aunque los entornos gráficos de Linux son cada vez más sofisticados, la línea de
+            comandos (CLI, Command Line Interface) sigue siendo la herramienta más potente y
+            eficiente para interactuar con tu sistema. Dominar los comandos básicos te permitirá
+            realizar tareas complejas rápidamente, automatizar procesos, solucionar problemas y
+            tener un control granular sobre cada aspecto de tu distribución. Es una habilidad
+            fundamental para cualquier usuario de Linux, desde el principiante hasta el
+            administrador de sistemas.
+          </p>
+
+          <h3>¿Por qué Usar la Línea de Comandos?</h3>
+          <ul>
+            <li>
+              <strong>Eficiencia:</strong> Muchas tareas se realizan más rápido con comandos que con
+              clics en la interfaz gráfica.
+            </li>
+            <li>
+              <strong>Poder y Flexibilidad:</strong> Acceso a funcionalidades profundas del sistema
+              que no están disponibles en la GUI.
+            </li>
+            <li>
+              <strong>Automatización:</strong> Permite escribir scripts para automatizar tareas
+              repetitivas.
+            </li>
+            <li>
+              <strong>Diagnóstico y Solución de Problemas:</strong> Esencial para depurar problemas
+              del sistema, de red o de hardware.
+            </li>
+            <li>
+              <strong>Recursos:</strong> Consume menos recursos que una interfaz gráfica, ideal para
+              servidores o sistemas antiguos.
+            </li>
+            <li>
+              <strong>Conocimiento:</strong> Te da una comprensión más profunda de cómo funciona
+              Linux.
+            </li>
+          </ul>
+
+          <h3>Conceptos Básicos del Terminal</h3>
+          <ul>
+            <li>
+              <strong>Terminal/Consola:</strong> Es la aplicación donde escribes los comandos. En
+              Ubuntu es "Terminal", en Fedora es "Consola", etc.
+            </li>
+            <li>
+              <strong>Prompt:</strong> El texto que ves antes de escribir un comando, generalmente
+              indica tu nombre de usuario, el nombre del equipo y el directorio actual (ej.,
+              `usuario@equipo:~$`).
+            </li>
+            <li><strong>Comando:</strong> La instrucción que le das al sistema.</li>
+            <li>
+              <strong>Argumento:</strong> Información adicional que le pasas al comando (ej., un
+              nombre de archivo, una ruta).
+            </li>
+            <li>
+              <strong>Opciones/Flags:</strong> Modificadores del comando que cambian su
+              comportamiento, generalmente precedidos por un guion (`-`) o doble guion (`--`).
+            </li>
+            <li>
+              <strong>`sudo`:</strong> Permite ejecutar comandos con privilegios de superusuario
+              (administrador). ¡Úsalo con precaución!
+            </li>
+          </ul>
+
+          <h3>Comandos Esenciales para Principiantes</h3>
+          <p>Aquí hay una lista de comandos que todo usuario de Linux debería conocer:</p>
+
+          <h4>Navegación y Listado de Archivos/Directorios:</h4>
+          <pre><code>
+<strong>ls</strong>               # Lista los contenidos del directorio actual
+<strong>ls -l</strong>            # Lista con detalles (permisos, propietario, tamaño, fecha)
+<strong>ls -a</strong>            # Muestra también archivos y directorios ocultos
+<strong>cd directorio</strong>    # Cambia al directorio especificado
+<strong>cd ..</strong>            # Sube un nivel en la jerarquía de directorios
+<strong>cd ~</strong>             # Vuelve al directorio de inicio (home) del usuario
+<strong>pwd</strong>              # Muestra el "Directorio de Trabajo Actual" (ruta completa)
+          </code></pre>
+
+          <h4>Creación, Copia, Movimiento y Eliminación:</h4>
+          <pre><code>
+<strong>mkdir nombre_directorio</strong>   # Crea un nuevo directorio
+<strong>touch nombre_archivo</strong>      # Crea un nuevo archivo vacío
+<strong>cp origen destino</strong>         # Copia archivos o directorios (recursivo para directorios: cp -r)
+<strong>mv origen destino</strong>         # Mueve o renombra archivos/directorios
+<strong>rm archivo</strong>                # Elimina un archivo
+<strong>rm -r directorio</strong>          # Elimina un directorio y su contenido (¡Ten cuidado con este!)
+          </code></pre>
+
+          <h4>Visualización y Edición de Archivos:</h4>
+          <pre><code>
+<strong>cat archivo</strong>       # Muestra el contenido completo de un archivo
+<strong>less archivo</strong>      # Muestra el contenido de un archivo página por página (usa 'q' para salir)
+<strong>head archivo</strong>      # Muestra las primeras 10 líneas de un archivo
+<strong>tail archivo</strong>      # Muestra las últimas 10 líneas de un archivo
+<strong>nano archivo</strong>      # Abre un editor de texto básico en el terminal (Ctrl+X para salir, Y para guardar)
+          </code></pre>
+
+          <h4>Información del Sistema:</h4>
+          <pre><code>
+<strong>df -h</strong>             # Muestra el espacio en disco usado y disponible (formato legible)
+<strong>du -sh directorio</strong> # Muestra el tamaño total de un directorio
+<strong>free -h</strong>           # Muestra el uso de RAM y swap
+<strong>top</strong>               # Muestra los procesos en ejecución en tiempo real (usa 'q' para salir)
+<strong>htop</strong>              # Una alternativa interactiva y más visual a 'top' (instalar primero: sudo apt install htop)
+<strong>uname -a</strong>          # Muestra información detallada del kernel
+<strong>lscpu</strong>             # Muestra información de la CPU
+<strong>lsusb</strong>             # Lista dispositivos USB
+<strong>lspci</strong>             # Lista dispositivos PCI (gráficas, red, etc.)
+          </code></pre>
+
+          <h4>Gestión de Paquetes (Ejemplos para Debian/Ubuntu y Fedora):</h4>
+          <pre><code>
+# Para Debian/Ubuntu (APT)
+<strong>sudo apt update</strong>      # Actualiza la lista de paquetes disponibles
+<strong>sudo apt upgrade</strong>     # Actualiza todos los paquetes instalados
+<strong>sudo apt install nombre_paquete</strong>   # Instala un nuevo paquete
+<strong>sudo apt remove nombre_paquete</strong>    # Desinstala un paquete
+<strong>sudo apt autoremove</strong>  # Elimina dependencias de paquetes no usadas
+
+# Para Fedora (DNF)
+<strong>sudo dnf check-update</strong> # Comprueba si hay actualizaciones disponibles
+<strong>sudo dnf upgrade</strong>      # Actualiza todos los paquetes instalados
+<strong>sudo dnf install nombre_paquete</strong>   # Instala un nuevo paquete
+<strong>sudo dnf remove nombre_paquete</strong>    # Desinstala un paquete
+          </code></pre>
+
+          <h4>Otros Comandos Útiles:</h4>
+          <pre><code>
+<strong>man comando</strong>       # Muestra el manual de un comando (usa 'q' para salir)
+<strong>history</strong>           # Muestra el historial de comandos ejecutados
+<strong>clear</strong>             # Limpia la pantalla del terminal
+<strong>exit</strong>              # Cierra la sesión del terminal
+          </code></pre>
+
+          <h3>Consejos para Aprender y Practicar</h3>
+          <ul>
+            <li>
+              <strong>No tengas miedo de experimentar:</strong> Usa una máquina virtual o un entorno
+              de prueba para practicar.
+            </li>
+            <li>
+              <strong>Usa `man`:</strong> Para cada comando, el comando `man` te dará una guía
+              completa de su uso y opciones.
+            </li>
+            <li>
+              <strong>Autocompletado (Tab):</strong> Presiona la tecla `Tab` dos veces para
+              autocompletar nombres de comandos o archivos, o para ver las opciones disponibles. ¡Es
+              tu mejor amigo!
+            </li>
+            <li>
+              <strong>Historial de Comandos:</strong> Usa las flechas `arriba` y `abajo` para
+              navegar por los comandos ejecutados previamente.
+            </li>
+            <li>
+              <strong>Busca en línea:</strong> Hay una vasta cantidad de recursos y tutoriales sobre
+              la línea de comandos de Linux.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos para la Línea de Comandos</h3>
+          <ul>
+            <li>
+              <a
+                href="https://ryanstutorials.net/linuxtutorial/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >The Linux Command Line (Ryan's Tutorials)</a
+              >
+            </li>
+            <li>
+              <a href="https://linuxjourney.com/" target="_blank" rel="noopener noreferrer"
+                >Linux Journey (Tutorial interactivo)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://ubuntu.com/tutorials/command-line-for-beginners"
+                target="_blank"
+                rel="noopener noreferrer"
+                >La línea de comandos para principiantes (Ubuntu)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://cheatography.com/romeodol/cheat-sheets/comandos-de-terminal-linux/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Cheatsheets de comandos Linux (Buscar online)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="linux-ubuntu.html">Instalando Ubuntu: Primeros Pasos</a></li>
+            <li><a href="linux-fedora-debian.html">Introducción a Fedora y Debian</a></li>
+            <li>
+              <a
+                href="https://www-freecodecamp-org.translate.goog/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Scripts Bash para automatización</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

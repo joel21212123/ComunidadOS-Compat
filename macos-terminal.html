@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Terminal de macOS</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      /* -- Estilos para ejemplos de comandos en la terminal -- */
+      code {
+        background-color: var(--code-background-inline); /* Usa variable */
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.9em;
+        white-space: nowrap;
+        color: var(--code-text-color); /* Usa variable para el color del texto inline code */
+      }
+
+      pre {
+        background-color: var(--code-background-block); /* Usa variable */
+        border: 1px solid var(--border-color); /* Usa variable */
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+
+      pre code {
+        display: block;
+        white-space: pre-wrap;
+        background-color: transparent; /* Mantiene transparente para que el fondo de pre se vea */
+        color: var(
+          --code-text-color
+        ); /* Usa variable para el color del texto en bloques de código */
+      }
+
+      .command-description {
+        margin-top: 5px;
+        font-size: 0.95em;
+        color: var(--description-text-color); /* Usa variable */
+      }
+
+      /* Estilos específicos para MODO OSCURO para los bloques de terminal */
+      body.dark-mode pre {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada en oscuro */
+        /* Los colores de fondo, texto y borde ya se adaptarán por las variables definidas en body.dark-mode */
+      }
+      :root {
+        /* Light Mode colors */
+        --background-color: #f4f7fa;
+        --text-color: #333;
+        --card-background: #ffffff;
+        --border-color: #ddd;
+        --code-background-inline: #e6e6e6; /* Nuevo: para <code> inline */
+        --code-background-block: #f4f4f4; /* Nuevo: para <pre> */
+        --code-text-color: #333; /* Nuevo: color de texto para el código */
+        --description-text-color: #555; /* Nuevo: color de texto para descripciones */
+      }
+
+      body.dark-mode {
+        /* Dark Mode colors */
+        --background-color: #1a1a2e;
+        --text-color: #e0e0e0;
+        --card-background: #2a2a4a;
+        --border-color: #444;
+        --code-background-inline: #3a3a5a; /* Color oscuro para <code> inline */
+        --code-background-block: #2e2e4e; /* Color oscuro para <pre> */
+        --code-text-color: #c0c0c0; /* Texto claro para el código */
+        --description-text-color: #b0b0b0; /* Texto claro para descripciones */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="macos.html">macOS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Terminal de macOS</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Terminal de macOS: Potencia la Gestión de tu Sistema</h2>
+          <p>
+            Aunque macOS es conocido por su interfaz gráfica intuitiva, debajo del capó se encuentra
+            un potente sistema operativo basado en Unix, lo que significa que tienes acceso a una
+            línea de comandos robusta a través de la aplicación Terminal. La Terminal de macOS, al
+            igual que en Linux, te permite ejecutar comandos para realizar tareas avanzadas,
+            automatizar flujos de trabajo, gestionar archivos y procesos, y acceder a
+            funcionalidades que no están disponibles en la interfaz gráfica.
+          </p>
+
+          <h3>Accediendo a la Terminal</h3>
+          <p>Puedes abrir la Terminal de varias maneras:</p>
+          <ul>
+            <li>Ve a <strong>Aplicaciones > Utilidades > Terminal</strong>.</li>
+            <li>Usa Spotlight Search (<code>Cmd + Espacio</code>) y escribe "Terminal".</li>
+          </ul>
+
+          <h3>Comandos Básicos de la Terminal de macOS</h3>
+          <p>Aquí tienes algunos comandos esenciales que te ayudarán a empezar:</p>
+
+          <h4>Navegación de Archivos y Directorios</h4>
+          <ul>
+            <li>
+              <code>pwd</code>
+              <pre><code>pwd</code></pre>
+              <p class="command-description">
+                Imprime el directorio de trabajo actual (Print Working Directory).
+              </p>
+            </li>
+            <li>
+              <code>ls</code>
+              <pre><code>ls</code></pre>
+              <p class="command-description">Lista el contenido del directorio actual.</p>
+              <pre><code>ls -l</code></pre>
+              <p class="command-description">
+                Lista el contenido con formato largo (permisos, propietario, tamaño, fecha).
+              </p>
+              <pre><code>ls -a</code></pre>
+              <p class="command-description">Muestra todos los archivos, incluyendo los ocultos.</p>
+            </li>
+            <li>
+              <code>cd</code>
+              <pre><code>cd Documentos</code></pre>
+              <p class="command-description">Cambia al directorio "Documentos".</p>
+              <pre><code>cd ..</code></pre>
+              <p class="command-description">Sube un nivel en la jerarquía de directorios.</p>
+              <pre><code>cd ~</code></pre>
+              <p class="command-description">Vuelve al directorio de inicio (home directory).</p>
+            </li>
+            <li>
+              <code>mkdir</code>
+              <pre><code>mkdir MiNuevaCarpeta</code></pre>
+              <p class="command-description">Crea un nuevo directorio llamado "MiNuevaCarpeta".</p>
+            </li>
+            <li>
+              <code>rmdir</code>
+              <pre><code>rmdir MiCarpetaVacia</code></pre>
+              <p class="command-description">Elimina un directorio vacío.</p>
+            </li>
+          </ul>
+
+          <h4>Gestión de Archivos</h4>
+          <ul>
+            <li>
+              <code>touch</code>
+              <pre><code>touch nuevoarchivo.txt</code></pre>
+              <p class="command-description">
+                Crea un archivo vacío o actualiza su marca de tiempo.
+              </p>
+            </li>
+            <li>
+              <code>cp</code>
+              <pre><code>cp archivo.txt /ruta/a/destino/</code></pre>
+              <p class="command-description">Copia `archivo.txt` a la ruta especificada.</p>
+            </li>
+            <li>
+              <code>mv</code>
+              <pre><code>mv archivo_viejo.txt archivo_nuevo.txt</code></pre>
+              <p class="command-description">Mueve (o renombra) un archivo.</p>
+            </li>
+            <li>
+              <code>rm</code>
+              <pre><code>rm archivo.txt</code></pre>
+              <p class="command-description">Elimina un archivo.</p>
+              <pre><code>rm -r CarpetaConContenido</code></pre>
+              <p class="command-description">
+                Elimina un directorio y su contenido (¡úsalas con precaución!).
+              </p>
+            </li>
+            <li>
+              <code>cat</code>
+              <pre><code>cat archivo.txt</code></pre>
+              <p class="command-description">Muestra el contenido de un archivo.</p>
+            </li>
+          </ul>
+
+          <h4>Comandos del Sistema y Utilidades</h4>
+          <ul>
+            <li>
+              <code>sudo</code>
+              <pre><code>sudo apt update</code></pre>
+              <p class="command-description">
+                Ejecuta un comando con privilegios de superusuario (requiere tu contraseña de
+                administrador).
+              </p>
+            </li>
+            <li>
+              <code>man</code>
+              <pre><code>man ls</code></pre>
+              <p class="command-description">
+                Muestra el manual de un comando (presiona 'q' para salir).
+              </p>
+            </li>
+            <li>
+              <code>pbcopy</code> / <code>pbpaste</code>
+              <pre><code>echo "Este texto irá al portapapeles" | pbcopy</code></pre>
+              <p class="command-description">Copia el resultado de un comando al portapapeles.</p>
+              <pre><code>pbpaste</code></pre>
+              <p class="command-description">Pega el contenido del portapapeles en la terminal.</p>
+            </li>
+            <li>
+              <code>open</code>
+              <pre><code>open .</code></pre>
+              <p class="command-description">Abre el directorio actual en Finder.</p>
+              <pre><code>open miarchivo.txt</code></pre>
+              <p class="command-description">
+                Abre `miarchivo.txt` con su aplicación predeterminada.
+              </p>
+            </li>
+            <li>
+              <code>top</code> / <code>htop</code>
+              <pre><code>top</code></pre>
+              <p class="command-description">
+                Muestra los procesos en ejecución y el uso de recursos.
+              </p>
+              <pre><code>brew install htop</code></pre>
+              <p class="command-description">
+                `htop` es una alternativa más interactiva (requiere Homebrew).
+              </p>
+            </li>
+            <li>
+              <code>ping</code>
+              <pre><code>ping google.com</code></pre>
+              <p class="command-description">
+                Envía paquetes para verificar la conectividad a un host.
+              </p>
+            </li>
+          </ul>
+
+          <h3>Personalizando la Terminal</h3>
+          <p>
+            Puedes personalizar la Terminal de macOS para mejorar tu productividad y experiencia:
+          </p>
+          <ul>
+            <li>
+              <strong>Preferencias de Terminal:</strong> Desde el menú Terminal > Preferencias,
+              puedes cambiar los colores, las fuentes, el fondo y las configuraciones de shell para
+              crear perfiles personalizados.
+            </li>
+            <li>
+              <strong>Oh My Zsh:</strong> Una popular extensión para Zsh (el shell predeterminado en
+              macOS desde Catalina) que proporciona temas, plugins y una mejor experiencia de línea
+              de comandos.
+            </li>
+            <li>
+              <strong>Homebrew:</strong> El "gestor de paquetes que le falta a macOS". Permite
+              instalar fácilmente herramientas de línea de comandos (ej., `htop`, `wget`, `tree`) y
+              aplicaciones.
+              <pre><code>
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+              </code></pre>
+              <p class="command-description">Comando para instalar Homebrew.</p>
+            </li>
+          </ul>
+
+          <h3>Consideraciones</h3>
+          <ul>
+            <li>
+              <strong>Cuidado con `sudo` y `rm`:</strong> Utiliza `sudo` con precaución, ya que
+              otorga privilegios de superusuario que pueden causar daños si se usan incorrectamente.
+              El comando `rm -rf /` (borrar recursivamente la raíz del sistema) es un ejemplo de un
+              comando peligroso que nunca deberías ejecutar a menos que sepas exactamente lo que
+              haces.
+            </li>
+            <li>
+              <strong>Autocompletado:</strong> Presiona la tecla `Tab` para autocompletar nombres de
+              archivos y comandos. Esto es muy útil y ayuda a evitar errores tipográficos.
+            </li>
+            <li>
+              <strong>Historial de Comandos:</strong> Usa las flechas `Arriba` y `Abajo` para
+              navegar por los comandos ejecutados previamente.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos y Herramientas para la Terminal</h3>
+          <ul>
+            <li>
+              <a
+                href="https://support.apple.com/es-es/guide/terminal/apd5265f17-533d-4b0f-8c76-0a25624ce3d0/mac"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Guía de usuario de Terminal de macOS (Apple Support)</a
+              >
+            </li>
+            <li>
+              <a href="https://brew.sh/es/" target="_blank" rel="noopener noreferrer"
+                >Homebrew (Gestor de Paquetes)</a
+              >
+            </li>
+            <li>
+              <a href="https://ohmyz.sh/" target="_blank" rel="noopener noreferrer">Oh My Zsh</a>
+            </li>
+            <li>
+              <a href="https://iTerm2.com/" target="_blank" rel="noopener noreferrer"
+                >iTerm2 (Terminal alternativa con más funciones)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="macos-tips-shortcuts.html">Trucos y Atajos de macOS</a></li>
+            <li><a href="macos-personalization.html">Personalización de macOS</a></li>
+            <li>
+              <a
+                href="https://www.flexihub.com/es/best-mac-developer-tools/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Herramientas para Desarrolladores en macOS
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

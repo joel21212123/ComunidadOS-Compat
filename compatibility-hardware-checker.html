@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Verificador de Hardware</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="compatibility-hardware-checker.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+    :root {
+      /* ... tus variables del modo claro ... */
+      --bg-color:rgb(82, 77, 77);
+      --text-color:rgb(0, 0, 0);
+      --text-light-color:rgb(255, 244, 244);
+      --primary-color: #007bff;
+      --button-hover-darken: #0056b3;
+      --card-bg-color:rgb(255, 255, 255); /* Fondo para tarjetas/secciones en modo claro */
+      --border-color: #dee2e6;
+      --input-bg: #ffffff;
+      --input-border: #ced4da;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --focus-shadow-rgba: rgba(0, 123, 255, 0.25);
+      --bg-light-color: #f8f9fa; /* Color de fondo ligero para áreas como .result-area en modo claro */
+    }
+    
+    /* Tus variables para el modo oscuro */
+    body.dark-mode {
+      --bg-color:rgb(255, 255, 255); /* Fondo principal muy oscuro */
+      --text-color: #f0f0f0; /* Texto claro */
+      --text-light-color: #b0b0b0; /* Texto ligeramente más claro */
+      --primary-color:rgb(255, 242, 242); /* Tu azul/verde primario que usas, o el que desees para dark mode */
+      --button-hover-darken:rgb(141, 153, 142); /* Tono más oscuro para hover del botón */
+      
+      /* ESTOS VALORES SON LOS QUE ME DISTE EN TU ÚLTIMO MENSAJE PARA LA PALETA GENERAL */
+      --card-bg-color: rgb(49, 49, 68); /* Fondo para tarjetas/sidebar, etc. en modo oscuro */
+      --input-bg: rgb(25, 25, 31); /* Fondo para inputs en modo oscuro */
+      --input-border: rgb(0, 0, 0); /* Borde para inputs en modo oscuro */
+    
+      --shadow-color: rgba(6, 4, 34, 0.7); /* Sombra más oscura para modo oscuro (último ajuste) */
+      --focus-shadow-rgba: rgba(8, 3, 29, 0.3); /* Sombra de focus para modo oscuro */
+      --border-color: #444444; /* Color de borde general en modo oscuro */
+      --bg-light-color:rgb(48, 48, 48); /* Fondo ligero para áreas como .result-area en modo oscuro */
+    
+      /* NUEVA VARIABLE: Color específico para el fondo de la sección "Verificador de Hardware" en modo oscuro */
+      --checker-section-custom-bg: rgb(40, 40, 55); /* Un morado ligeramente distinto y más oscuro para esta sección */
+    }
+    
+    /* --- Estilos para la página de Drivers Compatibles (asegúrate que estén aquí) --- */
+    /* .driver-info-section {
+      background-color: var(--card-bg-color); 
+      ...
+    }
+    .driver-search-form {
+      background-color: var(--card-bg-color); 
+      ...
+    }
+    .sidebar-content {
+      background-color: var(--card-bg-color); 
+      ...
+    }
+    .result-area {
+      background-color: var(--bg-light-color); 
+      ...
+    } */
+    
+    
+    /* --- Estilos específicos para la sección de Verificador de Hardware (Añadir/Actualizar en styles.css) --- */
+    
+    /* Estilos para el contenedor principal del verificador de hardware */
+    .checker-section {
+      /* CAMBIAMOS A LA NUEVA VARIABLE ESPECÍFICA PARA ESTA SECCIÓN EN MODO OSCURO */
+      background-color: var(--checker-section-custom-bg); /* OJO: Ahora usa la nueva variable */
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border-left: 5px solid var(--primary-color); /* Borde con color primario: se adaptará */
+      box-shadow: 0 2px 5px var(--shadow-color); /* Sombra: se adaptará */
+    }
+    
+    /* El resto de estilos de .checker-section h3, label, input, select, button */
+    /* Permanecen como los teníamos, usando las variables generales */
+    .checker-section h3 {
+      margin-top: 0;
+      color: var(--text-color); /* Título: se adaptará */
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+    .checker-section .form-group {
+      margin-bottom: 20px;
+    }
+    .checker-section label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: var(--text-color); /* Etiqueta: se adaptará */
+    }
+    .checker-section input[type='text'],
+    .checker-section select,
+    .checker-section input[type='number'] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--input-border); /* Borde del input: se adaptará */
+      border-radius: 5px;
+      font-size: 1em;
+      box-sizing: border-box;
+      background-color: var(--input-bg); /* Fondo del input: se adaptará */
+      color: var(--text-color); /* Color del texto en el input: se adaptará */
+    }
+    .checker-section input[type='text']:focus,
+    .checker-section select:focus,
+    .checker-section input[type='number']:focus {
+      border-color: var(--primary-color); /* Borde de focus: se adaptará */
+      box-shadow: 0 0 0 3px var(--focus-shadow-rgba); /* Sombra de focus: se adaptará */
+      outline: none;
+    }
+    .checker-section button {
+      background-color: var(--primary-color); /* Botón: se adaptará */
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease;
+    }
+    .checker-section button:hover {
+      background-color: var(--button-hover-darken); /* Hover del botón: se adaptará */
+    }
+    .result-area {
+      margin-top: 30px;
+      padding: 20px;
+      border: 1px dashed var(--border-color); /* Borde: se adaptará */
+      border-radius: 8px;
+      background-color: var(--bg-light-color); /* Fondo del área de resultados: se adaptará */
+      text-align: center;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-style: italic;
+      color: var(--text-light-color); /* Color de texto: se adaptará */
+    }
+    .result-area h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-color); /* Título: se adaptará */
+    }
+    
+    /* Media queries para la sección de drivers (diseño responsive) */
+    @media (max-width: 992px) {
+      .detail-page-content .container {
+        grid-template-columns: 1fr; /* Apilar columnas en pantallas pequeñas */
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="compatibility-hardware-checker.html" class="active"
+                >Compatibilidad <i class="fas fa-chevron-down"></i
+              ></a>
+              <ul class="dropdown">
+                <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="#">Compatibilidad</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Verificador de Hardware</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Verificador de Compatibilidad de Hardware con OS-Compat</h2>
+          <p>
+            ¿Estás pensando en instalar un nuevo sistema operativo o actualizar tu actual? Nuestro
+            verificador de hardware te ayuda a determinar si tus componentes son compatibles con los
+            sistemas operativos más populares. Ingresa la información de tu hardware y descubre si
+            cumples con los requisitos.
+          </p>
+          <p>
+            Nota: Esta es una sección de demostración. La funcionalidad completa del verificador de
+            hardware requeriría una base de datos de hardware y algoritmos de comparación que irían
+            más allá de una simple página HTML/CSS/JavaScript. Se necesitaría un backend (servidor)
+            y posiblemente Machine Learning como hablamos previamente para una verificación
+            inteligente.
+          </p>
+
+          <div class="checker-section" id="verificador">
+            <h3><i class="fas fa-microchip"></i> Introduce tu Hardware</h3>
+            <form id="hardwareCheckerForm">
+              <div class="form-group">
+                <label for="operatingSystem">Sistema Operativo Deseado:</label>
+                <select id="operatingSystem" name="operatingSystem">
+                  <option value="">Selecciona un OS</option>
+                  <option value="windows11">Windows 11</option>
+                  <option value="windows10">Windows 10</option>
+                  <option value="linuxUbuntu">Linux (Ubuntu)</option>
+                  <option value="linuxMint">Linux (Mint)</option>
+                  <option value="macosSonoma">macOS Sonoma (Hackintosh)</option>
+                  <option value="chromeosFlex">ChromeOS Flex</option>
+                </select>
+              </div>
+<div class="form-group">
+  <label for="cpu">Procesador (CPU):</label>
+  <input 
+    type="text" 
+    id="cpu" 
+    name="cpu" 
+    placeholder="Selecciona un procesador..." 
+    readonly
+  >
+  
+<!-- Modal/Panel de selección -->
+<div id="cpuModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Selecciona tu procesador</h3>
+    
+    <!-- Pestañas -->
+    <div class="tab">
+      <button class="tablinks active" data-brand="intel">Intel</button>
+      <button class="tablinks" data-brand="amd">AMD</button>
+      <button class="tablinks" data-brand="qualcomm">Qualcomm</button>
+    </div>
+     
+      <!-- Contenido de pestañas - Intel -->
+    <div id="intel" class="tabcontent active">
+      <div class="cpu-grid">
+          <!-- 6ta Generación -->
+          <div class="cpu-option" data-value="Intel Core i3-6100">
+            <img src="https://nes.com.pe/wp-content/uploads/2022/11/BX80662I36100-scaled.jpg" alt="Intel Core i3-6100">
+            <span>Intel Core i3-6100</span>
+            <small>2 núcleos, 3.7GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i5-6400">
+            <img src="https://nes.com.pe/wp-content/uploads/2022/11/BX80662I56400-scaled.jpg" alt="Intel Core i5-6400">
+            <span>Intel Core i5-6400</span>
+            <small>4 núcleos, 2.7GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i7-6700">
+            <img src="https://www.computiendajydperu.com/wp-content/uploads/2023/06/Procesador-INTEL-i7-6700-LGA1151.webp" alt="Intel Core i7-6700">
+            <span>Intel Core i7-6700</span>
+            <small>4 núcleos, 3.4GHz</small>
+          </div>
+
+          <!-- 7ma Generación -->
+          <div class="cpu-option" data-value="Intel Core i3-7100">
+            <img src="https://suministrosperu.com/wp-content/uploads/2020/08/PROCESADOR-INTEL-CORE-I3-7100.jpg" alt="Intel Core i3-7100">
+            <span>Intel Core i3-7100</span>
+            <small>2 núcleos, 3.9GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i5-7400">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1lt-yjVd04bhcG4CIPRJ8n0SRyNV6C21bRg&s" alt="Intel Core i5-7400">
+            <span>Intel Core i5-7400</span>
+            <small>4 núcleos, 3.0GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i7-7700">
+            <img src="https://nes.com.pe/wp-content/uploads/2022/11/BX80677I77700-scaled.jpg" alt="Intel Core i7-7700">
+            <span>Intel Core i7-7700</span>
+            <small>4 núcleos, 3.6GHz</small>
+          </div>
+
+          <!-- 8va Generación -->
+          <div class="cpu-option" data-value="Intel Core i3-8100">
+            <img src="https://techsolversperu.com/img/p/1/2/5/7/1257-large_default.jpg" alt="Intel Core i3-8100">
+            <span>Intel Core i3-8100</span>
+            <small>4 núcleos, 3.6GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i5-8400">
+            <img src="https://akl.com.pe/672-large_default/intel-core-i5-8400-280ghz-8va-generacion.jpg" alt="Intel Core i5-8400">
+            <span>Intel Core i5-8400</span>
+            <small>6 núcleos, 2.8GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i7-8700">
+            <img src="https://http2.mlstatic.com/D_NQ_NP_600376-MLU47593180834_092021-O.webp" alt="Intel Core i7-8700">
+            <span>Intel Core i7-8700</span>
+            <small>6 núcleos, 3.2GHz</small>
+          </div>
+
+          <!-- 9na Generación -->
+          <div class="cpu-option" data-value="Intel Core i3-9100">
+            <img src="https://peruanadeinformatica.com.pe/img-apps/productos/Proyectevo.png" alt="Intel Core i3-9100">
+            <span>Intel Core i3-9100</span>
+            <small>4 núcleos, 3.6GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i5-9400F">
+            <img src="https://cdn.panacompu.com/cdn-img/pv/intel-core-i5-9400f.jpg" alt="Intel Core i5-9400F">
+            <span>Intel Core i5-9400F</span>
+            <small>6 núcleos, 2.9GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i7-9700K">
+            <img src="https://http2.mlstatic.com/D_NQ_NP_741787-MLA41292441298_032020-O.webp" alt="Intel Core i7-9700K">
+            <span>Intel Core i7-9700K</span>
+            <small>8 núcleos, 3.6GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i9-9900K">
+            <img src="https://http2.mlstatic.com/D_NQ_NP_982621-MLA51467786369_092022-O.webp" alt="Intel Core i9-9900K">
+            <span>Intel Core i9-9900K</span>
+            <small>8 núcleos, 3.6GHz</small>
+          </div>
+
+          <!-- 10ma Generación -->
+          <div class="cpu-option" data-value="Intel Core i3-10100">
+            <img src="https://http2.mlstatic.com/D_NQ_NP_666153-MLA43117108593_082020-O.webp" alt="Intel Core i3-10100">
+            <span>Intel Core i3-10100</span>
+            <small>4 núcleos, 3.6GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i5-10400">
+            <img src="https://www.impacto.com.pe/storage/products/lg/17382594942328.webp" alt="Intel Core i5-10400">
+            <span>Intel Core i5-10400</span>
+            <small>6 núcleos, 2.9GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i7-10700K">
+            <img src="https://m.media-amazon.com/images/I/71P3chRzgNL.jpg" alt="Intel Core i7-10700K">
+            <span>Intel Core i7-10700K</span>
+            <small>8 núcleos, 3.8GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i9-10900K">
+            <img src="https://corporaciondash.pe/wp-content/uploads/2022/11/cpili910900k.jpg" alt="Intel Core i9-10900K">
+            <span>Intel Core i9-10900K</span>
+            <small>10 núcleos, 3.7GHz</small>
+          </div>
+
+          <!-- 11va Generación -->
+          <div class="cpu-option" data-value="Intel Core i3-11100">
+            <img src="https://techwareinfocom.in/wp-content/uploads/2024/11/i3-11th-Gen-Techware-Infocom.jpg" alt="Intel Core i3-11100">
+            <span>Intel Core i3-11100</span>
+            <small>4 núcleos, 3.7GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i5-11400">
+            <img src="https://www.impacto.com.pe/storage/products/1618507845BX8070811400-1.jpg" alt="Intel Core i5-11400">
+            <span>Intel Core i5-11400</span>
+            <small>6 núcleos, 2.6GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i7-11700K">
+            <img src="https://m.media-amazon.com/images/I/71idAEIDhvL._AC_SL1500_.jpg" alt="Intel Core i7-11700K">
+            <span>Intel Core i7-11700K</span>
+            <small>8 núcleos, 3.6GHz</small>
+          </div>
+          <div class="cpu-option" data-value="Intel Core i9-11900K">
+            <img src="https://m.media-amazon.com/images/I/71diouNMRHL._AC_SL1500_.jpg" alt="Intel Core i9-11900K">
+            <span>Intel Core i9-11900K</span>
+            <small>8 núcleos, 3.5GHz</small>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Contenido de pestañas - AMD (mantener igual) -->
+      <div id="amd" class="tabcontent">
+        <div class="cpu-grid">
+          <div class="cpu-option" data-value="AMD Ryzen 9 7950X">
+            <img src="https://www.infotec.com.pe/img/cms/Descripci%C3%B3n/Procesadores/022007.png" alt="AMD Ryzen 9">
+            <span>AMD Ryzen 9 7950X</span>
+            <small>16 núcleos, 5.7GHz</small>
+          </div>
+          <!-- Más CPUs AMD... -->
+        </div>
+      </div>
+      
+      <!-- Contenido de pestañas - Qualcomm (mantener igual) -->
+      <div id="qualcomm" class="tabcontent">
+        <div class="cpu-grid">
+          <div class="cpu-option" data-value="Qualcomm Snapdragon 8cx Gen 3">
+            <img src="https://example.com/qualcomm-8cx.jpg" alt="Qualcomm 8cx">
+            <span>Qualcomm 8cx Gen 3</span>
+            <small>8 núcleos, 3.0GHz</small>
+          </div>
+          <!-- Más CPUs Qualcomm... -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+              <div class="form-group">
+                <label for="ram">Memoria RAM (en GB):</label>
+                <input type="number" id="ram" name="ram" placeholder="Ej: 8, 16, 32" min="1" />
+              </div>
+              <div class="form-group">
+                <label for="gpu">Tarjeta Gráfica (GPU):</label>
+                <input
+                  type="text"
+                  id="gpu"
+                  name="gpu"
+                  placeholder="Ej: NVIDIA GeForce RTX 3060, AMD Radeon RX 580, Intel HD Graphics"
+                />
+              </div>
+              <div class="form-group">
+                <label for="storage">Almacenamiento (Tipo y Capacidad):</label>
+                <input
+                  type="text"
+                  id="storage"
+                  name="storage"
+                  placeholder="Ej: 256GB SSD, 1TB HDD, 500GB NVMe"
+                />
+              </div>
+              <div class="form-group">
+                <label for="network">Tarjeta de Red (Wi-Fi/Ethernet):</label>
+                <input
+                  type="text"
+                  id="network"
+                  name="network"
+                  placeholder="Ej: Intel Wi-Fi 6 AX200, Realtek Gigabit Ethernet"
+                />
+              </div>
+              <button type="submit">Verificar Compatibilidad</button>
+            </form>
+<div class="result-area" id="compatibilityResult">
+  <div class="result-default">
+    <i class="fas fa-info-circle"></i>
+    <p>Introduce tus datos y haz clic en 'Verificar Compatibilidad'.</p>
+  </div>
+</div>
+          </div>
+
+          <h3>¿Cómo funciona este verificador (conceptual)?</h3>
+          <p>Idealmente, un verificador de hardware robusto funcionaría de la siguiente manera:</p>
+          <ol>
+            <li>
+              <strong>Recolección de Datos:</strong> El usuario ingresa manualmente la información
+              de su hardware o, en un sistema más avanzado, una aplicación escanearía el hardware
+              automáticamente.
+            </li>
+            <li>
+              <strong>Base de Datos de Compatibilidad:</strong> Un servidor backend tendría una
+              extensa base de datos de componentes de hardware y su compatibilidad conocida con
+              diferentes sistemas operativos (incluyendo drivers, rendimiento esperado, problemas
+              comunes).
+            </li>
+            <li>
+              <strong>Comparación de Requisitos:</strong> El sistema compararía el hardware del
+              usuario con los requisitos mínimos y recomendados del sistema operativo seleccionado.
+            </li>
+            <li>
+              <strong>Análisis Avanzado (ML):</strong> Para un nivel superior, un algoritmo de
+              Machine Learning podría analizar patrones de compatibilidad de miles de
+              configuraciones de usuarios (datos anonimizados) para predecir la compatibilidad
+              incluso para combinaciones inusuales o nuevas.
+            </li>
+            <li>
+              <strong>Generación de Informe:</strong> Se generaría un informe detallado indicando si
+              el hardware es compatible, las posibles limitaciones, los drivers necesarios o los
+              componentes recomendados para una mejor experiencia.
+            </li>
+          </ol>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos de Compatibilidad</h3>
+          <ul>
+            <li>
+              <a href="compatibility-minimum-requirements.html">Requisitos Mínimos de los OS</a>
+            </li>
+            <li><a href="compatibility-drivers.html">Búsqueda de Drivers Compatibles</a></li>
+            <li>
+              <a
+                href="https://www.profesionalreview.com/2021/08/22/errores-hardware-soluciones/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Solución de Problemas de Hardware
+              </a>
+            </li>
+          </ul>
+
+          <h3>Enlaces por Sistema Operativo</h3>
+          <ul>
+            <li><a href="windows.html">Compatibilidad Windows</a></li>
+            <li><a href="linux.html">Compatibilidad Linux</a></li>
+            <li><a href="macos.html">Compatibilidad macOS (Hackintosh)</a></li>
+            <li><a href="chromeos.html">Compatibilidad Chrome OS</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+      <script src="compatibity-hardware-checker.js"></script>
+    </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cpuOptions = document.querySelectorAll('.cpu-option');
+  const cpuInput = document.getElementById('cpu');
+  
+  cpuOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      // Remover selección previa
+      cpuOptions.forEach(opt => opt.classList.remove('selected'));
+      
+      // Seleccionar la opción actual
+      this.classList.add('selected');
+      
+      // Actualizar el input hidden con el valor seleccionado
+      cpuInput.value = this.getAttribute('data-value');
+    });
+  });
+  
+  // Opcional: Permitir búsqueda/filtrado
+  const cpuSearch = document.createElement('input');
+  cpuSearch.type = 'text';
+  cpuSearch.placeholder = 'Buscar procesador...';
+  cpuSearch.style.width = '100%';
+  cpuSearch.style.marginBottom = '10px';
+  cpuSearch.style.padding = '8px';
+  cpuSearch.style.borderRadius = '5px';
+  cpuSearch.style.border = '1px solid var(--input-border)';
+  
+  document.querySelector('#cpuSelector').parentNode.insertBefore(cpuSearch, document.querySelector('#cpuSelector'));
+  
+  cpuSearch.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    cpuOptions.forEach(option => {
+      const cpuName = option.getAttribute('data-value').toLowerCase();
+      option.style.display = cpuName.includes(searchTerm) ? 'block' : 'none';
+    });
+  });
+});
+</script>
+  </body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Ventajas y Desventajas de Chrome OS</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      :root {
+        /* Light Mode colors */
+        --background-color: #f4f7fa;
+        --text-color: #333;
+        --heading-color: #222;
+        --card-background: #ffffff;
+        --border-color: #ddd;
+        --primary-color: #007bff;
+        --code-background-inline: #e6e6e6;
+        --code-background-block: #f4f4f4;
+        --code-text-color: #333;
+        --description-text-color: #555;
+        --setting-group-background: #f8f8f8;
+        --setting-group-heading-color: #333;
+        --info-background: #e9f7fe;
+        --info-border: #007bff;
+        --shortcut-background: #f8f8f8;
+        --shortcut-heading-color: #333;
+        --tip-highlight-color: #007bff;
+        --device-category-background: #f8f8f8;
+        --device-category-heading-color: #333;
+        --device-list-border: #e0e0e0;
+        --caution-background: #fff3cd;
+        --caution-border: #ffc107;
+        --caution-text-color: #664d03;
+        --platform-card-background: #f8f8f8;
+        --platform-card-heading-color: #333;
+        --chromeos-brand-color-light: #4285f4;
+        --chromeos-brand-color-dark: #8ab4f8;
+
+        /* Specific for Pros/Cons */
+        --pros-background: #f8f8f8;
+        --cons-background: #f8f8f8;
+        --pros-border-color: #28a745; /* Verde de Bootstrap success */
+        --cons-border-color: #dc3545; /* Rojo de Bootstrap danger */
+        --pros-icon-color: #28a745;
+        --cons-icon-color: #dc3545;
+        --pros-cons-heading-color: #333;
+      }
+
+      body.dark-mode {
+        /* Dark Mode colors */
+        --background-color: #1a1a2e;
+        --text-color: #e0e0e0;
+        --heading-color: #f0f0f0;
+        --card-background: #2a2a4a;
+        --border-color: #444;
+        --primary-color: #6a8aff;
+        --code-background-inline: #3a3a5a;
+        --code-background-block: #2e2e4e;
+        --code-text-color: #c0c0c0;
+        --description-text-color: #b0b0b0;
+        --setting-group-background: #2a2a4a;
+        --setting-group-heading-color: #e0e0e0;
+        --info-background: #3a3a5a;
+        --info-border: #6a8aff;
+        --shortcut-background: #2a2a4a;
+        --shortcut-heading-color: #e0e0e0;
+        --tip-highlight-color: #88aaff;
+        --device-category-background: #2a2a4a;
+        --device-category-heading-color: #f0f0f0;
+        --device-list-border: #555;
+        --caution-background: #4a3c22;
+        --caution-border: #cc9900;
+        --caution-text-color: #ffda6a;
+        --platform-card-background: #2a2a4a;
+        --platform-card-heading-color: #f0f0f0;
+
+        /* Specific for Pros/Cons in Dark Mode */
+        --pros-background: #2a2a4a; /* Fondo oscuro para ventajas */
+        --cons-background: #2a2a4a; /* Fondo oscuro para desventajas */
+        --pros-border-color: #2ecc71; /* Verde que contraste mejor en oscuro */
+        --cons-border-color: #e74c3c; /* Rojo que contraste mejor en oscuro */
+        --pros-icon-color: #2ecc71;
+        --cons-icon-color: #e74c3c;
+        --pros-cons-heading-color: #f0f0f0;
+      }
+      /* -- Estilos para Ventajas y Desventajas (Pros/Cons) -- */
+      .pros-cons-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-top: 20px;
+      }
+
+      .pros-cons-column {
+        flex: 1;
+        min-width: 300px;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        color: var(
+          --text-color
+        ); /* Asegura que el texto general del cuerpo de la columna use el color del tema */
+      }
+
+      .pros-cons-column.pros {
+        background-color: var(--pros-background); /* Usa la variable para el fondo */
+        border-left: 5px solid var(--pros-border-color); /* Usa la variable para el borde verde */
+      }
+
+      .pros-cons-column.cons {
+        background-color: var(--cons-background); /* Usa la variable para el fondo */
+        border-left: 5px solid var(--cons-border-color); /* Usa la variable para el borde rojo */
+      }
+
+      .pros-cons-column h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.4em;
+        color: var(--pros-cons-heading-color); /* Usa la variable para el color del título */
+      }
+
+      .pros-cons-column h3 i {
+        margin-right: 10px;
+        /* El color del ícono del título se ajustará por herencia si no se especifica,
+     pero podemos hacerlo explícito para mayor control */
+        color: var(--pros-cons-heading-color);
+      }
+
+      .pros-cons-column.pros h3 i {
+        color: var(--pros-icon-color); /* Color específico para el icono del título de ventajas */
+      }
+
+      .pros-cons-column.cons h3 i {
+        color: var(
+          --cons-icon-color
+        ); /* Color específico para el icono del título de desventajas */
+      }
+
+      .pros-cons-column ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .pros-cons-column ul li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: flex-start;
+        color: var(--text-color); /* Asegura que el texto de la lista use el color del tema */
+      }
+
+      .pros-cons-column ul li i {
+        margin-right: 10px;
+        font-size: 1.1em;
+        line-height: 1.4;
+      }
+
+      .pros-cons-column.pros ul li i {
+        color: var(--pros-icon-color); /* Usa la variable para el color de los iconos de ventajas */
+      }
+
+      .pros-cons-column.cons ul li i {
+        color: var(
+          --cons-icon-color
+        ); /* Usa la variable para el color de los iconos de desventajas */
+      }
+
+      .pros-cons-column ul li strong {
+        color: var(
+          --heading-color
+        ); /* Para asegurar que las palabras "Velocidad", "Seguridad" etc. sean legibles */
+      }
+
+      /* Estilos específicos para MODO OSCURO para estos elementos */
+      body.dark-mode .pros-cons-column {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada en oscuro */
+        /* Los demás colores ya se adaptarán por las variables */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="chromeos.html">Chrome OS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ventajas y Desventajas</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Chrome OS: ¿Es el Sistema Operativo Adecuado para Ti?</h2>
+          <p>
+            Chrome OS es un sistema operativo ligero basado en el navegador web Google Chrome. Ha
+            ganado popularidad por su simplicidad, seguridad y rendimiento en hardware modesto. Sin
+            embargo, como cualquier sistema operativo, tiene sus fortalezas y debilidades que debes
+            considerar antes de decidir si es la opción correcta para tus necesidades.
+          </p>
+
+          <div class="pros-cons-section">
+            <div class="pros-cons-column pros">
+              <h3><i class="fas fa-check-circle"></i> Ventajas</h3>
+              <ul>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Velocidad y Ligereza:</strong> Arranca en segundos y mantiene un
+                  rendimiento ágil incluso en hardware de bajo costo. Es ideal para tareas web y
+                  aplicaciones ligeras.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Seguridad Robusta:</strong> Chrome OS cuenta con múltiples capas de
+                  seguridad, incluyendo arranque verificado, sandboxing, actualizaciones automáticas
+                  en segundo plano y cifrado de datos. Es muy resistente a virus y malware.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Simplicidad y Facilidad de Uso:</strong> Su interfaz es intuitiva y
+                  sencilla, centrada en el navegador. Es fácil de aprender para usuarios nuevos y
+                  para aquellos acostumbrados a entornos web.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Mantenimiento Mínimo:</strong> Las actualizaciones son automáticas y
+                  discretas. No hay necesidad de instalar controladores complejos ni de preocuparse
+                  por el desorden del sistema.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Integración con Google:</strong> Se integra perfectamente con los
+                  servicios de Google (Gmail, Drive, Docs, Calendar, etc.) y la nube. Tus archivos y
+                  configuraciones se sincronizan automáticamente.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Apps Android y Linux:</strong> La mayoría de los Chromebooks modernos
+                  pueden ejecutar aplicaciones de Android a través de Google Play Store y
+                  aplicaciones de Linux, ampliando significativamente su funcionalidad.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Costo-Beneficio:</strong> Los Chromebooks suelen ser más económicos que
+                  portátiles equivalentes con Windows o macOS, ofreciendo un gran valor por su
+                  precio.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Actualizaciones Garantizadas:</strong> Google garantiza un número de años
+                  de actualizaciones automáticas para cada modelo de Chromebook.
+                </li>
+              </ul>
+            </div>
+
+            <div class="pros-cons-column cons">
+              <h3><i class="fas fa-times-circle"></i> Desventajas</h3>
+              <ul>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Dependencia de la Nube/Internet:</strong> Aunque ha mejorado el trabajo
+                  offline, su potencial se maximiza con una conexión a internet para acceder a
+                  aplicaciones web y servicios en la nube.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Software de Escritorio Limitado:</strong> No puede ejecutar software de
+                  escritorio tradicional de Windows o macOS (ej. Adobe Photoshop completo, Microsoft
+                  Office de escritorio, juegos AAA), a menos que uses opciones avanzadas como Linux
+                  o servicios de streaming de apps.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Menos Opciones de Hardware:</strong> Aunque hay variedad, la selección de
+                  Chromebooks es menor en comparación con PCs Windows, especialmente en el extremo
+                  de alta potencia o configuraciones muy específicas.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Espacio de Almacenamiento Local:</strong> Los Chromebooks suelen tener
+                  almacenamiento local limitado, ya que el enfoque está en la nube. Esto puede ser
+                  una desventaja para usuarios que manejan muchos archivos grandes offline.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Juegos Avanzados:</strong> Aunque es bueno para juegos Android y algunos
+                  juegos en la nube, no es la plataforma ideal para juegos de PC de alta gama que
+                  requieren recursos gráficos dedicados.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Ciertas Periferias:</strong> Puede haber problemas de compatibilidad con
+                  impresoras muy antiguas o periféricos muy específicos que requieren controladores
+                  complejos.
+                </li>
+                <li>
+                  <i class="fas fa-arrow-right"></i>
+                  <strong>Fecha de Caducidad de Actualizaciones (AUE):</strong> Aunque se garantizan
+                  actualizaciones por años, los dispositivos finalmente dejan de recibirlas, lo que
+                  puede ser una preocupación a largo plazo.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>¿Quién Debería Considerar Chrome OS?</h3>
+          <p>Chrome OS es una excelente opción para:</p>
+          <ul>
+            <li>Estudiantes y educadores.</li>
+            <li>
+              Usuarios que principalmente navegan por la web, usan correo electrónico y redes
+              sociales.
+            </li>
+            <li>
+              Profesionales que trabajan con aplicaciones basadas en la nube (ej. Google Workspace,
+              Microsoft 365 web).
+            </li>
+            <li>Personas que buscan un dispositivo secundario ligero y seguro.</li>
+            <li>Usuarios con presupuestos ajustados.</li>
+            <li>Empresas que necesitan una gestión sencilla y segura de dispositivos.</li>
+          </ul>
+          <p>
+            No es la mejor opción si necesitas software muy específico de Windows/macOS, eres un
+            gamer exigente o realizas tareas de edición de video/audio profesionales de alto
+            rendimiento.
+          </p>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Adicionales</h3>
+          <ul>
+            <li>
+              <a href="https://www.google.com/chromebook/" target="_blank" rel="noopener noreferrer"
+                >Página oficial de Chromebooks (Google)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/chromeos/?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Centro de Ayuda de Chromebook (Google Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/chrome/a/answer/6220366?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Fechas de Caducidad de Actualización Automática (AUE) de Chromebooks</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li>
+              <a href="chromeos-compatible-devices.html">Dispositivos Compatibles con Chrome OS</a>
+            </li>
+            <li><a href="chromeos-installation-on-pc.html">Instalación de Chrome OS en PC</a></li>
+            <li>
+              <a href="chromeos-android-linux-apps.html">Apps Android y Linux en Chrome OS</a>
+            </li>
+            <li><a href="chromeos-personalization.html">Personalización de Chrome OS</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

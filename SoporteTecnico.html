@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Soporte Técnico Profesional</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary-color: rgb(7, 8, 22);
+        --dark-color: #1e293b;
+        --light-color: #f8fafc;
+        --gray-color: #e2e8f0;
+        --success-color: #10b981;
+        --bg-color: #f5f7fa;
+        --header-bg: white;
+        --card-bg: white;
+        --text-color: #1e293b;
+        --text-light: #64748b;
+      }
+
+      [data-theme="dark"] {
+        --primary-color: #3b82f6;
+        --primary-dark: #2563eb;
+        --secondary-color: #d1d5db;
+        --dark-color: #f8fafc;
+        --light-color: #1e293b;
+        --gray-color: #334155;
+        --success-color: #10b981;
+        --bg-color: #0f172a;
+        --header-bg: #1e293b;
+        --card-bg: #1e293b;
+        --text-color: #f8fafc;
+        --text-light: #94a3b8;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: var(--text-color);
+        line-height: 1.6;
+        background-color: var(--bg-color);
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      /* HEADER PERFECTAMENTE ALINEADO */
+      header {
+        background-color: var(--header-bg);
+        padding: 1rem 2rem;
+        border-bottom: 1px solid var(--gray-color);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition: background-color 0.3s;
+      }
+
+      .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 2.1rem; /* Añade esta línea */
+    padding-right: 20rem;   /* Mantén el padding derecho original (opcional) */
+}
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        font-family: Arial, sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .logo:hover {
+        color: var(--primary-color);
+      }
+
+      nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      nav > * {
+        display: flex;
+        align-items: center;
+      }
+
+      nav a,
+      .has-dropdown > a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+        padding: 0.5rem 0;
+        position: relative;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+      }
+
+      nav a:hover,
+      .has-dropdown > a:hover {
+        color: var(--primary-color);
+      }
+
+      nav a.active,
+      .has-dropdown > a.active {
+        color: var(--primary-color);
+      }
+
+      nav a::after,
+      .has-dropdown > a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover::after,
+      nav a.active::after,
+      .has-dropdown > a:hover::after,
+      .has-dropdown > a.active::after {
+        width: 100%;
+      }
+
+      /* MENÚS DESPLEGABLES */
+      .has-dropdown {
+        position: relative;
+      }
+
+      .dropdown {
+        display: none;
+        position: absolute;
+        background-color: var(--header-bg);
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        border-radius: 4px;
+        padding: 0.5rem 0;
+        top: 100%;
+        left: 0;
+        transition: background-color 0.3s;
+      }
+
+      .has-dropdown:hover .dropdown {
+        display: block;
+      }
+
+      .dropdown li {
+        padding: 0;
+        list-style: none;
+      }
+
+      .dropdown a {
+        color: var(--text-color);
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        display: block;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+      }
+
+      .dropdown a:hover {
+        background-color: var(--gray-color);
+        color: var(--primary-color);
+        padding-left: 1.2rem;
+      }
+
+      .has-dropdown > a i {
+        font-size: 0.8rem;
+        transition: transform 0.3s;
+        margin-left: 0.3rem;
+      }
+
+      .has-dropdown:hover > a i {
+        transform: rotate(180deg);
+      }
+
+      /* Botón de modo oscuro */
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin-left: 1rem;
+        transition: transform 0.3s, color 0.3s;
+      }
+
+      .theme-toggle:hover {
+        color: var(--primary-color);
+        transform: rotate(30deg);
+      }
+
+      /* CONTENIDO ORIGINAL RESTAURADO */
+      .content {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+      }
+
+      h1 {
+        color: var(--primary-color);
+        margin-bottom: 2rem;
+        font-size: 2.2rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      h1::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        border-radius: 2px;
+      }
+
+      .support-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .support-option {
+        background-color: var(--card-bg);
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-top: 4px solid var(--primary-color);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .support-option:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .support-option:nth-child(2) {
+        border-top-color: var(--secondary-color);
+      }
+
+      .support-option:nth-child(3) {
+        border-top-color: var(--success-color);
+      }
+
+      .support-option:nth-child(4) {
+        border-top-color: #8b5cf6;
+      }
+
+      .support-option h3 {
+        color: var(--text-color);
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      .support-option h3 i {
+        color: inherit;
+      }
+
+      .support-option p {
+        color: var(--text-light);
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0.7rem 1.5rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+      }
+
+      .btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      .btn i {
+        font-size: 0.9rem;
+      }
+
+      /* CAMBIO ESPECÍFICO PARA EL BOTÓN "BUSCAR SOLUCIONES" (verde) */
+      .support-option:nth-child(2) .btn {
+        background-color: #4CAF50; /* Verde */
+      }
+
+      .support-option:nth-child(2) .btn:hover {
+        background-color: #388E3C; /* Verde más oscuro para hover */
+      }
+
+      .support-option:nth-child(3) .btn {
+        background-color: var(--success-color);
+      }
+
+      .support-option:nth-child(4) .btn {
+        background-color: #8b5cf6;
+      }
+
+      .support-option::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+      }
+
+      .support-option:hover::before {
+        opacity: 1;
+      }
+
+      .contact-banner {
+        background: linear-gradient(135deg, var(--primary-color), #4f46e5);
+        color: white;
+        padding: 2.5rem;
+        border-radius: 10px;
+        margin-top: 3rem;
+        text-align: center;
+        box-shadow: 0 10px 15px rgba(37, 99, 235, 0.2);
+      }
+
+      .contact-banner h2 {
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+      }
+
+      .contact-banner p {
+        max-width: 700px;
+        margin: 0 auto 1.5rem;
+        opacity: 0.9;
+      }
+
+      .contact-banner .btn {
+        background-color: white;
+        color: var(--primary-color);
+        padding: 0.8rem 2rem;
+        font-weight: 600;
+      }
+
+      .contact-banner .btn:hover {
+        background-color: var(--light-color);
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .logo {
+          margin-bottom: 1rem;
+        }
+
+        nav {
+          flex-direction: column;
+          gap: 0.5rem;
+          width: 100%;
+          align-items: flex-start;
+        }
+
+        .has-dropdown {
+          width: 100%;
+        }
+
+        .dropdown {
+          position: static;
+          width: 100%;
+          box-shadow: none;
+        }
+
+        .support-section {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-banner {
+          padding: 1.5rem;
+        }
+
+        .contact-banner h2 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="index.html" class="logo">OS-Compat</a>
+        
+        <nav>
+          <a href="index.html">Inicio</a>
+          <a href="nosotros.html">Nosotros</a>
+
+          <div class="has-dropdown">
+            <a href="#">Sistemas <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+
+          <div class="has-dropdown">
+            <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+              <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+              <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+              <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+            </ul>
+          </div>
+
+          <a href="Comunidad.html">Comunidad</a>
+          <a href="SoporteTecnico.html" class="active">Soporte Técnico</a>
+          <a href="contacto.html">Contacto</a>
+          
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="content">
+      <h1><i class="fas fa-headset"></i> Soporte Técnico</h1>
+
+      <section class="support-section">
+        <div class="support-option">
+          <h3><i class="fas fa-envelope"></i> Soporte por Correo Electrónico</h3>
+          <p>
+            Nuestro equipo de expertos está listo para resolver tus consultas. Envíanos un correo y
+            recibirás una respuesta detallada en menos de 24 horas hábiles.
+          </p>
+          <a href="soporteporcorreo.html" class="btn">
+            <i class="fas fa-paper-plane"></i> Contactar por Email
+          </a>
+        </div>
+
+        <div class="support-option">
+          <h3><i class="fas fa-book-open"></i> Base de Conocimiento</h3>
+          <p>
+            Accede a nuestra extensa biblioteca con guías técnicas, tutoriales paso a paso y
+            soluciones verificadas para los problemas más comunes.
+          </p>
+          <a href="conocimientos.html" class="btn">
+            <i class="fas fa-search"></i> Buscar Soluciones
+          </a>
+        </div>
+
+        <div class="support-option">
+          <h3><i class="fas fa-users"></i> Foro de la Comunidad</h3>
+          <p>
+            Conéctate con miles de usuarios y expertos. Comparte experiencias y encuentra soluciones
+            colaborativas a tus desafíos técnicos.
+          </p>
+          <a href="Comunidad.html" class="btn">
+            <i class="fas fa-comments"></i> Unirse a la Comunidad
+          </a>
+        </div>
+
+        <div class="support-option">
+          <h3><i class="fas fa-comment-dots"></i> Chat en Vivo</h3>
+          <p>
+            Nuestros técnicos certificados están disponibles de lunes a viernes de 9:00 a 18:00
+            horas para asistencia inmediata.
+          </p>
+          <a href="chatenvivo.html" class="btn">
+            <i class="fas fa-phone-alt"></i> Iniciar Conversación
+          </a>
+        </div>
+      </section>
+
+      <section class="contact-banner">
+        <h2>¿Necesitas ayuda inmediata?</h2>
+        <p>
+          Nuestro equipo de soporte premium está disponible 24/7 para clientes empresariales y casos
+          críticos.
+        </p>
+        <a href="contacto.html" class="btn"> <i class="fas fa-star"></i> Soporte Premium </a>
+      </section>
+    </main>
+
+    <script>
+      // Función para alternar el modo oscuro
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      const icon = themeToggle.querySelector('i');
+      
+      // Verificar preferencia del sistema o tema guardado
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const currentTheme = localStorage.getItem('theme');
+      
+      // Aplicar tema inicial
+      if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+        body.setAttribute('data-theme', 'dark');
+        icon.classList.replace('fa-moon', 'fa-sun');
+      }
+      
+      // Escuchar clicks en el botón
+      themeToggle.addEventListener('click', () => {
+        if (body.getAttribute('data-theme') === 'dark') {
+          body.setAttribute('data-theme', 'light');
+          icon.classList.replace('fa-sun', 'fa-moon');
+          localStorage.setItem('theme', 'light');
+        } else {
+          body.setAttribute('data-theme', 'dark');
+          icon.classList.replace('fa-moon', 'fa-sun');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+    </script>
+  </body>
+</html>

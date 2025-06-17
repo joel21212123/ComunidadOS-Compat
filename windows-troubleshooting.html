@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Solución de Problemas de Windows</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="windows.html">Windows</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Solución de Problemas</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Solución de Problemas Comunes en Windows: Guía Definitiva</h2>
+          <p>
+            El sistema operativo Windows es robusto, pero como cualquier software complejo, puede
+            presentar fallos. Entender cómo diagnosticar y resolver los problemas comunes es crucial
+            para mantener tu PC funcionando de manera óptima y evitar interrupciones en tu trabajo o
+            entretenimiento. Aquí te ofrecemos soluciones detalladas para los escenarios más
+            frecuentes.
+          </p>
+
+          <h3>1. Pantallazo Azul (BSOD - Blue Screen of Death)</h3>
+          <p>
+            Los Pantallazos Azules son errores críticos que indican que Windows ha encontrado una
+            situación que le impide operar de forma segura, obligándole a detenerse para evitar
+            daños mayores. Aunque son intimidantes, suelen proporcionar un "código de detención" que
+            es vital para el diagnóstico.
+          </p>
+          <h4>Causas Comunes:</h4>
+          <ul>
+            <li>
+              Drivers Incompatibles o Corruptos: A menudo, un controlador de hardware defectuoso es
+              el culpable.
+            </li>
+            <li>Hardware Defectuoso: Fallos en la RAM, disco duro, tarjeta gráfica, etc.</li>
+            <li>Conflictos de Software: Programas recién instalados o actualizaciones.</li>
+            <li>Archivos del Sistema Corruptos: Daños en archivos esenciales de Windows.</li>
+          </ul>
+          <h4>Pasos Detallados para Solucionar:</h4>
+          <ol>
+            <li>
+              <strong>Reiniciar y Anotar el Código de Error:</strong> Si el error es esporádico, un
+              reinicio puede bastar. Anota el código de detención (ej.,
+              `DRIVER_IRQL_NOT_LESS_OR_EQUAL`) y el nombre del archivo si aparece.
+            </li>
+            <li>
+              <strong>Buscar el Código de Error Online:</strong> Usa un segundo dispositivo para
+              buscar el código de error en el sitio de soporte de Microsoft o en foros
+              especializados. Esto te dará pistas directas sobre la causa.
+            </li>
+            <li>
+              <strong>Actualizar o Revertir Drivers:</strong> Si un driver es la causa, intenta
+              actualizarlo desde el sitio web del fabricante del hardware. Si el problema comenzó
+              después de una actualización de driver, reviértelo a la versión anterior
+              (Administrador de Dispositivos > Propiedades del dispositivo > Controlador > Revertir
+              controlador).
+            </li>
+            <li>
+              <strong>Ejecutar el Comprobador de Archivos del Sistema (SFC) y DISM:</strong> Abre el
+              Símbolo del sistema como administrador y ejecuta `sfc /scannow` para reparar archivos
+              del sistema. Si SFC falla, usa `DISM /Online /Cleanup-Image /RestoreHealth`.
+            </li>
+            <li>
+              <strong>Comprobar la Memoria RAM:</strong> Ejecuta el Diagnóstico de memoria de
+              Windows (busca "Diagnóstico de memoria" en el inicio) para verificar si hay problemas
+              con la RAM.
+            </li>
+            <li>
+              <strong>Desinstalar Software Reciente:</strong> Si el BSOD apareció después de
+              instalar un programa o actualización, desinstálalo.
+            </li>
+            <li>
+              <strong>Restaurar Sistema a un Punto Anterior:</strong> Si tienes puntos de
+              restauración configurados, puedes revertir tu sistema a un estado anterior cuando
+              funcionaba correctamente.
+            </li>
+          </ol>
+
+          <h3>2. Problemas de Inicio de Windows (No Arranca o se Congela)</h3>
+          <p>
+            Cuando Windows no logra iniciar correctamente, puede ser un problema frustrante. Esto
+            puede manifestarse como una pantalla negra, un bucle de reinicio o quedarse atascado en
+            el logo de Windows.
+          </p>
+          <h4>Causas Comunes:</h4>
+          <ul>
+            <li>
+              Archivos de Arranque Corruptos: Daños en el Boot Record (MBR/GPT) o los archivos de
+              configuración de arranque (BCD).
+            </li>
+            <li>
+              Actualizaciones Fallidas: Una actualización de Windows incompleta o con errores.
+            </li>
+            <li>
+              Hardware Desconectado o Defectuoso: Un disco duro suelto, RAM dañada o una unidad de
+              arranque incorrecta.
+            </li>
+            <li>Infección por Malware: Virus o malware que afectan los procesos de arranque.</li>
+          </ul>
+          <h4>Pasos Detallados para Solucionar:</h4>
+          <ol>
+            <li>
+              <strong>Acceder a las Opciones de Recuperación Avanzadas:</strong> Si Windows no
+              arranca, a menudo intentará repararse automáticamente. Si no, puedes forzarlo apagando
+              el PC 3 veces seguidas durante el arranque (antes de que aparezca el logo de Windows)
+              para acceder a estas opciones.
+            </li>
+            <li>
+              <strong>Modo Seguro:</strong> Desde las opciones avanzadas, selecciona "Solucionar
+              problemas" > "Opciones avanzadas" > "Configuración de inicio" > "Reiniciar". Luego
+              presiona la tecla numérica para Modo Seguro. Si el PC arranca en Modo Seguro, podrás
+              desinstalar programas problemáticos o drivers.
+            </li>
+            <li>
+              <strong>Reparación de Inicio:</strong> En las Opciones avanzadas, selecciona
+              "Reparación de inicio". Esta herramienta intentará corregir automáticamente los
+              problemas que impiden que Windows se inicie.
+            </li>
+            <li>
+              <strong>Restaurar Sistema:</strong> Si tienes puntos de restauración, úsalos para
+              volver a un estado funcional.
+            </li>
+            <li>
+              <strong>Comprobar Disco y Cableado:</strong> Asegúrate de que tu disco duro o SSD esté
+              correctamente conectado. Si tienes múltiples discos, verifica el orden de arranque en
+              la BIOS/UEFI.
+            </li>
+            <li>
+              <strong>Reinstalar Windows:</strong> Si todo lo demás falla, una instalación limpia de
+              Windows suele ser la solución final, pero recuerda hacer una copia de seguridad de tus
+              datos antes.
+            </li>
+          </ol>
+
+          <h3>3. Conexión a Internet Lenta o Inestable</h3>
+          <p>
+            Los problemas de conectividad a Internet pueden variar desde una velocidad muy baja
+            hasta desconexiones intermitentes o la ausencia total de conexión, tanto por Wi-Fi como
+            por cable Ethernet.
+          </p>
+          <h4>Causas Comunes:</h4>
+          <ul>
+            <li>Problemas con el Router/Módem: Fallos temporales o configuraciones incorrectas.</li>
+            <li>
+              Controladores de Red Obsoletos o Dañados: Drivers del adaptador de red (Wi-Fi o
+              Ethernet) no actualizados.
+            </li>
+            <li>
+              Configuración IP/DNS Incorrecta: Direcciones IP o servidores DNS mal configurados.
+            </li>
+            <li>
+              Interferencias (Wi-Fi): Otros dispositivos electrónicos o redes cercanas que afectan
+              la señal.
+            </li>
+            <li>
+              Problemas con el Proveedor de Servicios de Internet (ISP): Interrupciones en el
+              servicio.
+            </li>
+          </ul>
+          <h4>Pasos Detallados para Solucionar:</h4>
+          <ol>
+            <li>
+              <strong>Ciclo de Reinicio Básico:</strong> Apaga tu router/módem, espera 30 segundos y
+              vuelve a encenderlo. Haz lo mismo con tu PC. Este paso simple resuelve muchos
+              problemas.
+            </li>
+            <li>
+              <strong>Verificar Cableado:</strong> Para conexiones Ethernet, asegúrate de que el
+              cable esté firmemente conectado tanto al PC como al router y que no esté dañado.
+            </li>
+            <li>
+              <strong>Restablecer Adaptador de Red:</strong> Ve a `Configuración > Red e Internet >
+              Estado > Restablecimiento de red`. Esto reinstalará los adaptadores de red y
+              restablecerá la configuración original.
+            </li>
+            <li>
+              <strong>Actualizar Controladores de Red:</strong> Abre el `Administrador de
+              Dispositivos`, expande "Adaptadores de red", haz clic derecho en tu adaptador y
+              selecciona "Actualizar controlador". También puedes buscar el driver más reciente en
+              la web del fabricante de tu PC o del adaptador de red.
+            </li>
+            <li>
+              <strong>Ejecutar el Solucionador de Problemas de Red de Windows:</strong> Ve a
+              `Configuración > Red e Internet > Estado` y haz clic en "Solucionador de problemas de
+              red". Es una herramienta útil que puede identificar y corregir problemas
+              automáticamente.
+            </li>
+            <li>
+              <strong>Cambiar Servidores DNS:</strong> A veces, los servidores DNS predeterminados
+              de tu ISP son lentos. Puedes probar con DNS públicos como Google DNS (8.8.8.8 y
+              8.8.4.4) o Cloudflare DNS (1.1.1.1 y 1.0.0.1).
+            </li>
+            <li>
+              <strong>Desactivar Firewall/Antivirus Temporalmente:</strong> En raras ocasiones, el
+              software de seguridad puede interferir. Desactívalo temporalmente para ver si resuelve
+              el problema (¡solo haz esto si estás seguro de que tu PC no está infectado!).
+            </li>
+            <li>
+              <strong>Contactar a tu ISP:</strong> Si después de todo esto el problema persiste, la
+              falla podría estar en el lado de tu proveedor de Internet.
+            </li>
+          </ol>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos y Herramientas Útiles (Enlaces con precaución)</h3>
+          <ul>
+            <li>
+              <a
+                href="https://support.microsoft.com/es-es/windows"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Soporte oficial de Microsoft Windows (Página principal)
+              </a>
+            </li>
+
+            <li>
+              <a href="https://www.ccleaner.com/es-es" target="_blank" rel="noopener noreferrer"
+                >CCleaner (Limpieza de sistema y optimización)
+              </a>
+            </li>
+
+            <li>
+              <a a href="https://www.malwarebytes.com/es/" target="_blank" rel="noopener noreferrer"
+                >Malwarebytes (Eliminación de malware)
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://crystalmark.info/en/software/crystaldiskinfo/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >CrystalDiskInfo (Monitoreo de la salud del disco duro)
+              </a>
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="windows11.html">Guía de actualización a Windows 11</a></li>
+            <li><a href="#">Guía de diagnóstico de hardware (Pendiente)</a></li>
+            <li><a href="windows-security.html">Seguridad informática básica para Windows </a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Drivers y Compatibilidad en Windows</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="compatibility-hardware-checker.html ">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html"">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+        <a href="#" class="icon"><i class="fas fa-search"></i></a>
+        <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="windows.html">Windows</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Drivers y Compatibilidad</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Drivers y Compatibilidad en Windows: La Base de un Sistema Estable</h2>
+          <p>
+            Los drivers (controladores) son piezas de software esenciales que permiten que tu
+            sistema operativo Windows se comunique eficazmente con el hardware de tu computadora,
+            como la tarjeta gráfica, la tarjeta de sonido, la impresora, el teclado, el ratón, y
+            otros dispositivos. Un driver incorrecto, desactualizado o corrupto puede causar una
+            amplia gama de problemas, desde fallos en el rendimiento hasta pantallazos azules.
+            Mantener tus drivers actualizados y compatibles es fundamental para la estabilidad y el
+            rendimiento de tu PC.
+          </p>
+
+          <h3>¿Qué son los Drivers y por qué son importantes?</h3>
+          <p>
+            Imagina que tu sistema operativo y tu hardware hablan idiomas diferentes. Un driver
+            actúa como un traductor, permitiendo que ambos se entiendan y trabajen juntos.
+          </p>
+          <ul>
+            <li>
+              <strong>Funcionalidad:</strong> Sin los drivers adecuados, el hardware simplemente no
+              funcionará o lo hará de forma limitada.
+            </li>
+            <li>
+              <strong>Rendimiento:</strong> Drivers actualizados a menudo incluyen optimizaciones
+              que mejoran el rendimiento de tus componentes.
+            </li>
+            <li>
+              <strong>Estabilidad:</strong> Los drivers corrigen errores que pueden causar
+              inestabilidad, congelamientos o pantallazos azules.
+            </li>
+            <li>
+              <strong>Seguridad:</strong> Las actualizaciones de drivers también pueden incluir
+              parches de seguridad para vulnerabilidades.
+            </li>
+          </ul>
+
+          <h3>Tipos Comunes de Drivers y su Gestión</h3>
+          <p>Los drivers más críticos suelen ser los siguientes:</p>
+          <ul>
+            <li>
+              <strong>Controladores de Gráficos (GPU):</strong> Cruciales para juegos, edición de
+              video y el rendimiento visual general. Fabricantes principales: NVIDIA, AMD, Intel.
+            </li>
+            <li>
+              <strong>Controladores de Audio:</strong> Aseguran que el sonido funcione correctamente
+              a través de tus altavoces o auriculares.
+            </li>
+            <li>
+              <strong>Controladores de Chipset:</strong> Controlan la comunicación entre los
+              componentes principales de tu placa base.
+            </li>
+            <li>
+              <strong>Controladores de Red (Wi-Fi/Ethernet):</strong> Permiten que tu PC se conecte
+              a Internet.
+            </li>
+            <li>
+              <strong>Controladores de Dispositivos USB/Periféricos:</strong> Para impresoras,
+              webcams, ratones, teclados, etc.
+            </li>
+          </ul>
+
+          <h3>Cómo Encontrar, Instalar y Actualizar Drivers</h3>
+          <p>Existen varias formas de gestionar tus drivers en Windows:</p>
+          <ol>
+            <li>
+              <strong>Windows Update (Método Recomendado y Más Sencillo):</strong>
+              <p>
+                Windows Update es la forma más segura y fácil de obtener la mayoría de los drivers.
+                Microsoft trabaja con fabricantes para distribuir drivers certificados que son
+                estables para tu sistema.
+              </p>
+              <ul>
+                <li>
+                  Ve a `Configuración > Actualización y seguridad (o Windows Update en Win11) >
+                  Opciones avanzadas > Actualizaciones opcionales`. Aquí a menudo encontrarás
+                  drivers que no son críticos pero pueden mejorar la funcionalidad.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Sitio Web del Fabricante del PC (OEM):</strong>
+              <p>
+                Si tienes un PC de marca (Dell, HP, Lenovo, Asus, Acer, etc.), su sitio web es la
+                mejor fuente para drivers específicos de tu modelo. Estos drivers están optimizados
+                para el hardware de tu equipo.
+              </p>
+              <ul>
+                <li>
+                  Visita el sitio web del fabricante, busca la sección de "Soporte" o "Descargas",
+                  ingresa el número de serie o modelo de tu PC y descarga los drivers recomendados.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Sitio Web del Fabricante del Componente Individual:</strong>
+              <p>
+                Si construiste tu PC o reemplazaste un componente, o si necesitas los drivers más
+                recientes para una tarjeta gráfica de alto rendimiento, visita el sitio web del
+                fabricante del componente (ej., NVIDIA, AMD, Intel para GPUs; Realtek para audio).
+              </p>
+              <ul>
+                <li>
+                  Asegúrate de descargar la versión correcta para tu sistema operativo (Windows
+                  10/11) y arquitectura (64 bits).
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Administrador de Dispositivos:</strong>
+              <p>
+                Puedes usar el Administrador de Dispositivos de Windows para actualizar o revertir
+                drivers específicos.
+              </p>
+              <ul>
+                <li>
+                  Haz clic derecho en el botón Inicio, selecciona `Administrador de Dispositivos`.
+                </li>
+                <li>
+                  Expande la categoría del dispositivo, haz clic derecho en el dispositivo y
+                  selecciona `Actualizar controlador`. Puedes elegir buscar automáticamente o buscar
+                  en tu equipo.
+                </li>
+                <li>
+                  Si un driver nuevo causa problemas, puedes usar `Revertir controlador` desde las
+                  propiedades del dispositivo.
+                </li>
+              </ul>
+            </li>
+          </ol>
+
+          <h3>Problemas Comunes con Drivers y Soluciones</h3>
+          <ul>
+            <li>
+              <strong>Hardware No Reconocido:</strong> Asegúrate de que el driver esté instalado. Si
+              sí, reinstala o busca uno más reciente.
+            </li>
+            <li>
+              <strong>Rendimiento Bajo:</strong> Especialmente con gráficos o red, actualiza los
+              drivers a la última versión.
+            </li>
+            <li>
+              <strong>Pantallazos Azules (BSOD):</strong> Los drivers son una causa común. Intenta
+              revertir o reinstalar el driver sospechoso. Usa el código de error del BSOD para
+              guiarte.
+            </li>
+            <li>
+              <strong>Conflictos de Drivers:</strong> Si instalaste un nuevo hardware y surgen
+              problemas, puede haber un conflicto. Intenta deshabilitar dispositivos uno por uno en
+              el Administrador de Dispositivos para aislar la causa.
+            </li>
+            <li>
+              <strong>Audio o Video que no funcionan:</strong> Reinstala o actualiza los drivers de
+              sonido/gráficos.
+            </li>
+          </ul>
+          <p>
+            Recuerda que la paciencia es clave al solucionar problemas de drivers. Siempre descarga
+            drivers de fuentes confiables.
+          </p>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos y Herramientas Oficiales</h3>
+          <ul>
+            <li>
+              <a
+                href="https://support.microsoft.com/es-es/windows/actualizar-controladores-manualmente-en-windows-all-versions-7d43bc20-9154-44cd-9f79-994503bd811b"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Actualizar controladores en Windows (Soporte Microsoft)</a
+              >
+            </li>
+            <li>
+              <a href="https://www.nvidia.com/drivers" target="_blank" rel="noopener noreferrer"
+                >Drivers NVIDIA</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.amd.com/es/support/download/drivers.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Drivers AMD</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.intel.la/content/www/xl/es/download-center/home.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Drivers Intel</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.microsoft.com/es-es/topic/c%C3%B3mo-determinar-la-versi%C3%B3n-de-directx-con-la-herramienta-de-diagn%C3%B3stico-de-directx-0c21cbce-55dc-2f9c-d3b1-f966c8339906"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Herramienta de Diagnóstico de DirectX (dxdiag)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li>
+              <a href="windows-troubleshooting.html">Solución de Problemas Comunes en Windows</a>
+            </li>
+            <li><a href="#">Compatibilidad de hardware (Pendiente)</a></li>
+            <li>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://es.msi.com/Landing/how-to-build-a-pc"
+                >Cómo construir un PC: Compatibilidad de componentes
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="compatibility-hardware-checker.html">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

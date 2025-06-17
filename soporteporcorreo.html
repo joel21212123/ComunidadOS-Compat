@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte por Correo Electrónico | OS-Compat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary-color: #3f37c9;
+            --dark-color: #1e1b4b;
+            --light-color: #f8f9fa;
+            --gray-color: #e2e8f0;
+            --success-color: #4cc9f0;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary-color: #4338ca;
+            --dark-color: #f8fafc;
+            --light-color: #1e1b4b;
+            --gray-color: #334155;
+            --success-color: #38bdf8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        /* Header Estilos */
+        .header {
+            background-color: var(--light-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .header-logo-img {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .header-logo-img {
+            transform: scale(1.05);
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: var(--primary-color);
+        }
+
+        .nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .has-dropdown {
+            position: relative;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--light-color);
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .has-dropdown:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            padding: 0.5rem 1rem;
+        }
+
+        .dropdown a {
+            color: var(--dark-color);
+            display: block;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .dropdown a:hover {
+            color: var(--primary-color);
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .icon {
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .icon:hover {
+            color: var(--primary-color);
+        }
+
+        .toggle-theme {
+            background: none;
+            border: none;
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .toggle-theme:hover {
+            color: var(--primary-color);
+            transform: rotate(30deg);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+            border-radius: 2px;
+        }
+
+        /* Email Support Section */
+        .email-support {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .support-illustration {
+            text-align: center;
+            position: relative;
+        }
+
+        .support-illustration i {
+            font-size: 10rem;
+            color: var(--primary-color);
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .support-illustration::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background-color: rgba(67, 97, 238, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .support-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .support-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--dark-color);
+        }
+
+        .email-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: fit-content;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .response-time {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: rgba(76, 201, 240, 0.1);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .response-time i {
+            color: var(--success-color);
+            font-size: 1.5rem;
+        }
+
+        .response-time p {
+            font-size: 0.9rem;
+        }
+
+        .response-time strong {
+            color: var(--success-color);
+        }
+
+        /* Form Section */
+        .form-container {
+            background-color: var(--light-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 4rem;
+            border: 1px solid var(--gray-color);
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .form-title i {
+            font-size: 1.8rem;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.8rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--gray-color);
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .submit-button {
+            grid-column: 1 / -1;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .submit-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background-color: var(--light-color);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--gray-color);
+        }
+
+        .faq-question {
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            padding: 0 1.2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-question {
+            background-color: rgba(67, 97, 238, 0.05);
+            color: var(--primary-color);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 1.2rem 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .support-illustration i {
+                font-size: 8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="imagenes/imagenlogo.png" alt="OS-Compat" class="header-logo-img" />
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Sistemas <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="windows.html">Windows</a></li>
+                            <li><a href="linux.html">Linux</a></li>
+                            <li><a href="macos.html">macOS</a></li>
+                            <li><a href="chromeos.html">Chrome OS</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+                            <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                            <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Comunidad.html">Comunidad</a></li>
+                    <li><a href="SoporteTecnico.html" class="active">Soporte Técnico</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#" class="icon"><i class="fas fa-search"></i></a>
+                <button class="toggle-theme" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Soporte por Correo Electrónico</h1>
+            <p>Nuestro equipo de expertos está listo para resolver tus consultas. Envíanos un correo y recibirás una respuesta detallada en menos de 24 horas hábiles.</p>
+        </div>
+
+        <section class="email-support">
+            <div class="support-illustration">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <div class="support-info">
+                <p class="support-description">
+                    ¿Necesitas ayuda técnica especializada? Nuestro equipo de soporte está disponible para asistirte con cualquier problema relacionado con sistemas operativos y compatibilidad de hardware. Envíanos un correo detallando tu consulta y te responderemos con una solución personalizada.
+                </p>
+                
+                <a href="mailto:soporte@os-compat.com" class="email-button">
+                    <i class="fas fa-paper-plane"></i>
+                    Enviar correo a soporte@os-compat.com
+                </a>
+                
+                <div class="response-time">
+                    <i class="fas fa-clock"></i>
+                    <p><strong>Tiempo de respuesta garantizado:</strong> Menos de 24 horas hábiles</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="form-container">
+            <h2 class="form-title"><i class="fas fa-headset"></i> Formulario de Contacto</h2>
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="system">Sistema operativo</label>
+                    <select id="system" name="system">
+                        <option value="">Selecciona un sistema</option>
+                        <option value="windows">Windows</option>
+                        <option value="linux">Linux</option>
+                        <option value="macos">macOS</option>
+                        <option value="chromeos">Chrome OS</option>
+                        <option value="other">Otro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="issue">Tipo de problema</label>
+                    <select id="issue" name="issue">
+                        <option value="">Selecciona un tipo</option>
+                        <option value="installation">Instalación</option>
+                        <option value="compatibility">Compatibilidad</option>
+                        <option value="performance">Rendimiento</option>
+                        <option value="security">Seguridad</option>
+                        <option value="other">Otro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="subject">Asunto</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="message">Descripción detallada del problema</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="attachments">Archivos adjuntos (opcional)</label>
+                    <input type="file" id="attachments" name="attachments" multiple>
+                </div>
+                
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-paper-plane"></i> Enviar Consulta
+                </button>
+            </form>
+        </div>
+
+        <section class="faq-section">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué información debo incluir en mi correo?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para agilizar el proceso de soporte, incluye: sistema operativo y versión, modelo de hardware, descripción detallada del problema, mensajes de error exactos y cualquier paso que ya hayas intentado para resolver el problema.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Puedo adjuntar archivos a mi consulta?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, puedes adjuntar capturas de pantalla, archivos de registro o cualquier otro documento relevante. Limita el tamaño total de los adjuntos a 10MB.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué pasa si no recibo respuesta en 24 horas?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>En raras ocasiones, durante periodos de alta demanda, podríamos tardar un poco más. Si no recibes respuesta en 24 horas hábiles, verifica tu carpeta de spam o contáctanos a través de nuestro chat en vivo para seguimiento.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿El soporte por correo tiene costo?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El soporte básico por correo es gratuito para consultas generales. Para problemas complejos que requieran análisis profundo o soporte remoto, podríamos ofrecerte opciones de soporte premium con costo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Toggle tema oscuro/claro
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        themeToggle.addEventListener('click', () => {
+            body.setAttribute('data-theme', 
+                body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            
+            // Cambiar icono
+            const icon = themeToggle.querySelector('i');
+            if (body.getAttribute('data-theme') === 'dark') {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Cerrar otros items abiertos
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Alternar el item actual
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

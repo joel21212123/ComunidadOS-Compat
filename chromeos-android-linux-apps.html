@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Apps Android y Linux en Chrome OS</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      .feature-section {
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border-left: 5px solid #4285f4; /* Azul de Google */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+      .feature-section h3 {
+        margin-top: 0;
+        color: #333;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+      .feature-section ul {
+        list-style: disc;
+        margin-left: 20px;
+        padding-left: 0;
+      }
+      .feature-section ul li {
+        margin-bottom: 8px;
+      }
+      code {
+        background-color: #e6e6e6; /* Un gris claro para el fondo */
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada */
+        font-size: 0.9em;
+        white-space: nowrap; /* Evita que los comandos se rompan en varias líneas */
+      }
+      pre {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto; /* Para comandos largos */
+      }
+      pre code {
+        display: block; /* Para que cada comando en un bloque pre tenga su propia línea */
+        white-space: pre-wrap; /* Permite el salto de línea dentro de comandos largos si es necesario */
+        background-color: transparent; /* No doble fondo */
+        color: #333; /* Color de texto para el código */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme"><i class="fas fa-moon"></i></button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="chromeos.html">Chrome OS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Apps Android y Linux</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Ampliando Horizontes: Apps Android y Linux en Chrome OS</h2>
+          <p>
+            Chrome OS ha evolucionado mucho más allá de ser solo un navegador web. Hoy en día, los
+            Chromebooks modernos ofrecen la capacidad de ejecutar aplicaciones de Android (a través
+            de Google Play Store) y aplicaciones de Linux (a través de una máquina virtual), lo que
+            amplía enormemente su versatilidad y los convierte en dispositivos potentes para el
+            trabajo, el estudio y el ocio.
+          </p>
+
+          <h3>1. Ejecutar Aplicaciones de Android (Google Play Store)</h3>
+          <p>
+            La integración de Google Play Store en Chrome OS permite a los usuarios descargar y
+            ejecutar millones de aplicaciones de Android directamente en sus Chromebooks. Esto
+            transforma el Chromebook en un dispositivo híbrido, combinando la ligereza de Chrome OS
+            con la vasta biblioteca de aplicaciones móviles.
+          </p>
+          <div class="feature-section">
+            <h3><i class="fab fa-google-play"></i> Cómo Habilitar Google Play Store</h3>
+            <ol>
+              <li>Abre los <strong>Ajustes</strong> (Settings) de tu Chromebook.</li>
+              <li>
+                En la sección "Aplicaciones" (Apps), busca "Google Play Store" y haz clic en
+                "Activar" (Turn on).
+              </li>
+              <li>Acepta los términos y condiciones.</li>
+              <li>
+                Una vez activado, el icono de Google Play Store aparecerá en tu lanzador de
+                aplicaciones (Launcher), y podrás buscar y descargar apps como lo harías en un
+                teléfono o tablet Android.
+              </li>
+            </ol>
+            <p>
+              <strong>Notas Importantes:</strong>
+            </p>
+            <ul>
+              <li>
+                No todos los Chromebooks son compatibles con Google Play Store. La mayoría de los
+                modelos lanzados a partir de 2017 lo soportan. Puedes verificar la lista de
+                dispositivos compatibles en el sitio de soporte de Google.
+              </li>
+              <li>
+                Algunas aplicaciones Android pueden no estar optimizadas para pantallas más grandes
+                o para el uso con teclado y ratón, y pueden comportarse de manera diferente que en
+                un dispositivo móvil.
+              </li>
+            </ul>
+          </div>
+
+          <h3>2. Ejecutar Aplicaciones de Linux (Crostini)</h3>
+          <p>
+            "Crostini" es el nombre en clave del proyecto que permite ejecutar un entorno de
+            desarrollo Linux completo y aplicaciones en Chrome OS dentro de una máquina virtual.
+            Esto es ideal para desarrolladores, estudiantes o cualquier persona que necesite
+            herramientas que solo están disponibles en Linux, como editores de código avanzados,
+            herramientas de desarrollo de software o aplicaciones de escritorio tradicionales.
+          </p>
+          <div class="feature-section">
+            <h3><i class="fab fa-linux"></i> Cómo Habilitar el Entorno de Desarrollo Linux</h3>
+            <ol>
+              <li>Abre los <strong>Ajustes</strong> (Settings) de tu Chromebook.</li>
+              <li>
+                En la sección "Desarrolladores" (Developers), busca "Entorno de desarrollo Linux"
+                (Linux development environment) y haz clic en "Activar" (Turn on).
+              </li>
+              <li>
+                Sigue las instrucciones en pantalla para configurar el entorno Linux. Esto instalará
+                una distribución Debian en una máquina virtual en tu Chromebook.
+              </li>
+              <li>
+                Una vez completado, tendrás acceso a una terminal de Linux desde la cual podrás
+                instalar y ejecutar aplicaciones.
+              </li>
+            </ol>
+            <p>
+              <strong>Comandos Básicos de Linux en Chrome OS:</strong>
+            </p>
+            <ul>
+              <li>
+                <code>sudo apt update</code>
+                <pre><code>sudo apt update</code></pre>
+                <p>Actualiza la lista de paquetes disponibles.</p>
+              </li>
+              <li>
+                <code>sudo apt upgrade</code>
+                <pre><code>sudo apt upgrade</code></pre>
+                <p>Actualiza los paquetes instalados a sus últimas versiones.</p>
+              </li>
+              <li>
+                <code>sudo apt install [nombre_del_paquete]</code>
+                <pre><code>sudo apt install gimp</code></pre>
+                <p>Instala una aplicación (ej. GIMP, un editor de imágenes).</p>
+              </li>
+              <li>
+                <code>sudo apt remove [nombre_del_paquete]</code>
+                <pre><code>sudo apt remove gimp</code></pre>
+                <p>Desinstala una aplicación.</p>
+              </li>
+            </ul>
+            <p>
+              <strong>Notas Importantes:</strong>
+            </p>
+            <ul>
+              <li>
+                No todos los Chromebooks soportan Linux. Generalmente, los modelos más recientes y
+                con hardware más potente (especialmente RAM) son compatibles.
+              </li>
+              <li>
+                Las aplicaciones Linux se ejecutan en un contenedor, por lo que el rendimiento puede
+                variar en comparación con la ejecución nativa.
+              </li>
+              <li>
+                Las carpetas compartidas entre Chrome OS y Linux se encuentran en la sección
+                "Archivos de Linux" en la aplicación Archivos de Chrome OS.
+              </li>
+            </ul>
+          </div>
+
+          <h3>Beneficios de la Expansión de Aplicaciones</h3>
+          <ul>
+            <li>
+              <strong>Mayor Productividad:</strong> Accede a herramientas de productividad, suites
+              de oficina completas y software específico que no está disponible como aplicación web
+              o Android.
+            </li>
+            <li>
+              <strong>Desarrollo de Software:</strong> Utiliza IDEs, lenguajes de programación y
+              herramientas de desarrollo para crear tus propios proyectos.
+            </li>
+            <li>
+              <strong>Entretenimiento:</strong> Disfruta de juegos Android o emuladores disponibles
+              en la Play Store.
+            </li>
+            <li>
+              <strong>Versatilidad:</strong> Un solo dispositivo puede servir para navegación web,
+              tareas móviles y trabajo de desarrollo.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Oficiales de Google</h3>
+          <ul>
+            <li>
+              <a
+                href="https://support.google.com/chromebook/answer/7021273?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Instalar apps de Android en Chromebook (Google Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/chromebook/answer/9145439?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Configurar Linux en Chromebook (Google Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://chromium.googlesource.com/chromiumos/docs/+/master/containers_and_vms.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Documentación de Crostini (Proyecto Chromium)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li>
+              <a href="chromeos-compatible-devices.html">Dispositivos Compatibles con Chrome OS</a>
+            </li>
+            <li>
+              <a href="chromeos-installation-on-pc.html"
+                >Instalación de Chrome OS en PC (CloudReady/FydeOS)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/chrome/a/answer/9036555?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Seguridad y Privacidad en Chrome OS </a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

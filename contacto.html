@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacto - OS-Compat</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="imagenes/imagenlogo.png" alt=" OS-Compat" class="header-logo-img" />
+        </a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="#">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li class="active"><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="contact-hero">
+      <div class="contact-overlay"></div>
+      <div class="container contact-content-wrapper">
+        <div class="contact-left-info">
+          <h1>Ponte en Contacto con OS-Compat</h1>
+          <p>
+            ¿Tienes alguna pregunta, sugerencia o necesitas soporte técnico especializado? Estamos
+            aquí para ayudarte a resolver todas tus dudas sobre compatibilidad de sistemas
+            operativos y hardware.
+          </p>
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>123 Calle de la Innovación, Distrito Tecnológico, Ciudad, País</p>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-phone-alt"></i>
+            <p>+123 456 7890</p>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <p>soporte@oscompat.com</p>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <p>Lunes - Viernes: 9:00 AM - 6:00 PM (Hora Local)</p>
+          </div>
+          <div class="social-links contact-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <h3>Envíanos tu Consulta</h3>
+          <form action="#" method="POST" class="contact-form-unique">
+            <div class="form-row">
+              <div class="form-group-half">
+                <label for="name">Nombre Completo</label>
+                <input type="text" id="name" name="name" placeholder="Tu Nombre" required />
+              </div>
+              <div class="form-group-half">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" name="email" placeholder="tu@ejemplo.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">Asunto</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Asunto de tu mensaje"
+                required
+              />
+            </div>
+
+            <div class="form-group-radio">
+              <label>¿Cuál es el motivo de tu contacto?</label>
+              <div class="radio-options">
+                <label class="radio-label">
+                  <input type="radio" name="reason" value="soporte" checked /> Soporte Técnico
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="reason" value="sugerencia" /> Sugerencia/Feedback
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="reason" value="negocio" /> Consulta de Negocio
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="reason" value="otro" /> Otro
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Tu Mensaje</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="Describe tu consulta en detalle..."
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary full-width">Enviar Mensaje</button>
+          </form>
+        </div>
+      </div>
+      <div class="contact-map-unique">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.138766468779!2d-77.0422119!3d-12.0463748!2m3!1m2!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8c8c8c8c8c8%3A0x8c8c8c8c8c8c8c8c!2sPlaza%20Mayor%20de%20Lima!5e0!3m2!1ses-419!2spe!4v1716618778643!5m2!1ses-419!2spe"
+          width="100%"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">
+              <img src="imagenes/imagenlogo.png" alt="OS-Compat" class="footer-logo-img" />
+            </a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href=""><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li>
+                <a href="compatibility-hardware-checker.html">Verificador de Compatibilidad</a>
+              </li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Cuentas de Usuario en Chrome OS</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      :root {
+        /* Colores del modo claro */
+        --background-color: #f4f7fa;
+        --text-color: #333;
+        --heading-color: #222;
+        --card-background: #ffffff;
+        --border-color: #ddd;
+        --primary-color: #007bff; /* Ejemplo de color primario */
+        --google-blue-light: #4285f4; /* Azul de Google para modo claro */
+        --account-section-background: #f8f8f8; /* Fondo para secciones de cuenta en modo claro */
+        --account-section-heading-color: #333; /* Título para secciones de cuenta en modo claro */
+      }
+
+      body.dark-mode {
+        /* Colores del modo oscuro */
+        --background-color: #1a1a2e;
+        --text-color: #e0e0e0;
+        --heading-color: #f0f0f0;
+        --card-background: #2a2a4a;
+        --border-color: #444;
+        --primary-color: #6a8aff; /* Ejemplo de color primario en oscuro */
+        --google-blue-dark: #8ab4f8; /* Azul de Google que contraste mejor en modo oscuro */
+        --account-section-background: #2a2a4a; /* Fondo para secciones de cuenta en modo oscuro */
+        --account-section-heading-color: #f0f0f0; /* Título para secciones de cuenta en modo oscuro */
+      }
+      /* -- Estilos para Secciones de Cuentas de Usuario -- */
+      .account-section {
+        background-color: var(--account-section-background); /* Usa la variable para el fondo */
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        color: var(--text-color); /* Asegura que el texto general use el color del tema */
+      }
+
+      .account-section.owner-account {
+        /* Si tienes una clase específica para la cuenta de propietario */
+        border-left: 5px solid var(--google-blue-light); /* Usa la variable del azul de Google */
+      }
+
+      /* Aplica el borde azul de Google a todas las account-section por defecto, o crea variaciones si es necesario */
+      .account-section {
+        border-left: 5px solid var(--google-blue-light); /* Para modo claro */
+      }
+
+      .account-section h3 {
+        margin-top: 0;
+        color: var(--account-section-heading-color); /* Usa la variable para el color del título */
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .account-section h3 i {
+        color: var(
+          --account-section-heading-color
+        ); /* Asegura que los íconos del título también sean legibles */
+        margin-right: 8px; /* Espacio entre el ícono y el texto del título */
+      }
+
+      .account-section ol,
+      .account-section ul {
+        margin-left: 20px;
+        padding-left: 0;
+        list-style-position: inside; /* Mueve los marcadores o números dentro del padding del li */
+      }
+
+      .account-section ul li,
+      .account-section ol li {
+        margin-bottom: 8px;
+        color: var(--text-color); /* Asegura que el texto de la lista use el color del tema */
+      }
+
+      /* -- Adaptaciones para el Modo Oscuro -- */
+      body.dark-mode .account-section {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada en oscuro */
+        border-left: 5px solid var(--google-blue-dark); /* Borde azul de Google para modo oscuro */
+      }
+
+      body.dark-mode .account-section h3 i {
+        color: var(
+          --account-section-heading-color
+        ); /* Los íconos del título también usan la variable de color de título */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="chromeos.html">Chrome OS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cuentas de Usuario</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Gestión de Cuentas de Usuario en Chrome OS</h2>
+          <p>
+            Chrome OS está diseñado con la sencillez y la seguridad en mente, especialmente cuando
+            se trata de la gestión de usuarios. Cada usuario en un Chromebook inicia sesión con su
+            cuenta de Google, lo que permite una sincronización fluida de datos, aplicaciones y
+            configuraciones en la nube. Esto facilita compartir un Chromebook entre varias personas
+            sin comprometer la privacidad o la personalización.
+          </p>
+
+          <h3>Tipos de Cuentas de Usuario</h3>
+
+          <div class="account-section">
+            <h3><i class="fas fa-user-circle"></i> Cuenta Principal (Propietario)</h3>
+            <ul>
+              <li>
+                La primera cuenta de Google que se usa para iniciar sesión en un Chromebook se
+                convierte en la cuenta del propietario.
+              </li>
+              <li>
+                El propietario tiene privilegios especiales, como la capacidad de gestionar otras
+                cuentas, restablecer el Chromebook (Powerwash) y controlar ciertas configuraciones
+                del sistema.
+              </li>
+              <li>Solo puede haber un propietario en un Chromebook.</li>
+            </ul>
+          </div>
+
+          <div class="account-section">
+            <h3><i class="fas fa-user-plus"></i> Otras Cuentas de Usuario</h3>
+            <ul>
+              <li>
+                Cualquier otra cuenta de Google que inicie sesión en el Chromebook se considera una
+                cuenta de usuario regular.
+              </li>
+              <li>
+                Cada usuario tiene su propio espacio de trabajo, archivos, aplicaciones y
+                configuraciones, que se sincronizan con su cuenta de Google.
+              </li>
+              <li>
+                Los usuarios regulares no tienen los mismos permisos de administración que el
+                propietario.
+              </li>
+            </ul>
+          </div>
+
+          <div class="account-section">
+            <h3><i class="fas fa-user-friends"></i> Cuentas Supervisadas (Family Link)</h3>
+            <ul>
+              <li>
+                Permite a los padres crear y gestionar cuentas de Google para sus hijos menores de
+                13 años (o la edad de consentimiento en su país).
+              </li>
+              <li>
+                Los padres pueden establecer límites de tiempo de pantalla, aprobar descargas de
+                aplicaciones y ver la actividad del dispositivo.
+              </li>
+              <li>Se configuran a través de Google Family Link.</li>
+            </ul>
+          </div>
+
+          <div class="account-section">
+            <h3><i class="fas fa-user-secret"></i> Modo Invitado</h3>
+            <ul>
+              <li>
+                Permite a cualquier persona usar el Chromebook sin iniciar sesión con una cuenta de
+                Google.
+              </li>
+              <li>
+                Ningún dato o actividad se guarda localmente en el dispositivo una vez que la sesión
+                de invitado se cierra.
+              </li>
+              <li>
+                Ideal para prestar tu Chromebook a alguien o para uso público, garantizando la
+                privacidad.
+              </li>
+            </ul>
+          </div>
+
+          <h3>Cómo Gestionar Cuentas de Usuario</h3>
+          <p>Puedes gestionar las cuentas de usuario en tu Chromebook desde los Ajustes:</p>
+          <ol>
+            <li>
+              Haz clic en tu foto de perfil (o el icono de la barra de estado) en la esquina
+              inferior derecha de la pantalla y luego en el icono de
+              <strong>Ajustes</strong> (engranaje).
+            </li>
+            <li>En el menú de la izquierda, selecciona <strong>"Personas"</strong>.</li>
+            <li>
+              Aquí podrás:
+              <ul>
+                <li>
+                  <strong>Añadir usuario:</strong> Para permitir que otra persona inicie sesión con
+                  su cuenta de Google.
+                </li>
+                <li>
+                  <strong>Eliminar usuario:</strong> Para eliminar una cuenta de Google del
+                  Chromebook (solo el propietario puede hacerlo para otras cuentas). Esto borrará
+                  los datos locales asociados con esa cuenta.
+                </li>
+                <li>
+                  <strong>Gestionar otras personas:</strong> Para ver una lista de todas las cuentas
+                  en el Chromebook.
+                </li>
+                <li>
+                  <strong>Configurar el Modo Invitado:</strong> Habilitar o deshabilitar la opción
+                  de inicio de sesión como invitado.
+                </li>
+                <li>
+                  <strong>Gestionar Cuentas de Google:</strong> Ir directamente a la gestión de tu
+                  propia cuenta de Google.
+                </li>
+              </ul>
+            </li>
+          </ol>
+
+          <h3>Beneficios de la Gestión de Cuentas en Chrome OS</h3>
+          <ul>
+            <li>
+              <strong>Sincronización Total:</strong> Todos los datos de usuario (marcadores,
+              extensiones, aplicaciones, configuraciones) se sincronizan con la cuenta de Google, lo
+              que permite un fácil acceso desde cualquier Chromebook.
+            </li>
+            <li>
+              <strong>Portabilidad:</strong> Si pierdes o dañas tu Chromebook, simplemente puedes
+              iniciar sesión en uno nuevo y todas tus configuraciones se restaurarán.
+            </li>
+            <li>
+              <strong>Seguridad por Defecto:</strong> Los datos de cada usuario están separados y
+              cifrados, lo que aumenta la seguridad.
+            </li>
+            <li>
+              <strong>Ideal para Compartir:</strong> Facilita el uso de un solo dispositivo por
+              varias personas, como en un hogar o un aula.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Oficiales de Google</h3>
+          <ul>
+            <li>
+              <a
+                href="https://support.google.com/chromebook/answer/1059242?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Añadir una cuenta de Google a tu Chromebook (Google Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/chromebook/answer/1059260?hl=es-419"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Eliminar una cuenta de tu Chromebook (Google Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/families/answer/7103338?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Acerca de Family Link (Google Support)</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/chromebook/answer/1057090?hl=es-419"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Compartir Chromebooks con otras personas (Google Support)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="chromeos-pros-cons.html">Ventajas y Desventajas de Chrome OS</a></li>
+            <li><a href="chromeos-personalization.html">Personalización de Chrome OS</a></li>
+            <li>
+              <a
+                href="https://support.google.com/chrome/a/answer/9036555?hl=es"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Seguridad y Privacidad en Chrome OS
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Ubuntu Linux</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html" class="active">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="index.html#seccion-compatibilidad">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+     <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="linux.html">Linux</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ubuntu</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Ubuntu: La Puerta de Entrada al Mundo Linux</h2>
+          <p>
+            Ubuntu es una de las distribuciones de Linux más populares y amigables para el usuario,
+            conocida por su facilidad de instalación, su interfaz intuitiva y una vasta comunidad de
+            soporte. Desarrollada por Canonical, Ubuntu se lanza en nuevas versiones cada seis
+            meses, con versiones de Soporte a Largo Plazo (LTS) cada dos años que ofrecen 5 años de
+            actualizaciones de seguridad y mantenimiento. Es una excelente opción tanto para
+            principiantes como para usuarios avanzados.
+          </p>
+
+          <h3>Características Principales de Ubuntu</h3>
+          <ul>
+            <li>
+              <strong>Interfaz de Usuario GNOME:</strong> Por defecto, Ubuntu utiliza el entorno de
+              escritorio GNOME, ofreciendo una experiencia moderna, limpia y altamente
+              personalizable. Existen variantes oficiales (sabores) con otros entornos como Kubuntu
+              (KDE), Xubuntu (XFCE), Lubuntu (LXQt), etc.
+            </li>
+            <li>
+              <strong>Centro de Software de Ubuntu:</strong> Una tienda de aplicaciones que facilita
+              la instalación y gestión de software de forma sencilla, similar a una tienda de apps
+              en un smartphone.
+            </li>
+            <li>
+              <strong>Amplia Compatibilidad de Hardware:</strong> Ubuntu es compatible con una gran
+              cantidad de hardware, y sus instalaciones suelen incluir drivers genéricos para la
+              mayoría de los componentes, facilitando la detección.
+            </li>
+            <li>
+              <strong>Actualizaciones Regulares y LTS:</strong> Las versiones LTS (Long Term
+              Support) garantizan estabilidad y soporte prolongado, ideales para entornos de
+              producción o usuarios que prefieren no actualizar con frecuencia.
+            </li>
+            <li>
+              <strong>Gran Comunidad y Documentación:</strong> Dada su popularidad, encontrar ayuda
+              y tutoriales para Ubuntu es muy fácil a través de foros, wikis y sitios web dedicados.
+            </li>
+            <li>
+              <strong>Orientado al Usuario Final:</strong> Aunque es Linux, se enfoca en ofrecer una
+              experiencia de usuario final completa, con software preinstalado para tareas comunes
+              (navegación web, ofimática, reproducción multimedia).
+            </li>
+          </ul>
+
+          <h3>Requisitos Mínimos del Sistema para Ubuntu Desktop</h3>
+          <p>Los requisitos pueden variar ligeramente entre versiones, pero generalmente son:</p>
+          <ul>
+            <li><strong>Procesador:</strong> 2 GHz dual-core (o superior).</li>
+            <li><strong>RAM:</strong> 4 GB (se recomiendan 8 GB para una experiencia fluida).</li>
+            <li>
+              <strong>Espacio en disco:</strong> 25 GB (se recomienda 100 GB o más si planeas
+              instalar muchos programas o guardar muchos archivos).
+            </li>
+            <li><strong>Unidad USB o DVD:</strong> Para el medio de instalación.</li>
+            <li>
+              <strong>Acceso a Internet:</strong> Para descargas de software y actualizaciones.
+            </li>
+          </ul>
+          <p>
+            Ubuntu puede funcionar con menos recursos en sus "sabores" más ligeros como Lubuntu o
+            Xubuntu.
+          </p>
+
+          <h3>Guía Rápida de Instalación de Ubuntu</h3>
+          <ol>
+            <li>
+              <strong>Descargar la Imagen ISO:</strong> Baja la última versión LTS de Ubuntu Desktop
+              desde el sitio oficial.
+            </li>
+            <li>
+              <strong>Crear un Medio de Arranque:</strong> Utiliza una herramienta como Rufus
+              (Windows) o BalenaEtcher (multiplataforma) para grabar la imagen ISO en una unidad USB
+              (mínimo 8GB).
+            </li>
+            <li>
+              <strong>Arrancar desde el USB:</strong> Reinicia tu PC y accede a la BIOS/UEFI
+              (normalmente pulsando F2, F10, F12 o Supr al inicio) para configurar el arranque desde
+              la unidad USB.
+            </li>
+            <li>
+              <strong>Probar o Instalar:</strong> Una vez que arranca el USB, puedes "Probar Ubuntu"
+              sin instalarlo para ver si tu hardware es compatible, o seleccionar "Instalar Ubuntu"
+              directamente.
+            </li>
+            <li>
+              <strong>Seguir el Asistente de Instalación:</strong> El asistente te guiará a través
+              de los pasos: idioma, conexión a red, tipo de instalación (instalar junto a Windows,
+              borrar disco e instalar, etc.), creación de usuario.
+            </li>
+            <li>
+              <strong>Reiniciar:</strong> Una vez completada la instalación, retira el USB y
+              reinicia. ¡Ya estarás en Ubuntu!
+            </li>
+          </ol>
+          <p>
+            Para instalaciones dual-boot (Ubuntu junto a Windows), se recomienda hacer una copia de
+            seguridad de tus datos y liberar espacio en disco desde Windows antes de empezar.
+          </p>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos Oficiales de Ubuntu</h3>
+          <ul>
+            <li>
+              <a
+                href="https://ubuntu.com/download/desktop"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Descargar Ubuntu Desktop</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://ubuntu.com/desktop/features"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Características de Ubuntu Desktop</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://ubuntu.com/support/community"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Comunidad y Soporte de Ubuntu</a
+              >
+            </li>
+            <li>
+              <a href="https://ubuntu.com/tutorials" target="_blank" rel="noopener noreferrer"
+                >Tutoriales oficiales de Ubuntu</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li>
+              <a href="linux-fedora-debian.html">Comparativa: Ubuntu vs. Fedora vs. Debian</a>
+            </li>
+            <li><a href="linux-cli.html">Comandos Básicos para Ubuntu (Línea de Comandos)</a></li>
+            <li>
+              <a
+                href="https://www.fsf.org/es/news/dispositivos-de-hardware-compatibles-con-gnu-linux"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Compatibilidad de Hardware en Linux
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+       <script src="theme.js"></script>
+  </body>
+</html>

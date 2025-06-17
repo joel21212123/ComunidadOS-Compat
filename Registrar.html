@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesion</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="Registrar.css">
+</head>
+<body>
+    <div class="neon-circle"></div>
+    <div class="neon-circle"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="register-container">
+        <div class="register-header">
+            <h1>Crear Cuenta</h1>
+            <p>Únete a nuestra comunidad</p>
+        </div>
+
+        <form id="register-form">
+            <div class="input-group">
+                <i class='bx bxs-user'></i>
+                <input type="text" id="username" placeholder="Nombre de usuario" required>
+                <div class="error-message" id="username-error">El nombre de usuario debe tener al menos 4 caracteres</div>
+            </div>
+
+            <div class="input-group">
+                <i class='bx bxs-envelope'></i>
+                <input type="email" id="email" placeholder="Correo electrónico" required>
+                <div class="error-message" id="email-error">Ingresa un correo electrónico válido</div>
+            </div>
+
+            <div class="input-group">
+                <i class='bx bxs-lock-alt'></i>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <div class="password-strength">
+                    <div class="strength-bar" id="strength-bar"></div>
+                </div>
+                <div class="strength-text" id="strength-text">Debil</div>
+                <div class="error-message" id="password-error">La contraseña debe tener al menos 8 caracteres</div>
+            </div>
+
+            <div class="input-group">
+                <i class='bx bxs-lock'></i>
+                <input type="password" id="confirm-password" placeholder="Confirmar contraseña" required>
+                <div class="error-message" id="confirm-error">Las contraseñas no coinciden</div>
+            </div>
+
+            <div class="terms">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">Acepto los <a href="terminosservicio.html">términos y condiciones</a></label>
+            </div>
+
+            <button type="submit" class="register-button">Registrarse</button>
+
+            <div class="login-link">
+                <p>¿Ya tienes una cuenta? <a href="InicioSesion.html">Inicia sesión</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="Registrar.js"></script>
+</body>
+</html>

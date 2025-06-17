@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Requisitos Mínimos de Sistemas Operativos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img
+            src="imagenes/Modern Creative Logo Instagram Post.png"
+            alt="OS-Compat"
+            class="header-logo-img"
+          />
+          OS-<span>Compat</span>
+        </a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="compatibility-hardware-checker.html" class="active"
+                >Compatibilidad <i class="fas fa-chevron-down"></i
+              ></a>
+              <ul class="dropdown">
+                <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="#">Compatibilidad</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Requisitos Mínimos</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Requisitos Mínimos de Hardware para Sistemas Operativos Populares</h2>
+          <p>
+            Conocer los requisitos mínimos de hardware es el primer paso para asegurar la
+            compatibilidad de tu PC con un sistema operativo. Cumplir con estos requisitos asegura
+            que el OS podrá instalarse y funcionar, aunque para una experiencia óptima, a menudo se
+            recomienda superar estas especificaciones.
+          </p>
+
+          <div class="table-responsive">
+            <table class="os-requirements-table">
+              <thead>
+                <tr>
+                  <th>Sistema Operativo</th>
+                  <th>Procesador (CPU)</th>
+                  <th>Memoria RAM</th>
+                  <th>Almacenamiento</th>
+                  <th>Tarjeta Gráfica</th>
+                  <th>Otros Requisitos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><i class="fab fa-windows"></i> Windows 11</td>
+                  <td>
+                    1 GHz o superior con 2 o más núcleos en un procesador de 64 bits compatible o
+                    SoC
+                  </td>
+                  <td>4 GB</td>
+                  <td>64 GB</td>
+                  <td>Compatible con DirectX 12 o posterior con controlador WDDM 2.0</td>
+                  <td>UEFI, Secure Boot, TPM 2.0, Conexión a Internet y Cuenta Microsoft (Home)</td>
+                </tr>
+                <tr>
+                  <td><i class="fab fa-windows"></i> Windows 10</td>
+                  <td>1 GHz o más rápido</td>
+                  <td>1 GB (32-bit) / 2 GB (64-bit)</td>
+                  <td>16 GB (32-bit) / 20 GB (64-bit)</td>
+                  <td>Compatible con DirectX 9 o posterior con controlador WDDM 1.0</td>
+                  <td>Pantalla de 800x600</td>
+                </tr>
+                <tr>
+                  <td><i class="fab fa-linux"></i> Linux (Ubuntu Desktop 24.04 LTS)</td>
+                  <td>Procesador de 2 GHz de doble núcleo o superior</td>
+                  <td>4 GB (2 GB mínimo, 8 GB recomendado)</td>
+                  <td>25 GB (10 GB mínimo)</td>
+                  <td>Cualquier tarjeta gráfica compatible con resolución de 104x768</td>
+                  <td>Puerto USB para medios de instalación</td>
+                </tr>
+                <tr>
+                  <td><i class="fab fa-linux"></i> Linux (Linux Mint 21.3 "Virginia")</td>
+                  <td>Procesador X86</td>
+                  <td>2 GB (1 GB mínimo, 4 GB recomendado)</td>
+                  <td>20 GB (15 GB mínimo)</td>
+                  <td>Cualquier tarjeta gráfica compatible con resolución de 1024x768</td>
+                  <td>N/A</td>
+                </tr>
+                <tr>
+                  <td><i class="fab fa-apple"></i> macOS (Hackintosh - General)</td>
+                  <td>Procesador Intel Core i o AMD Ryzen (con ciertas limitaciones)</td>
+                  <td>8 GB (4 GB mínimo)</td>
+                  <td>50 GB (para la instalación)</td>
+                  <td>GPU compatible (Intel HD Graphics, AMD Radeon, NVIDIA - series antiguas)</td>
+                  <td>Placa base con UEFI, hardware compatible (WiFi, Ethernet específicos)</td>
+                </tr>
+                <tr>
+                  <td><i class="fab fa-chrome"></i> Chrome OS (Oficial Chromebook)</td>
+                  <td>
+                    Variará por modelo (generalmente procesadores ARM o Intel Celeron/Pentium)
+                  </td>
+                  <td>4 GB (2 GB en modelos básicos)</td>
+                  <td>16 GB (o más, con enfoque en la nube)</td>
+                  <td>Integrada</td>
+                  <td>Conexión a Internet para la configuración inicial</td>
+                </tr>
+                <tr>
+                  <td><i class="fab fa-chrome"></i> ChromeOS Flex (en PC/Mac)</td>
+                  <td>Intel o AMD de 64 bits (desde 2010 en adelante)</td>
+                  <td>4 GB</td>
+                  <td>16 GB</td>
+                  <td>Cualquiera que permita resolución mínima</td>
+                  <td>Posibles problemas de compatibilidad con Wi-Fi/Bluetooth específicos.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="requirement-note">
+            <h4><i class="fas fa-exclamation-triangle"></i> Notas Importantes:</h4>
+            <ul>
+              <li>
+                <strong>"Mínimo" vs. "Recomendado":</strong> Los requisitos mínimos son solo eso, lo
+                mínimo para que funcione. Para una experiencia fluida y sin frustraciones, siempre
+                apunta a cumplir o superar los requisitos recomendados.
+              </li>
+              <li>
+                <strong>Versiones Específicas:</strong> Los requisitos pueden variar ligeramente
+                entre diferentes versiones o ediciones del mismo sistema operativo. Siempre consulta
+                la documentación oficial más reciente.
+              </li>
+              <li>
+                <strong>Controladores (Drivers):</strong> Asegúrate de que existan drivers
+                compatibles para tus componentes de hardware con el sistema operativo que deseas
+                instalar.
+              </li>
+              <li>
+                <strong>macOS (Hackintosh):</strong> La compatibilidad de hardware para Hackintosh
+                es mucho más estricta y específica. No cualquier PC con los requisitos mínimos de
+                CPU/RAM funcionará. Se requiere hardware cuidadosamente seleccionado.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos de Requisitos Oficiales</h3>
+          <ul>
+            <li>
+              <a
+                href="https://www.microsoft.com/es-es/windows/windows-11-specifications"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Requisitos de Windows 11</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.microsoft.com/es-es/windows/requisitos-del-sistema-de-windows-10-6d4e9a79-66bf-7950-467c-795cf0386715"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Requisitos de Windows 10</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://ubuntu.com/download/desktop"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Requisitos de Ubuntu</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://linuxmint.com/edition.php?id=309"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Requisitos de Linux Mint</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://support.google.com/chromeosflex/answer/11552529?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Requisitos de ChromeOS Flex</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://dortania.github.io/OpenCore-Post-Install/universal/update.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Guía de OpenCore (Hackintosh, para referencia)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+            <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+            <li><a href="windows.html">Guía de Windows</a></li>
+            <li><a href="linux.html">Guía de Linux</a></li>
+            <li><a href="macos.html">Guía de macOS (Hackintosh)</a></li>
+            <li><a href="chromeos.html">Guía de Chrome OS</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">
+              <img src="imagenes/imagenlogo.png" alt="OS-Compat" class="footer-logo-img" />
+              OS-<span>Compat</span>
+            </a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+  </body>
+</html>

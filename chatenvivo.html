@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat en Vivo | OS-Compat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary-color: #3f37c9;
+            --dark-color: #1e1b4b;
+            --light-color: #f8f9fa;
+            --gray-color: #e2e8f0;
+            --success-color: #4cc9f0;
+            --chat-bg: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            --user-bubble: #3b82f6;
+            --agent-bubble: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #f8fafc;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary-color: #4338ca;
+            --dark-color: #f8fafc;
+            --light-color: #1e1b4b;
+            --gray-color: #334155;
+            --success-color: #38bdf8;
+            --chat-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --user-bubble: #3b82f6;
+            --agent-bubble: #334155;
+            --text-dark: #f8fafc;
+            --text-light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Estilos */
+        .header {
+            background-color: var(--light-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .header-logo-img {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .header-logo-img {
+            transform: scale(1.05);
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: var(--primary-color);
+        }
+
+        .nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .has-dropdown {
+            position: relative;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--light-color);
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .has-dropdown:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li {
+            padding: 0.5rem 1rem;
+        }
+
+        .dropdown a {
+            color: var(--dark-color);
+            display: block;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .dropdown a:hover {
+            color: var(--primary-color);
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .icon {
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .icon:hover {
+            color: var(--primary-color);
+        }
+
+        .toggle-theme {
+            background: none;
+            border: none;
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .toggle-theme:hover {
+            color: var(--primary-color);
+            transform: rotate(30deg);
+        }
+
+        /* Chat Container */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 2rem auto;
+            width: 95%;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background: var(--chat-bg);
+            transition: all 0.3s ease;
+        }
+
+        .chat-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .chat-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+        }
+
+        .chat-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chat-title h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .chat-icon {
+            font-size: 1.8rem;
+            color: var(--success-color);
+            animation: pulse 2s infinite;
+        }
+
+        .agent-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #10b981;
+            animation: pulse 1.5s infinite;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .message {
+            display: flex;
+            flex-direction: column;
+            max-width: 80%;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .message-user {
+            align-items: flex-end;
+            margin-left: auto;
+        }
+
+        .message-agent {
+            align-items: flex-start;
+        }
+
+        .message-content {
+            padding: 1rem 1.5rem;
+            border-radius: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            line-height: 1.5;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+        }
+
+        .user-message .message-content {
+            background-color: var(--user-bubble);
+            color: var(--text-light);
+            border-bottom-right-radius: 0.5rem;
+        }
+
+        .agent-message .message-content {
+            background-color: var(--agent-bubble);
+            color: var(--text-dark);
+            border-bottom-left-radius: 0.5rem;
+            border: 1px solid var(--gray-color);
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: var(--gray-color);
+            opacity: 0.8;
+        }
+
+        .agent-message .message-time {
+            text-align: left;
+        }
+
+        .user-message .message-time {
+            text-align: right;
+        }
+
+        .chat-input-container {
+            padding: 1.5rem;
+            border-top: 1px solid var(--gray-color);
+            background-color: var(--light-color);
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 2rem;
+            border: 1px solid var(--gray-color);
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            font-size: 1rem;
+            transition: all 0.3s;
+            resize: none;
+            max-height: 150px;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        .send-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .send-button:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .send-button i {
+            font-size: 1.2rem;
+        }
+
+        .chat-options {
+            display: flex;
+            gap: 1rem;
+            padding: 0 1.5rem 1.5rem;
+            background-color: var(--light-color);
+        }
+
+        .option-button {
+            background-color: transparent;
+            border: 1px solid var(--gray-color);
+            color: var(--dark-color);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .option-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--agent-bubble);
+            border-radius: 1.5rem;
+            width: fit-content;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--gray-color);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--gray-color);
+            border-radius: 50%;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Animaciones */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .chat-container {
+                margin: 1rem auto;
+                border-radius: 0;
+            }
+
+            .message {
+                max-width: 90%;
+            }
+        }
+
+        /* Efectos especiales */
+        .floating-tech {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .floating-tech:nth-child(1) {
+            top: 20%;
+            left: 5%;
+            font-size: 3rem;
+            animation: float 15s infinite linear;
+        }
+
+        .floating-tech:nth-child(2) {
+            top: 60%;
+            right: 5%;
+            font-size: 4rem;
+            animation: float 18s infinite linear reverse;
+        }
+
+        .floating-tech:nth-child(3) {
+            bottom: 10%;
+            left: 15%;
+            font-size: 2.5rem;
+            animation: float 12s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="imagenes/imagenlogo.png" alt="OS-Compat" class="header-logo-img" />
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#" class="active">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Sistemas <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="windows.html">Windows</a></li>
+                            <li><a href="linux.html">Linux</a></li>
+                            <li><a href="macos.html">macOS</a></li>
+                            <li><a href="chromeos.html">Chrome OS</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">Compatibilidad <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown">
+                            <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+                            <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                            <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Comunidad.html">Comunidad</a></li>
+                    <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#" class="icon"><i class="fas fa-search"></i></a>
+                <button class="toggle-theme" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Elementos flotantes de decoración -->
+    <i class="fas fa-code floating-tech"></i>
+    <i class="fas fa-server floating-tech"></i>
+    <i class="fas fa-microchip floating-tech"></i>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="chat-title">
+                <i class="fas fa-comment-dots chat-icon"></i>
+                <h2>Chat de Soporte OS-Compat</h2>
+            </div>
+            <div class="agent-status">
+                <span class="status-dot"></span>
+                <span>En línea - Soporte Técnico</span>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+            <div class="message agent-message">
+                <div class="message-content">
+                    ¡Hola! Soy Winner, tu especialista en soporte técnico de OS-Compat. ¿En qué puedo ayudarte hoy Ismael?
+                </div>
+                <div class="message-time">10:00 AM</div>
+            </div>
+
+            <div class="message user-message">
+                <div class="message-content">
+                    Hola Winner, tengo problemas para instalar Windows 11 en mi equipo.
+                </div>
+                <div class="message-time">10:02 AM</div>
+            </div>
+
+            <div class="message agent-message">
+                <div class="message-content">
+                    Entiendo. ¿Podrías decirme qué mensaje de error recibes exactamente? También sería útil saber las especificaciones de tu equipo.
+                </div>
+                <div class="message-time">10:03 AM</div>
+            </div>
+
+            <div class="typing-indicator" id="typing-indicator">
+                <span>Alex está escribiendo</span>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+
+        <div class="chat-options">
+            <button class="option-button">
+                <i class="fas fa-desktop"></i> Problemas de instalación
+            </button>
+            <button class="option-button">
+                <i class="fas fa-network-wired"></i> Conexión de red
+            </button>
+            <button class="option-button">
+                <i class="fas fa-tachometer-alt"></i> Rendimiento
+            </button>
+            <button class="option-button">
+                <i class="fas fa-shield-alt"></i> Seguridad
+            </button>
+        </div>
+
+        <div class="chat-input-container">
+            <textarea class="chat-input" placeholder="Escribe tu mensaje aquí..." rows="1"></textarea>
+            <button class="send-button">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Toggle tema oscuro/claro
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        themeToggle.addEventListener('click', () => {
+            body.setAttribute('data-theme', 
+                body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            
+            // Cambiar icono
+            const icon = themeToggle.querySelector('i');
+            if (body.getAttribute('data-theme') === 'dark') {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+
+        // Autoajuste de altura del textarea
+        const textarea = document.querySelector('.chat-input');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        // Simulación de chat (solo demostración)
+        const chatMessages = document.getElementById('chat-messages');
+        const typingIndicator = document.getElementById('typing-indicator');
+        
+        // Ocultar indicador de escritura inicialmente
+        typingIndicator.style.display = 'none';
+        
+        // Simular respuesta después de 3 segundos
+        setTimeout(() => {
+            typingIndicator.style.display = 'flex';
+            
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                
+                const newMessage = document.createElement('div');
+                newMessage.className = 'message agent-message';
+                newMessage.innerHTML = `
+                    <div class="message-content">
+                        Para problemas de instalación de Windows 11, primero verifica si tu equipo cumple con los requisitos mínimos. ¿Has usado nuestro verificador de compatibilidad?
+                    </div>
+                    <div class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+                `;
+                
+                chatMessages.appendChild(newMessage);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 2000);
+        }, 3000);
+    </script>
+</body>
+</html>

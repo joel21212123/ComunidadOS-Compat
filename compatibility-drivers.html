@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS-Compat - Drivers Compatibles</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="detail-page-styles.css" />
+    <style>
+      /* --- Estilos para la página de Drivers Compatibles (Añadir a styles.css) --- */
+      /* Asegúrate de que no haya reglas duplicadas y que estén en la sección correcta */
+
+      /* Estilos de la estructura general de la página de detalle, si no están ya en styles.css */
+      /* .detail-page-content .container {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+} */
+
+      /* Estilos para la barra lateral de recursos */
+      .sidebar-content {
+        background-color: var(--card-bg-color); /* Fondo del sidebar: se adaptará */
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px var(--shadow-color); /* Sombra: se adaptará */
+      }
+
+      .sidebar-content h3 {
+        color: var(--text-color); /* Título: se adaptará */
+        margin-bottom: 1rem;
+        font-size: 1.3em;
+      }
+
+      .sidebar-content ul {
+        list-style: none; /* O disc si prefieres viñetas */
+        padding: 0;
+      }
+
+      .sidebar-content ul li {
+        margin-bottom: 0.8rem;
+      }
+
+      .sidebar-content ul li a {
+        color: var(--primary-color); /* Enlaces con color primario: se adaptará */
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .sidebar-content ul li a:hover {
+        color: var(--button-hover-darken); /* Hover más oscuro: se adaptará */
+      }
+
+      /* Estilos específicos de la sección de información del driver */
+      .driver-info-section {
+        background-color: var(--card-bg-color); /* Fondo de la sección: se adaptará */
+        padding: 25px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        border-left: 5px solid var(--primary-color); /* Borde con color primario: se adaptará */
+        box-shadow: 0 2px 5px var(--shadow-color); /* Sombra: se adaptará */
+      }
+      .driver-info-section h3 {
+        margin-top: 0;
+        color: var(--text-color); /* Título: se adaptará */
+        font-size: 1.5em;
+        margin-bottom: 15px;
+      }
+      .driver-info-section ul {
+        list-style: disc;
+        margin-left: 25px;
+        padding-left: 0;
+        color: var(--text-light-color); /* Texto de lista: se adaptará */
+      }
+      .driver-info-section ul li {
+        margin-bottom: 10px;
+      }
+      .driver-info-section ul li strong {
+        color: var(--text-color); /* Asegura que el texto fuerte también cambie */
+      }
+
+      /* Estilos para el formulario de búsqueda de drivers */
+      .driver-search-form {
+        margin-top: 20px;
+        background-color: var(--card-bg-color); /* Fondo del formulario: se adaptará */
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px var(--shadow-color); /* Sombra: se adaptará */
+      }
+      .driver-search-form h3 {
+        color: var(--text-color); /* Título: se adaptará */
+        margin-bottom: 15px;
+      }
+      .driver-search-form p,
+      .driver-search-form ol li {
+        color: var(--text-light-color); /* Texto: se adaptará */
+        margin-bottom: 10px;
+      }
+      .driver-search-form h4 {
+        margin-top: 25px;
+        margin-bottom: 15px;
+        color: var(--primary-color); /* O var(--text-color) si prefieres */
+      }
+      .driver-search-form .form-group {
+        margin-bottom: 20px;
+      }
+      .driver-search-form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: var(--text-color); /* Etiqueta: se adaptará */
+      }
+      .driver-search-form input[type='text'],
+      .driver-search-form select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid var(--input-border); /* Borde del input: se adaptará */
+        border-radius: 5px;
+        font-size: 1em;
+        box-sizing: border-box;
+        background-color: var(--input-bg); /* Fondo del input: se adaptará */
+        color: var(--text-color); /* Texto del input: se adaptará */
+      }
+      .driver-search-form input[type='text']:focus,
+      .driver-search-form select:focus {
+        border-color: var(--primary-color); /* Borde de focus: se adaptará */
+        box-shadow: 0 0 0 3px var(--focus-shadow-rgba); /* Sombra de focus: se adaptará */
+        outline: none;
+      }
+      .driver-search-form button {
+        background-color: var(--primary-color); /* Botón: se adaptará */
+        color: white; /* Color de texto del botón: fijo (asumimos blanco o color que contraste) */
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease;
+      }
+      .driver-search-form button:hover {
+        background-color: var(--button-hover-darken); /* Hover del botón: se adaptará */
+      }
+
+      /* Estilos del área de resultados de búsqueda */
+      .driver-result-area {
+        margin-top: 30px;
+        padding: 20px;
+        border: 1px dashed var(--border-color); /* Borde: se adaptará */
+        border-radius: 8px;
+        background-color: var(--bg-light-color); /* Fondo: se adaptará */
+        text-align: center;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-style: italic;
+        color: var(--text-light-color); /* Texto: se adaptará */
+      }
+      .driver-result-area h4 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-color); /* Título: se adaptará */
+      }
+
+      /* Media queries para la sección de drivers (diseño responsive) */
+      @media (max-width: 992px) {
+        .detail-page-content .container {
+          grid-template-columns: 1fr; /* Apilar columnas en pantallas pequeñas */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">OS-<span>Compat</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li class="has-dropdown">
+              <a href="windows.html">Sistemas <i class="fas fa-chevron-down"></i></a>
+              <ul class="dropdown">
+                <li><a href="windows.html">Windows</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="macos.html">macOS</a></li>
+                <li><a href="chromeos.html">Chrome OS</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="compatibility-hardware-checker.html" class="active"
+                >Compatibilidad <i class="fas fa-chevron-down"></i
+              ></a>
+              <ul class="dropdown">
+                <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+                <li><a href="compatibility-drivers.html">Drivers Compatibles</a></li>
+                <li><a href="compatibility-minimum-requirements.html">Requisitos Mínimos</a></li>
+              </ul>
+            </li>
+            <li><a href="Comunidad.html">Comunidad</a></li>
+            <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="header-icons">
+          <a href="#" class="icon"><i class="fas fa-search"></i></a>
+          <button class="toggle-theme" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="detail-page-content">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="#">Compatibilidad</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Drivers Compatibles</li>
+          </ol>
+        </nav>
+
+        <div class="main-content-section">
+          <h2>Encuentra los Drivers Compatibles para tu Hardware</h2>
+          <p>
+            Los drivers (o controladores) son piezas de software esenciales que permiten que tu
+            sistema operativo se comunique con los componentes de hardware de tu equipo, como la
+            tarjeta gráfica, la tarjeta de sonido, el Wi-Fi, la impresora, etc. Encontrar los
+            drivers correctos es crucial para el buen funcionamiento y rendimiento de tu PC.
+          </p>
+          <p>
+            En OS-Compat, te guiamos sobre cómo buscar y dónde encontrar los drivers adecuados para
+            tus dispositivos, sin importar qué sistema operativo estés utilizando.
+          </p>
+
+          <div class="driver-info-section">
+            <h3><i class="fas fa-info-circle"></i> ¿Por qué son importantes los drivers?</h3>
+            <ul>
+              <li>
+                <strong>Funcionalidad Completa:</strong> Sin el driver correcto, un componente de
+                hardware puede no funcionar en absoluto o funcionar con limitaciones.
+              </li>
+              <li>
+                <strong>Rendimiento Óptimo:</strong> Los drivers actualizados a menudo incluyen
+                optimizaciones que mejoran el rendimiento de tu hardware, especialmente en tarjetas
+                gráficas.
+              </li>
+              <li>
+                <strong>Estabilidad del Sistema:</strong> Drivers defectuosos o incompatibles pueden
+                causar bloqueos del sistema, pantallas azules (BSOD) o inestabilidad general.
+              </li>
+              <li>
+                <strong>Nuevas Características:</strong> Las actualizaciones de drivers pueden
+                añadir soporte para nuevas características o tecnologías en tu hardware.
+              </li>
+              <li>
+                <strong>Seguridad:</strong> Los drivers también pueden contener parches de seguridad
+                importantes.
+              </li>
+            </ul>
+          </div>
+
+          <div class="driver-search-form">
+            <h3><i class="fas fa-search"></i> ¿Cómo buscar drivers?</h3>
+            <p>
+              Aunque un sistema de búsqueda de drivers totalmente automatizado requeriría una base
+              de datos masiva y un backend complejo, aquí te ofrecemos los pasos generales que
+              deberías seguir para encontrar tus drivers:
+            </p>
+            <ol>
+              <li>
+                <strong>Identifica tu Hardware:</strong> Conoce la marca y modelo exacto de cada
+                componente (tarjeta gráfica, tarjeta de red, placa base, impresora, etc.). Puedes
+                usar herramientas como el Administrador de Dispositivos en Windows o comandos como
+                `lspci` y `lsusb` en Linux.
+              </li>
+              <li>
+                <strong>Visita la Web del Fabricante:</strong> El mejor lugar para encontrar drivers
+                es el sitio web oficial del fabricante de tu hardware (ej. NVIDIA, AMD, Intel,
+                Realtek, HP, Dell, etc.). Busca la sección de "Soporte" o "Descargas".
+              </li>
+              <li>
+                <strong>Selecciona tu Sistema Operativo:</strong> Asegúrate de descargar el driver
+                específico para tu versión de Windows (ej. Windows 10 64-bit), la distribución de
+                Linux (ej. Ubuntu 22.04), o si aplica para macOS (Hackintosh).
+              </li>
+              <li>
+                <strong>Descarga e Instala:</strong> Sigue las instrucciones proporcionadas por el
+                fabricante para la descarga e instalación.
+              </li>
+            </ol>
+
+            <h4>Formulario de Búsqueda de Drivers (Demostración)</h4>
+            <form id="driverSearchForm">
+              <div class="form-group">
+                <label for="componentType">Tipo de Componente:</label>
+                <select id="componentType" name="componentType">
+                  <option value="">Selecciona el tipo</option>
+                  <option value="gpu">Tarjeta Gráfica</option>
+                  <option value="wifi">Tarjeta Wi-Fi</option>
+                  <option value="audio">Tarjeta de Sonido</option>
+                  <option value="chipset">Chipset de Placa Base</option>
+                  <option value="printer">Impresora</option>
+                  <option value="other">Otro</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="componentModel">Marca y Modelo del Componente:</label>
+                <input
+                  type="text"
+                  id="componentModel"
+                  name="componentModel"
+                  placeholder="Ej: NVIDIA GeForce RTX 3070, TP-Link TL-WN881ND"
+                />
+              </div>
+              <div class="form-group">
+                <label for="targetOs">Sistema Operativo:</label>
+                <select id="targetOs" name="targetOs">
+                  <option value="">Selecciona un OS</option>
+                  <option value="windows11">Windows 11</option>
+                  <option value="windows10">Windows 10</option>
+                  <option value="linuxUbuntu">Linux (Ubuntu/Debian)</option>
+                  <option value="linuxFedora">Linux (Fedora/Red Hat)</option>
+                  <option value="macos">macOS (Hackintosh)</option>
+                  <option value="chromeos">Chrome OS</option>
+                </select>
+              </div>
+              <button type="submit">Buscar Sugerencias de Drivers</button>
+            </form>
+            <div class="driver-result-area" id="driverSearchResult">
+              Ingresa tus datos y haz clic en 'Buscar Sugerencias'.
+            </div>
+          </div>
+
+          <h3>Consideraciones por Sistema Operativo</h3>
+          <ul>
+            <li>
+              <strong>Windows:</strong> Generalmente, los fabricantes ofrecen drivers oficiales y
+              ejecutables fáciles de instalar. Windows Update también puede proporcionar drivers
+              básicos.
+            </li>
+            <li>
+              <strong>Linux:</strong> Muchos drivers están integrados en el kernel de Linux. Para
+              hardware más reciente o propietario (ej. NVIDIA), puede que necesites instalar drivers
+              adicionales desde los repositorios de tu distribución o directamente del fabricante.
+            </li>
+            <li>
+              <strong>macOS (Hackintosh):</strong> La compatibilidad de drivers es uno de los
+              mayores desafíos en Hackintosh. Necesitas "kexts" específicos (extensiones del kernel)
+              y adaptaciones para que el hardware no Apple funcione. Es un proceso más avanzado.
+            </li>
+            <li>
+              <strong>Chrome OS:</strong> Los drivers están integrados en el sistema. Los usuarios
+              rara vez necesitan instalar drivers manualmente. En el caso de ChromeOS Flex o FydeOS
+              en hardware no oficial, la compatibilidad de Wi-Fi y Bluetooth es lo que más a menudo
+              presenta problemas.
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-content">
+          <h3>Recursos y Herramientas</h3>
+          <ul>
+            <li>
+              <a href="https://www.nvidia.com/drivers" target="_blank" rel="noopener noreferrer"
+                >Drivers NVIDIA</a
+              >
+            </li>
+            <li>
+              <a href="https://www.amd.com/en/support" target="_blank" rel="noopener noreferrer"
+                >Drivers AMD</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.intel.la/content/www/xl/es/download-center/home.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Centro de Descargas Intel</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.realtek.com/Download/List?cate_id=593"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Drivers Realtek</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.tendacn.com/es/download/list-2.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Drivers Tenda
+              </a>
+            </li>
+            <li>
+              <a href="https://www.driveridentifier.com/" target="_blank" rel="noopener noreferrer"
+                >DriverIdentifier (herramienta de terceros)</a
+              >
+            </li>
+          </ul>
+
+          <h3>Guías Relacionadas de OS-Compat</h3>
+          <ul>
+            <li><a href="compatibility-hardware-checker.html">Verificador de Hardware</a></li>
+            <li>
+              <a href="compatibility-minimum-requirements.html">Requisitos Mínimos de los OS</a>
+            </li>
+            <li><a href="#">Solución de Problemas de Drivers (Pendiente)</a></li>
+            <li><a href="#">Actualización de Componentes (Pendiente)</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="index.html" class="footer-logo">OS-<span>Compat</span></a>
+            <p>
+              Plataforma dedicada a la validación de compatibilidad entre sistemas operativos y
+              hardware, ofreciendo soporte y comunidad para todos los usuarios.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fab fa-discord"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces Rápidos</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="index.html#seccion-compatibilidad">Verificador de Compatibilidad</a></li>
+              <li><a href="Comunidad.html">Comunidad</a></li>
+              <li><a href="SoporteTecnico.html">Soporte Técnico</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Sistemas Operativos</h4>
+            <ul>
+              <li><a href="windows.html">Windows</a></li>
+              <li><a href="linux.html">Linux</a></li>
+              <li><a href="macos.html">macOS</a></li>
+              <li><a href="chromeos.html">Chrome OS</a></li>
+            </ul>
+          </div>
+          <div class="footer-newsletter">
+            <h4>Boletín Informativo</h4>
+            <p>
+              Suscríbete para recibir actualizaciones sobre nuevos sistemas operativos y consejos de
+              compatibilidad
+            </p>
+            <form>
+              <input type="email" placeholder="Tu correo electrónico" />
+              <button type="submit">Suscribirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">&copy; 2025 OS-Compat. Todos los derechos reservados.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="theme.js"></script>
+    <script src="driver-finder.js"></script>
+  </body>
+</html>
